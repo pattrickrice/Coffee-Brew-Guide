@@ -1,0 +1,3 @@
+Using a timer
+
+When we brew coffee, one of the most important variables to keep in mind is the amount of time we're brewing. This app includes a timer in it so you can brew while using the app.
