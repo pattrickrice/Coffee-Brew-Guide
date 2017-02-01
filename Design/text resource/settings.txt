@@ -1,0 +1,8 @@
+Settings
+
+Units
+Weight (in grams)
+Volumetric (in tbs, tps, cups, oz)
+
+Default number of servings
+serving size set to INT person
