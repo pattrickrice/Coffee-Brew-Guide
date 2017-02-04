@@ -1,0 +1,3 @@
+Recipe
+
+Our coffee-to-water ratio was designed with the goal of highlighting the flavors of the coffee. In technical terms we're lookings for a Total Disolved Solid percentage of 1.35-1.48% and an extraction yield of 18-20%. These goals are measured in coffee labs using refractometers which use a light source to measure the index of refraction, which is directly affected by the amount of dissolved solids. 
