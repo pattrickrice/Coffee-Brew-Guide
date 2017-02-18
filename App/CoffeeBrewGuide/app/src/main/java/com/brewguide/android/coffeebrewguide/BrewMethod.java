@@ -8,50 +8,50 @@ import javax.xml.datatype.Duration;
  */
 
 public class BrewMethod {
-    public String methodName, methodGrindSize;
-    String[] methodInstructions;
-    int methodServingSize;
-    Duration methodBrewTime;
-    Image homeScreenTile, detailActivityGraphic;
+    public String mMethodName, mMethodGrindSize;
+    String[] mMethodInstructions;
+    int mMethodServingSize;
+    Duration mMethodBrewTime;
+    Image mHomeScreenTileId, mDetailActivityGraphicId;
 
     public BrewMethod(String name, String[] instructions, int servingSize, Duration brewTime, String grindSize, Image tile, Image graphic){
-        methodName = name;
-        methodGrindSize = grindSize;
-        methodInstructions = instructions;
-        methodServingSize = servingSize;
-        methodBrewTime = brewTime;
-        homeScreenTile = tile;
-        detailActivityGraphic = graphic;
+        mMethodName = name;
+        mMethodGrindSize = grindSize;
+        mMethodInstructions = instructions;
+        mMethodServingSize = servingSize;
+        mMethodBrewTime = brewTime;
+        mHomeScreenTileId = tile;
+        mDetailActivityGraphicId = graphic;
     }
     /**
      * get methods
      *
      */
-    public String getMethodName() {
-        return methodName;
+    public String getmMethodName() {
+        return mMethodName;
     }
 
-    public String[] getMethodInstructions() {
-        return methodInstructions;
+    public String[] getmMethodInstructions() {
+        return mMethodInstructions;
     }
 
-    public String getMethodGrindSize() {
-        return methodGrindSize;
+    public String getmMethodGrindSize() {
+        return mMethodGrindSize;
     }
 
-    public int getMethodServingSize() {
-        return methodServingSize;
+    public int getmMethodServingSize() {
+        return mMethodServingSize;
     }
 
-    public Duration getMethodBrewTime() {
-        return methodBrewTime;
+    public Duration getmMethodBrewTime() {
+        return mMethodBrewTime;
     }
 
-    public Image getHomeScreenTile() {
-        return homeScreenTile;
+    public Image getmHomeScreenTileId() {
+        return mHomeScreenTileId;
     }
 
-    public Image getDetailActivityGraphic() {
-        return detailActivityGraphic;
+    public Image getmDetailActivityGraphicId() {
+        return mDetailActivityGraphicId;
     }
 }
