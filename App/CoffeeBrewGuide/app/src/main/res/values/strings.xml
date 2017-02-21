@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Coffee Brew Guide</string>
+    <string name="title_activity_brew_method">BrewMethodActivity</string>
 </resources>
