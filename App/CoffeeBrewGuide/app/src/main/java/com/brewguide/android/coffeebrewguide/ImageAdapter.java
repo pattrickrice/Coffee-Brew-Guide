@@ -5,11 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 /**
- * Created by Patrick on 2/18/2017.
+ * Adapter that takes the brew method tile images and implements them in a GridView shown in Main Activity
  */
 
 public class ImageAdapter extends BaseAdapter {
@@ -19,6 +18,7 @@ public class ImageAdapter extends BaseAdapter {
         mContext = c;
     }
 
+    // returns the count of the number of images
     public int getCount() {
         return mThumbIds.length;
     }
@@ -40,7 +40,7 @@ public class ImageAdapter extends BaseAdapter {
 
         if (convertView == null) {
 
-            gridView = new View(mContext);
+//            gridView = new View(mContext);
 
             // get layout from mobile.xml
             gridView = inflater.inflate(R.layout.grid_tile, null);
@@ -59,23 +59,11 @@ public class ImageAdapter extends BaseAdapter {
 
         return gridView;
 
-//        ImageView imageView;
-//        if (convertView == null) {
-//            // if it's not recycled, initialize some attributes
-//            imageView = new ImageView(mContext);
-//            imageView.setLayoutParams(new GridView.LayoutParams(525, 700));
-//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//            imageView.setPadding(8, 8, 8, 8);
-//        } else {
-//            imageView = (ImageView) convertView;
-//        }
-//
-//        imageView.setImageResource(mThumbIds[position]);
-//        return imageView;
     }
 
-    // references to our images
+    // references to the images shown in the Gridview
     private Integer[] mThumbIds = {
+            //TODO replace with object values
             R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress
 };
 }
