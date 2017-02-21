@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+/*
+* Activity to display individual brew methods and their details. Intent is passes from Main Activity
+* */
 public class BrewMethodActivity extends AppCompatActivity {
 
     @Override
