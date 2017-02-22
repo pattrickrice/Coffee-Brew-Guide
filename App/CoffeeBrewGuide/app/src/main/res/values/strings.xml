@@ -6,4 +6,38 @@
     <string name="title_activity_hario_v60">HarioV60Activity</string>
     <string name="title_activity_french_press">FrenchPressActivity</string>
     <string name="title_activity_iced_coffee">IcedCoffeeActivity</string>
+
+    <!--Brew Methods Requirements-->
+    <String name="serving">serving</String>
+    <String name="brew_time">Brew Time</String>
+    <string name="grind_setting">Grind Setting</string>
+
+    <!--Grind sizes-->
+    <string name="grind_size_fine">Fine</string>
+    <string name="grind_size_medium">Medium</string>
+    <string name="grind_size_coarse">Coarse</string>
+
+
+    <!--Resources for aeropress-->
+    <string name="title_aeropress">Aeropress</string>]
+    
+    <string name="bio_aeropress">
+        The aero-press, designed by the inventor of the Aerobie Ring (a flying ring), is a great light-weight travel companion loved by many in the coffee world. It can be used with a paper or metal filter and combines emersion and pressure brewing resulting in a full-bodied and fragrent cup.
+    </string>
+    
+    <string name="instruction_step1_aeropress">Load filter over cover and screw onto bottom-half of brewer, set on top of a cup or carafe.</string>
+
+    <string name="instruction_step2_aeropress">Wet filter and warm brewer by pouring hot water into lower half.</string>
+    <string name="instruction_step3_aeropress">Grind coffee on slightly finer grind than paper filter, dump hot water from carafe, positioning back under the brewer, and dump grounds into tube.></string>
+    <string name="instruction_step4_aeropress">Pour INT UNITS of water into brewer, filling to the top.</string>
+    <string name="instruction_step5_aeropress">Using a spoon, stir grounds at bottom of brewer gently.</string>
+    <string name="instruction_step6_aeropress">Slide top half of brewer in bottom half, initially in an angle, and then straighten out into a vertical position.</string>
+    <string name="instruction_step7_aeropress">At 1:00 remove entire setup off of scale, and gently press using just body weight. Complete press should finish at 1:30.</string>
+    <string name="instruction_step8_aeropress">Stir coffee in carafe and serve.</string>
+
+
+    <!--Resources for frenchpress-->
+    <!--Resources for hario V-60-->
+    <!--Resources for chemex-->
+    <!--Resources for Iced Coffee-->
 </resources>
