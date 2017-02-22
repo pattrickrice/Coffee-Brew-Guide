@@ -24,6 +24,51 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.brewguide.android.coffeebrewguide.MainActivity" />
         </activity>
+        <activity
+            android:name=".ChemexActivity"
+            android:label="@string/title_activity_chemex"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brewguide.android.coffeebrewguide.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AeropressActivity"
+            android:label="@string/title_activity_aeropress"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brewguide.android.coffeebrewguide.MainActivity" />
+        </activity>
+        <activity
+            android:name=".HarioV60Activity"
+            android:label="@string/title_activity_hario_v60"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brewguide.android.coffeebrewguide.MainActivity" />
+        </activity>
+        <activity
+            android:name=".FrenchPressActivity"
+            android:label="@string/title_activity_french_press"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brewguide.android.coffeebrewguide.MainActivity" />
+        </activity>
+        <activity
+            android:name=".IcedCoffeeActivity"
+            android:label="@string/title_activity_iced_coffee"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.brewguide.android.coffeebrewguide.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

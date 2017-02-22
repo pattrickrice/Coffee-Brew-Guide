@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Coffee Brew Guide</string>
     <string name="title_activity_brew_method">BrewMethodActivity</string>
+    <string name="title_activity_chemex">ChemexActivity</string>
+    <string name="title_activity_aeropress">AeropressActivity</string>
+    <string name="title_activity_hario_v60">HarioV60Activity</string>
+    <string name="title_activity_french_press">FrenchPressActivity</string>
+    <string name="title_activity_iced_coffee">IcedCoffeeActivity</string>
 </resources>
