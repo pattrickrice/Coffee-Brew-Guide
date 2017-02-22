@@ -11,10 +11,10 @@ public class BrewMethod {
     public String mMethodName, mMethodGrindSize;
     String[] mMethodInstructions;
     int mMethodServingSize;
-    Duration mMethodBrewTime;
+    org.joda.time.Duration mMethodBrewTime;
     Image mHomeScreenTileId, mDetailActivityGraphicId;
 
-    public BrewMethod(String name, String[] instructions, int servingSize, Duration brewTime, String grindSize, Image tile, Image graphic){
+    public BrewMethod(String name, String[] instructions, int servingSize, org.joda.time.Duration brewTime, String grindSize, Image tile, Image graphic){
         mMethodName = name;
         mMethodGrindSize = grindSize;
         mMethodInstructions = instructions;
@@ -43,7 +43,7 @@ public class BrewMethod {
         return mMethodServingSize;
     }
 
-    public Duration getmMethodBrewTime() {
+    public org.joda.time.Duration getmMethodBrewTime() {
         return mMethodBrewTime;
     }
 
