@@ -1,5 +1,6 @@
 package com.brewguide.android.coffeebrewguide;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,17 +20,15 @@ import static com.brewguide.android.coffeebrewguide.R.drawable.aeropress;
 public class AeropressActivity extends AppCompatActivity {
     String name, grindSize;
     String[] instructions;
-    int servingSize;
+    int servingSize,tile, graphic;
     org.joda.time.Duration brewTime;
-    Image tile, graphic;
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Assign variables on creation
         name =  getResources().getString(R.string.title_aeropress);
         instructions = getResources().getStringArray(R.array.instructions_aeropress_array);
         servingSize = 1;
@@ -37,7 +36,9 @@ public class AeropressActivity extends AppCompatActivity {
         // Set brewtime to 1:30 (mm:ss)
         brewTime = org.joda.time.Duration.millis(90000);
 
-
+        tile = R.drawable.aeropress;
+        //TODO: update with graphic when resource is avialable.
+        graphic = R.drawable.aeropress;
 
         //create BrewMethod object
         BrewMethod aeropress = new BrewMethod(
