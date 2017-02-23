@@ -4,20 +4,18 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static android.R.attr.name;
 
 /**
  * Activity that handels information for the Aeropress Activity. Intent is passed from the main
  * Activity.
  * */
-public class AeropressActivity extends AppCompatActivity {
+public class AeropressActivity extends AppCompatActivity implements InstructionsFragment.OnInstructionsStepSelected{
 
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
@@ -59,13 +57,14 @@ public class AeropressActivity extends AppCompatActivity {
 
 
 //        //id the recycler view
-//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_recycler_view);
 //
-//        //create the adapter
-//        BrewMethodInstructionsAdapter adapter = new BrewMethodInstructionsAdapter(instructions, listener);
+        //create the adapter
+        BrewMethodInstructionsAdapter adapter = new BrewMethodInstructionsAdapter(instructions, listener);
 //
 //        //set the adapter to fill the recycler view
-//        recyclerView.setAdapter(adapter);
+        //TODO: Null object reference
+        recyclerView.setAdapter(adapter);
 
 
         // Auto generated
@@ -86,4 +85,9 @@ public class AeropressActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+
+    @Override
+    public void onArticleSelected(int position) {
+
+    }
 }

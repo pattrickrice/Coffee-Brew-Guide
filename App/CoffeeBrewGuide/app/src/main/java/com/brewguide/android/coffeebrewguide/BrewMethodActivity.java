@@ -10,7 +10,7 @@ import android.view.View;
 /*
 * Activity to display individual brew methods and their details. Intent is passes from Main Activity
 * */
-public class BrewMethodActivity extends AppCompatActivity {
+public class BrewMethodActivity extends AppCompatActivity implements InstructionsFragment.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +30,8 @@ public class BrewMethodActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public void onListFragmentInteraction(String item) {
 
+    }
 }

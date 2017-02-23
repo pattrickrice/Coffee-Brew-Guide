@@ -1,6 +1,7 @@
 package com.brewguide.android.coffeebrewguide;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class BrewMethodInstructionsAdapter extends RecyclerView.Adapter<BrewMeth
 
     private final ArrayList<String> mValues;
     private final OnListFragmentInteractionListener mListener;
+    final String LOGTAG = this.getClass().getSimpleName();
+
 
     public BrewMethodInstructionsAdapter(ArrayList<String> instructions, OnListFragmentInteractionListener listener) {
         mValues = instructions;

@@ -1,5 +1,6 @@
 package com.brewguide.android.coffeebrewguide;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.brewguide.android.coffeebrewguide.dummy.DummyContent;
-import com.brewguide.android.coffeebrewguide.dummy.DummyContent.DummyItem;
-
-import java.util.List;
-
 /**
  * A fragment representing a list of Items.
  * <p/>
@@ -22,6 +18,7 @@ import java.util.List;
  * interface.
  */
 public class InstructionsFragment extends Fragment {
+    OnInstructionsStepSelected mCallback;
 
 
     // TODO: Customize parameter argument names
@@ -76,15 +73,21 @@ public class InstructionsFragment extends Fragment {
         return view;
     }
 
+    public interface OnInstructionsStepSelected {
+        public void onArticleSelected(int position);
+    }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnInstructionsStepSelected) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnInstructionsStepSelected");
         }
     }
 
