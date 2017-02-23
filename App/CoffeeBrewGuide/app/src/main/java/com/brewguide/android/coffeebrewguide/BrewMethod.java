@@ -2,6 +2,9 @@ package com.brewguide.android.coffeebrewguide;
 
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+
+import java.util.ArrayList;
+
 import javax.xml.datatype.Duration;
 
 /**
@@ -10,12 +13,12 @@ import javax.xml.datatype.Duration;
 
 public class BrewMethod {
     public String mMethodName, mMethodGrindSize;
-    String[] mMethodInstructions;
+    ArrayList<String> mMethodInstructions;
     int mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
     org.joda.time.Duration mMethodBrewTime;
 
 
-    public BrewMethod(String name, String[] instructions, int servingSize, org.joda.time.Duration brewTime, String grindSize, int tile, int graphic){
+    public BrewMethod(String name, ArrayList<String> instructions, int servingSize, org.joda.time.Duration brewTime, String grindSize, int tile, int graphic){
         mMethodName = name;
         mMethodGrindSize = grindSize;
         mMethodInstructions = instructions;
@@ -32,7 +35,7 @@ public class BrewMethod {
         return mMethodName;
     }
 
-    public String[] getmMethodInstructions() {
+    public ArrayList<String> getmMethodInstructions() {
         return mMethodInstructions;
     }
 
