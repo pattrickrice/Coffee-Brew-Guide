@@ -34,6 +34,10 @@ public class AeropressActivity extends AppCompatActivity {
         instructions = getResources().getStringArray(R.array.instructions_aeropress_array);
         servingSize = 1;
 
+        // Set brewtime to 1:30 (mm:ss)
+        brewTime = org.joda.time.Duration.millis(90000);
+
+
 
         //create BrewMethod object
         BrewMethod aeropress = new BrewMethod(
