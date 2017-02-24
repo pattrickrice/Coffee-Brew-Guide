@@ -6,10 +6,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 
 
 /**
@@ -25,6 +27,7 @@ public class AeropressActivity extends AppCompatActivity implements Instructions
     ArrayList<String> instructions;
     int servingSize,tile, graphic;
     org.joda.time.Duration brewTime;
+    private static final String ARG_INSTRUCTION_STRINGS = "instruction-strings";
 
     InstructionsFragment.OnListFragmentInteractionListener listener;
 
@@ -32,31 +35,33 @@ public class AeropressActivity extends AppCompatActivity implements Instructions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Log.e(LOGTAG, "Statementreached");
 
         //creates brewmethod object
         BrewMethod aeropress = getBrewMethodData();
 
-        // Auto generated
-        setContentView(R.layout.activity_brew_method);
 
 //        //id the recycler view
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_recycler_view);
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_recycler_view);
 //
-        //create the adapter
-        BrewMethodInstructionsAdapter adapter = new BrewMethodInstructionsAdapter(aeropress.getmMethodInstructions(), listener);
-//
-//        //set the adapter to fill the recycler view
-        //TODO: Null object reference
-        if(recyclerView != null) {
-            recyclerView.setAdapter(adapter);
-        }else {
-            Log.e(LOGTAG, "RecyclerView Null");
-        }
-
+//        //create the adapter
+//        BrewMethodInstructionsAdapter adapter = new BrewMethodInstructionsAdapter(aeropress.getmMethodInstructions(), listener);
+//        Log.e(LOGTAG, "adapterset");
 
         // Auto generated
+        setContentView(R.layout.activity_brew_method);
+        Log.e(LOGTAG, "ContentviewSet");
 
+
+//        //set the adapter to fill the recycler view
+//        if(recyclerView != null) {
+//            recyclerView.setAdapter(adapter);
+//        }else {
+//            Log.e(LOGTAG, "RecyclerView Null");
+//        }
+
+        // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
