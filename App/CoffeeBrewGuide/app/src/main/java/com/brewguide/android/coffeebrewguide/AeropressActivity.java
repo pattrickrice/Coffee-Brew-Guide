@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,44 +32,31 @@ public class AeropressActivity extends AppCompatActivity implements Instructions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(LOGTAG, "Statementreached");
 
-        //Assign variables on creation
-        name =  getResources().getString(R.string.title_aeropress);
-        instructions = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array)));
-        servingSize = 1;
+        //creates brewmethod object
+        BrewMethod aeropress = getBrewMethodData();
 
-        // Set brewtime to 1:30 (mm:ss)
-        brewTime = org.joda.time.Duration.millis(90000);
-
-        tile = R.drawable.aeropress;
-        //TODO: update with graphic when resource is available.
-        graphic = R.drawable.aeropress;
-
-        //create BrewMethod object
-        BrewMethod aeropress = new BrewMethod(
-                name,
-                instructions,
-                servingSize,
-                brewTime,
-                grindSize,
-                tile,
-                graphic
-        );
-
+        // Auto generated
+        setContentView(R.layout.activity_brew_method);
 
 //        //id the recycler view
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_recycler_view);
 //
         //create the adapter
-        BrewMethodInstructionsAdapter adapter = new BrewMethodInstructionsAdapter(instructions, listener);
+        BrewMethodInstructionsAdapter adapter = new BrewMethodInstructionsAdapter(aeropress.getmMethodInstructions(), listener);
 //
 //        //set the adapter to fill the recycler view
         //TODO: Null object reference
-        recyclerView.setAdapter(adapter);
+        if(recyclerView != null) {
+            recyclerView.setAdapter(adapter);
+        }else {
+            Log.e(LOGTAG, "RecyclerView Null");
+        }
 
 
         // Auto generated
-        setContentView(R.layout.activity_brew_method);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -85,9 +73,35 @@ public class AeropressActivity extends AppCompatActivity implements Instructions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    public BrewMethod getBrewMethodData(){
+        //Assign variables on creation
+        name =  getResources().getString(R.string.title_aeropress);
+        instructions = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array)));
+        servingSize = 1;
 
+        // Set brewtime to 1:30 (mm:ss)
+        brewTime = org.joda.time.Duration.millis(90000);
+
+        tile = R.drawable.aeropress;
+        //TODO: update with graphic when resource is available.
+        graphic = R.drawable.aeropress;
+
+        //create BrewMethod object
+        BrewMethod brewMethod = new BrewMethod(
+                name,
+                instructions,
+                servingSize,
+                brewTime,
+                grindSize,
+                tile,
+                graphic
+        );
+        return brewMethod;
+    }
     @Override
     public void onArticleSelected(int position) {
 
     }
+
+
 }

@@ -7,9 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.brewguide.android.coffeebrewguide.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -19,6 +22,8 @@ import android.view.ViewGroup;
  */
 public class InstructionsFragment extends Fragment {
     OnInstructionsStepSelected mCallback;
+    final String LOGTAG = this.getClass().getSimpleName();
+
 
 
     // TODO: Customize parameter argument names
@@ -68,7 +73,9 @@ public class InstructionsFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             //TODO
-//            recyclerView.setAdapter(new BrewMethodInstructionsAdapter(DummyContent.ITEMS, mListener));
+            Log.v(LOGTAG, "Statement reached");
+
+//            recyclerView.setAdapter(new BrewMethodInstructionsAdapter(()getActivity()., mListener));
         }
         return view;
     }

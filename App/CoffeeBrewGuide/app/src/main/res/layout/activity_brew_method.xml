@@ -20,6 +20,14 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+    <fragment
+        android:id="@+id/instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.brewguide.android.coffeebrewguide.InstructionsFragment">
+
+
+    </fragment>
 
     <include layout="@layout/content_brew_method" />
 
