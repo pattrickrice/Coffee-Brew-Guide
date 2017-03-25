@@ -11,7 +11,7 @@ import android.view.View;
 /*
 * Activity to display individual brew methods and their details. Intent is passes from Main Activity
 * */
-public class BrewMethodActivity extends AppCompatActivity implements InstructionsFragment.OnListFragmentInteractionListener{
+public class BrewMethodActivity extends AppCompatActivity {
     final String LOGTAG = this.getClass().getSimpleName();
 
 
@@ -36,8 +36,5 @@ public class BrewMethodActivity extends AppCompatActivity implements Instruction
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    public void onListFragmentInteraction(String item) {
 
-    }
 }
