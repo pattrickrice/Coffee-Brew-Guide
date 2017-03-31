@@ -24,22 +24,40 @@
 
     <!--Resources for aeropress-->
     <string name="title_aeropress">Aeropress</string>]
-    
+
     <string name="bio_aeropress">
         The aero-press, designed by the inventor of the Aerobie Ring (a flying ring), is a great light-weight travel companion loved by many in the coffee world. It can be used with a paper or metal filter and combines emersion and pressure brewing resulting in a full-bodied and fragrent cup.
     </string>
 
     <array name="instructions_aeropress_array">
-        <item name="instruction_step1_aeropress">Load filter over cover and screw onto bottom-half of brewer, set on top of a cup or carafe.</item>
+        <item name="instruction_step1_aeropress">Load filter over cover and screw onto bottom-half
+            of brewer, set on top of a cup or carafe.
+        </item>
 
-        <item name="instruction_step2_aeropress">Wet filter and warm brewer by pouring hot water into lower half.</item>
-        <item name="instruction_step3_aeropress">Grind coffee on slightly finer grind than paper filter, dump hot water from carafe, positioning back under the brewer, and dump grounds into tube.></item>
-        <item name="instruction_step4_aeropress">Pour INT UNITS of water into brewer, filling to the top.</item>
-        <item name="instruction_step5_aeropress">Using a spoon, stir grounds at bottom of brewer gently.</item>
-        <item name="instruction_step6_aeropress">Slide top half of brewer in bottom half, initially in an angle, and then straighten out into a vertical position.</item>
-        <item name="instruction_step7_aeropress">At 1:00 remove entire setup off of scale, and gently press using just body weight. Complete press should finish at 1:30.</item>
+        <item name="instruction_step2_aeropress">Wet filter and warm brewer by pouring hot water
+            into lower half.
+        </item>
+        <item name="instruction_step3_aeropress">Grind coffee on slightly finer grind than paper
+            filter, dump hot water from carafe, positioning back under the brewer, and dump grounds
+            into tube.>
+        </item>
+        <item name="instruction_step4_aeropress">Pour INT UNITS of water into brewer, filling to the
+            top.
+        </item>
+        <item name="instruction_step5_aeropress">Using a spoon, stir grounds at bottom of brewer
+            gently.
+        </item>
+        <item name="instruction_step6_aeropress">Slide top half of brewer in bottom half, initially
+            in an angle, and then straighten out into a vertical position.
+        </item>
+        <item name="instruction_step7_aeropress">At 1:00 remove entire setup off of scale, and
+            gently press using just body weight. Complete press should finish at 1:30.
+        </item>
         <item name="instruction_step8_aeropress">Stir coffee in carafe and serve.</item>
     </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!--Resources for frenchpress-->
