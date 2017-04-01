@@ -18,6 +18,7 @@ import static android.support.v7.widget.AppCompatDrawableManager.get;
  */
 
 public class InstructionListAdapter extends RecyclerView.Adapter<InstructionListAdapter.ViewHolder> {
+    // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
 
 
@@ -43,11 +44,9 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
 
     // Pass in the contact array into the constructor
     public InstructionListAdapter(Context context, List<String> instructions) {
-        Log.v(LOGTAG, "InstructionsListAdapter:begin");
 
         mInstructions = instructions;
         mContext = context;
-        Log.v(LOGTAG, "InstructionsListAdapter:finished" + mInstructions);
     }
 
     // Easy access to the context object in the recyclerview
@@ -57,7 +56,6 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
 
     @Override
     public InstructionListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.v(LOGTAG, "onCreateViewHolder");
 
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -70,21 +68,19 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
         return viewHolder;
     }
 
-
+    // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.v(LOGTAG, "onBindViewHolder");
 
         // Get the data model based on position
         String instruction = mInstructions.get(position);
         // Set item views based on your views and data model
         TextView textView = holder.mIDTV;
-        textView.setText(Integer.toString(position + 1));
-        Log.v(LOGTAG, "set text instruction in onBindViewHolder: " + instruction);
+        textView.setText("Step " + Integer.toString(position + 1) + ".");
         TextView content = holder.mContentTV;
         content.setText(instruction);
     }
-
+    // Returns the total count of items in the list
     @Override
     public int getItemCount() {
         return mInstructions.size();

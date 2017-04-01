@@ -16,15 +16,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BrewMethodActivity"
-            android:label="@string/title_activity_brew_method"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.brewguide.android.coffeebrewguide.MainActivity" />
-        </activity>
-        <activity
             android:name=".ChemexActivity"
             android:label="@string/title_activity_chemex"
             android:parentActivityName=".MainActivity"

@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,11 +26,11 @@ public class AeropressActivity extends AppCompatActivity  {
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
 
+
     String name, grindSize;
     ArrayList<String> instructions;
     int servingSize,tile, graphic;
     org.joda.time.Duration brewTime;
-    private static final String ARG_INSTRUCTION_STRINGS = "instruction-strings";
 
 
     @Override
@@ -36,37 +38,30 @@ public class AeropressActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brew_method);
 
-
-        Log.e(LOGTAG, "Statementreached");
-
         //creates brewmethod object
         BrewMethod aeropress = getBrewMethodData();
 
+        //set recyclerview object for instructions list
         RecyclerView rvInsstructions = (RecyclerView) findViewById(R.id.rvInstructions);
 
+        //create adapter for recyclerview for instructions list
         InstructionListAdapter adapter = new InstructionListAdapter(this, aeropress.getmMethodInstructions());
-        Log.v(LOGTAG, "adapter created!");
 
-        if(adapter == null){
-            Log.v(LOGTAG, "null adapter");
-
-        }
-        if(rvInsstructions == null){
-            Log.v(LOGTAG, "null rv");
-
-        }
+        //set the adapter to the view
         rvInsstructions.setAdapter(adapter);
+
+        //create layout manager and set
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvInsstructions.setLayoutManager(layoutManager);
-        // Auto generated
-        Log.e(LOGTAG, "ContentviewSet");
 
-
-
+        //set top image
+        ImageView topImage = (ImageView) findViewById(R.id.topImageIV);
+        topImage.setImageResource(aeropress.getmDetailActivityGraphicId());
         // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
