@@ -14,14 +14,17 @@ import javax.xml.datatype.Duration;
 public class BrewMethod {
     public String mMethodName, mMethodGrindSize;
     ArrayList<String> mMethodInstructions;
-    int mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
+    int mMethodServingNumber, mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
     org.joda.time.Duration mMethodBrewTime;
 
 
-    public BrewMethod(String name, ArrayList<String> instructions, int servingSize, org.joda.time.Duration brewTime, String grindSize, int tile, int graphic){
+
+
+    public BrewMethod(String name, ArrayList<String> instructions, int servingNumber, int servingSize, org.joda.time.Duration brewTime, String grindSize, int tile, int graphic){
         mMethodName = name;
         mMethodGrindSize = grindSize;
         mMethodInstructions = instructions;
+        mMethodServingNumber = servingNumber;
         mMethodServingSize = servingSize;
         mMethodBrewTime = brewTime;
         mHomeScreenTileId = tile;
@@ -38,7 +41,9 @@ public class BrewMethod {
     public ArrayList<String> getmMethodInstructions() {
         return mMethodInstructions;
     }
-
+    public int getServingNumber() {
+        return mMethodServingNumber;
+    }
     public String getmMethodGrindSize() {
         return mMethodGrindSize;
     }

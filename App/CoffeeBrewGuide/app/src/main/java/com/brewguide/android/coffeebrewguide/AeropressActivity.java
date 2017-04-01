@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +30,7 @@ public class AeropressActivity extends AppCompatActivity  {
 
     String name, grindSize;
     ArrayList<String> instructions;
-    int servingSize,tile, graphic;
+    int servingNumber, servingSize,tile, graphic;
     org.joda.time.Duration brewTime;
 
 
@@ -58,6 +59,12 @@ public class AeropressActivity extends AppCompatActivity  {
         //set top image
         ImageView topImage = (ImageView) findViewById(R.id.topImageIV);
         topImage.setImageResource(aeropress.getmDetailActivityGraphicId());
+
+        //set serving number
+        String serving = Integer.toString(aeropress.getServingNumber()) + " " + getResources().getString(R.string.serving);
+        TextView servingNumberTV = (TextView) findViewById(R.id.TV_servingNumber);
+        servingNumberTV.setText(serving);
+
         // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,7 +87,8 @@ public class AeropressActivity extends AppCompatActivity  {
         //Assign variables on creation
         name =  getResources().getString(R.string.title_aeropress);
         instructions = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array)));
-        servingSize = 1;
+        servingNumber = 1;
+        servingSize = 16;
 
         // Set brewtime to 1:30 (mm:ss)
         brewTime = org.joda.time.Duration.millis(90000);
@@ -93,6 +101,7 @@ public class AeropressActivity extends AppCompatActivity  {
         BrewMethod brewMethod = new BrewMethod(
                 name,
                 instructions,
+                servingNumber,
                 servingSize,
                 brewTime,
                 grindSize,
