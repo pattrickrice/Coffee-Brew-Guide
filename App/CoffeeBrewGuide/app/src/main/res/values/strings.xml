@@ -16,6 +16,10 @@
     <string name="brew_time">Brew Time</string>
     <string name="grind_setting">Grind Setting</string>
 
+    <string name="brew_method_description">Description</string>
+    <string name="brew_method_instructions">Instructions</string>
+
+
     <!--Grind sizes-->
     <string name="grind_size_fine">Fine</string>
     <string name="grind_size_medium">Medium</string>

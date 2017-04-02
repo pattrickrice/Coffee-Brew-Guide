@@ -101,6 +101,8 @@ public class AeropressActivity extends AppCompatActivity  {
 
         // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(aeropress.getmMethodName());
+
         setSupportActionBar(toolbar);
 
 

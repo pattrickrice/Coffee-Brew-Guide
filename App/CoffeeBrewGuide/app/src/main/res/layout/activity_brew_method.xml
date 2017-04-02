@@ -5,103 +5,192 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
-
+    <!--make whole layout scrollable-->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
         android:orientation="vertical">
-
+        <!--nested view can only have one child-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- main image of the brew method-->
             <ImageView
                 android:id="@+id/topImageIV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                />
+                android:focusableInTouchMode="true" />
 
+            <!--layout for the brew parameteres-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="3">
-
+            <!--layout for the weight-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                    <TextView
-                    android:id="@+id/TV_servingDose"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="16 g" />
+                    <!--top row of the weight includes image-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <!--weight image icon-->
+                        <ImageView
+                            android:id="@+id/weight_icon_IV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:focusableInTouchMode="true"
+                            android:src="@drawable/ic_weight" />
+                        <!--weight parameter set dynamically-->
+                        <TextView
+                            android:id="@+id/TV_servingDose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:hint="16 g"
 
+                            />
+                    </LinearLayout>
+
+                    <!--serving size set dynamically-->
                     <TextView
                         android:id="@+id/TV_servingNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="1 Serving" />
+
+                        android:hint="1 Serving"
+                        android:paddingLeft="12dp" />
 
                 </LinearLayout>
-
+                <!--layout for time requirement-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical">
+                    <!--top row of time requirement-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <!--time icon-->
+                        <ImageView
+                            android:id="@+id/timer_icon_IV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:focusableInTouchMode="true"
+                            android:src="@drawable/ic_clock" />
+                        <!--brew time set dynamically-->
+                        <TextView
+                            android:id="@+id/TV_timer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="4:00" />
+                    </LinearLayout>
+                    <!--brew time label-->
                     <TextView
-                        android:id="@+id/TV_timer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="4:00" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
+
+                        android:paddingLeft="13dp"
                         android:text="Brew Time" />
 
                 </LinearLayout>
-
+                <!--layout for grind size-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/TV_grindSetting"
+                    <!--top row of grind size includes image-->
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <!--icon for grind-->
+                        <ImageView
+                            android:id="@+id/grind_icon_IV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:focusableInTouchMode="true"
+                            android:src="@drawable/ic_grinder" />
+                        <!--grind description set dynamically-->
+                        <TextView
+                            android:id="@+id/TV_grindSetting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="@string/grind_size_coarse" />
+                    </LinearLayout>
+                    <!--grind setting description-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="Course" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Grind Setting" />
+                        android:paddingLeft="12dp"
+                        android:text="@string/grind_setting" />
 
                 </LinearLayout>
             </LinearLayout>
+            <!--description of brewmethod layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--description label-->
+                <TextView
+                    android:id="@+id/brew_method_name_TV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/brew_method_description"
+                    android:paddingStart="16dp"
+                    android:textSize="24sp" />
+                <!--description text-->
+                <TextView
+                    android:id="@+id/brew_method_description_TV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/bio_aeropress"
+                    android:paddingRight="16dp"
 
+                    android:paddingStart="16dp" />
+                <!--instructions label-->
+                <TextView
+                    android:id="@+id/brew_method_instructions_title_TV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/brew_method_instructions"
+                    android:paddingStart="16dp"
+                    android:textSize="24sp" />
+            </LinearLayout>
+            <!--instuctions recyclerview. set using InstructionListAdapter-->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvInstructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="0dp">
+
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
