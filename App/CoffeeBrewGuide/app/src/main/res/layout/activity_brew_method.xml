@@ -21,7 +21,8 @@
                 android:id="@+id/topImageIV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="true" />
+                android:focusableInTouchMode="true"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,16 +35,20 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-
-                    >
+                    android:orientation="vertical">
+                    <TextView
+                    android:id="@+id/TV_servingDose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="16 g" />
 
                     <TextView
                         android:id="@+id/TV_servingNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                         />
+                        android:hint="1 Serving" />
 
                 </LinearLayout>
 
@@ -52,16 +57,18 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-
-                    >
-
+                    android:orientation="vertical">
                     <TextView
                         android:id="@+id/TV_timer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="timer" />
+                        android:hint="4:00" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Brew Time" />
 
                 </LinearLayout>
 
@@ -70,31 +77,31 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-
-                    >
+                    android:orientation="vertical">
 
                     <TextView
-
                         android:id="@+id/TV_grindSetting"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="grindsize" />
+                        android:hint="Course" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Grind Setting" />
 
                 </LinearLayout>
-
             </LinearLayout>
-
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvInstructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="0dp">
-
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
@@ -121,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
 
 </android.support.design.widget.CoordinatorLayout>
