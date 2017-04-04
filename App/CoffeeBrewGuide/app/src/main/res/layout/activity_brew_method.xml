@@ -21,17 +21,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/mainBackground"
+            android:background="@color/colorPrimary"
             >
 
             <!-- main image of the brew method-->
             <ImageView
                 android:id="@+id/topImageIV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center|top"
                 android:focusableInTouchMode="true"
                 android:background="@color/colorPrimary"
                 />
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
 
             <!--layout for the brew parameteres-->
             <LinearLayout
@@ -40,8 +45,9 @@
                 android:padding="8dp"
                 android:orientation="horizontal"
                 android:weightSum="3"
+                android:background="@drawable/brew_method_parameters"
 
-                android:background="@color/colorPrimary"
+
                 >
             <!--layout for the weight-->
                 <LinearLayout
@@ -49,7 +55,8 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
                     <!--top row of the weight includes image-->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -72,7 +79,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:hint="16 g"
-                            android:textColor="@color/mainBackground"
+                            android:textColor="@color/colorPrimaryDark"
 
                             />
                     </LinearLayout>
@@ -85,7 +92,7 @@
                         android:gravity="center"
                         android:hint="1 Serving"
                         android:paddingLeft="12dp"
-                        android:textColor="@color/mainBackground"
+                        android:textColor="@color/colorPrimaryDark"
                         />
 
                 </LinearLayout>
@@ -117,7 +124,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:hint="4:00"
-                            android:textColor="@color/mainBackground"
+                            android:textColor="@color/colorPrimaryDark"
                             />
                     </LinearLayout>
                     <!--brew time label-->
@@ -126,9 +133,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
 
-                        android:paddingLeft="13dp"
+                        android:paddingLeft="15dp"
                         android:text="Brew Time"
-                        android:textColor="@color/mainBackground"
+                        android:textColor="@color/colorPrimaryDark"
                         />
 
                 </LinearLayout>
@@ -160,7 +167,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:hint="@string/grind_size_coarse"
-                            android:textColor="@color/mainBackground"
+                            android:textColor="@color/colorPrimaryDark"
                             />
                     </LinearLayout>
                     <!--grind setting description-->
@@ -171,11 +178,12 @@
                         android:gravity="center"
                         android:paddingLeft="12dp"
                         android:text="@string/grind_setting"
-                        android:textColor="@color/mainBackground"
+                        android:textColor="@color/colorPrimaryDark"
                         />
 
                 </LinearLayout>
             </LinearLayout>
+            </android.support.v7.widget.CardView>
             <!--description of brewmethod layout-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -271,7 +279,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:titleTextColor="@color/mainBackground"
+            app:titleTextColor="@color/colorPrimaryDark"
             />
 
     </android.support.design.widget.AppBarLayout>
