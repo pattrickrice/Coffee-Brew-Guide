@@ -4,25 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
+    android:orientation="vertical">
 
-    >
     <!--make whole layout scrollable-->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
-        android:orientation="vertical"
-
-        >
+        android:orientation="vertical">
 
         <!--nested view can only have one child-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@color/colorPrimary"
-            >
+            android:orientation="vertical">
 
             <!-- main image of the brew method-->
             <ImageView
@@ -30,241 +26,234 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center|top"
-                android:focusableInTouchMode="true"
                 android:background="@color/colorPrimary"
-                />
+                android:focusableInTouchMode="true" />
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-            <!--layout for the brew parameteres-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:background="@drawable/brew_method_parameters"
-
-
-                >
-            <!--layout for the weight-->
+                <!--layout for the brew parameteres-->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
-                    <!--top row of the weight includes image-->
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/brew_method_parameters"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    android:weightSum="3">
+
+                    <!--layout for the weight-->
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <!--weight image icon-->
-                        <ImageView
-                            android:id="@+id/weight_icon_IV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:focusableInTouchMode="true"
-                            android:src="@drawable/ic_weight" />
-                        <!--weight parameter set dynamically-->
-                        <TextView
-                            android:id="@+id/TV_servingDose"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:hint="16 g"
-                            android:textColor="@color/colorPrimaryDark"
-
-                            />
-                    </LinearLayout>
-
-                    <!--serving size set dynamically-->
-                    <TextView
-                        android:id="@+id/TV_servingNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:hint="1 Serving"
-                        android:paddingLeft="12dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        />
-
-                </LinearLayout>
-                <!--layout for time requirement-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <!--top row of time requirement-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <!--time icon-->
-                        <ImageView
-                            android:id="@+id/timer_icon_IV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:focusableInTouchMode="true"
-                            android:src="@drawable/ic_clock" />
-                        <!--brew time set dynamically-->
-                        <TextView
-                            android:id="@+id/TV_timer"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:hint="4:00"
-                            android:textColor="@color/colorPrimaryDark"
-                            />
-                    </LinearLayout>
-                    <!--brew time label-->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-
-                        android:paddingLeft="15dp"
-                        android:text="Brew Time"
-                        android:textColor="@color/colorPrimaryDark"
-                        />
-
-                </LinearLayout>
-                <!--layout for grind size-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <!--top row of grind size includes image-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-                        <!--icon for grind-->
-                        <ImageView
-                            android:id="@+id/grind_icon_IV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:focusableInTouchMode="true"
-                            android:src="@drawable/ic_grinder" />
-                        <!--grind description set dynamically-->
-                        <TextView
-                            android:id="@+id/TV_grindSetting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:hint="@string/grind_size_coarse"
-                            android:textColor="@color/colorPrimaryDark"
-                            />
-                    </LinearLayout>
-                    <!--grind setting description-->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:paddingLeft="12dp"
-                        android:text="@string/grind_setting"
-                        android:textColor="@color/colorPrimaryDark"
-                        />
+                        android:orientation="vertical">
 
+                        <!--top row of the weight includes image-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!--weight image icon-->
+                            <ImageView
+                                android:id="@+id/weight_icon_IV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:focusableInTouchMode="true"
+                                android:src="@drawable/ic_weight" />
+
+                            <!--weight parameter set dynamically-->
+                            <TextView
+                                android:id="@+id/TV_servingDose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:hint="16 g"
+                                android:textColor="@color/colorPrimaryDark" />
+                        </LinearLayout>
+
+                        <!--serving size set dynamically-->
+                        <TextView
+                            android:id="@+id/TV_servingNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="1 Serving"
+                            android:paddingLeft="12dp"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <!--layout for time requirement-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!--top row of time requirement-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!--time icon-->
+                            <ImageView
+                                android:id="@+id/timer_icon_IV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:focusableInTouchMode="true"
+                                android:src="@drawable/ic_clock" />
+
+                            <!--brew time set dynamically-->
+                            <TextView
+                                android:id="@+id/TV_timer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="4:00"         android:textColor="@color/colorPrimaryDark"
+                                />
+                        </LinearLayout>
+
+                        <!--brew time label-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:text="Brew Time"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                    </LinearLayout>
+                    <!--layout for grind size-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!--top row of grind size includes image-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!--icon for grind-->
+                            <ImageView
+                                android:id="@+id/grind_icon_IV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:focusableInTouchMode="true"
+                                android:src="@drawable/ic_grinder" />
+
+                            <!--grind description set dynamically-->
+                            <TextView
+                                android:id="@+id/TV_grindSetting"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="@string/grind_size_coarse"
+                                android:textColor="@color/colorPrimaryDark" />
+
+
+                        </LinearLayout>
+                        <!--grind setting description-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="12dp"
+                            android:text="@string/grind_setting"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
             </android.support.v7.widget.CardView>
+
             <!--description of brewmethod layout-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="8dp"
+                android:orientation="vertical"
                 app:cardCornerRadius="2dp"
                 >
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:background="@color/mainBackground"
+                    android:orientation="vertical"
 
                     >
-                <!--description label-->
-                <TextView
-                    android:id="@+id/brew_method_name_TV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/brew_method_description"
-                    android:paddingStart="16dp"
-                    android:textSize="24sp"
-                    android:textColor="@color/mainBackground"
 
+                    <!--description label-->
+                    <TextView
+                        android:id="@+id/description_header_TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/brew_method_description"
+                        android:paddingStart="16dp"
+                        style="style/DescriptionTextView"
+                        android:textSize="24sp" />
 
-
-                    />
-                <!--description text-->
-                <TextView
-                    android:id="@+id/brew_method_description_TV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/bio_aeropress"
-                    android:paddingRight="16dp"
-                    android:paddingBottom="8dp"
-
-                    android:paddingStart="16dp"
-                    android:textColor="@color/mainBackground"
-                    /></LinearLayout>
-                <!--instructions label-->
-
-
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="2dp"
-
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/mainBackground"
-
-                    >
-            <TextView
-                android:id="@+id/brew_method_instructions_title_TV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/brew_method_instructions"
-                android:paddingStart="16dp"
-                android:textSize="24sp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                />
-            <!--instuctions recyclerview. set using InstructionListAdapter-->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvInstructions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="0dp">
-
-            </android.support.v7.widget.RecyclerView>
+                    <!--description text-->
+                    <TextView
+                        android:id="@+id/brew_method_description_TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/bio_aeropress"
+                        android:paddingBottom="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingStart="16dp"
+                        android:textColor="@color/colorPrimaryDark" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+            <!--instructions label-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardCornerRadius="2dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackground"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/brew_method_instructions_title_TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:hint="@string/brew_method_instructions"
+                        android:paddingStart="16dp"
+                        android:textSize="24sp" />
+
+                    <!--instuctions recyclerview. set using InstructionListAdapter-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvInstructions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="0dp">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 
@@ -279,8 +268,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:titleTextColor="@color/colorPrimaryDark"
-            />
+            app:titleTextColor="@color/colorPrimaryDark" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -290,9 +278,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_lock_idle_alarm"
         android:backgroundTint="@color/colorPrimaryDark"
-        />
+        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
 
 </android.support.design.widget.CoordinatorLayout>

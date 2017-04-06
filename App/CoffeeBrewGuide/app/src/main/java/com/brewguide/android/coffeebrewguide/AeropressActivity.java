@@ -24,13 +24,14 @@ import org.joda.time.format.PeriodFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.brewguide.android.coffeebrewguide.R.id.toolbar;
 
 
 /**
  * Activity that handels information for the Aeropress Activity. Intent is passed from the main
  * Activity.
- * */
-public class AeropressActivity extends AppCompatActivity  {
+ */
+public class AeropressActivity extends AppCompatActivity {
 
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
@@ -38,7 +39,7 @@ public class AeropressActivity extends AppCompatActivity  {
 
     String name, grindSize;
     ArrayList<String> instructions;
-    int servingNumber, servingSize,tile, graphic;
+    int servingNumber, servingSize, tile, graphic;
     org.joda.time.Duration brewTime;
 
 
@@ -99,6 +100,13 @@ public class AeropressActivity extends AppCompatActivity  {
         TextView grindSettingTV = (TextView) findViewById(R.id.TV_grindSetting);
         grindSettingTV.setText(grindSetting);
 
+        // set description colors
+        TextView descriptionHeader = (TextView) findViewById(R.id.description_header_TV);
+        TextView descriptionText = (TextView) findViewById(R.id.brew_method_description_TV);
+        descriptionHeader.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        descriptionText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+
         // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(aeropress.getmMethodName());
@@ -121,9 +129,9 @@ public class AeropressActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public BrewMethod getBrewMethodData(){
+    public BrewMethod getBrewMethodData() {
         //Assign variables on creation
-        name =  getResources().getString(R.string.title_aeropress);
+        name = getResources().getString(R.string.title_aeropress);
         instructions = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array)));
         servingNumber = 1;
         servingSize = 16;
