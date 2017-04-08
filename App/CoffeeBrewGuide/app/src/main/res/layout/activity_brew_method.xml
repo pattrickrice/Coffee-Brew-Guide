@@ -202,9 +202,9 @@
                         android:id="@+id/description_header_TV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/brew_method_description"
+                        android:text="@string/brew_method_description"
                         android:paddingStart="16dp"
-                        style="style/DescriptionTextView"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="24sp" />
 
                     <!--description text-->
@@ -212,7 +212,7 @@
                         android:id="@+id/brew_method_description_TV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/bio_aeropress"
+                        android:text="@string/bio_aeropress"
                         android:paddingBottom="8dp"
                         android:paddingRight="16dp"
                         android:paddingStart="16dp"
@@ -239,7 +239,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/colorPrimaryDark"
-                        android:hint="@string/brew_method_instructions"
+                        android:text="@string/brew_method_instructions"
                         android:paddingStart="16dp"
                         android:textSize="24sp" />
 
