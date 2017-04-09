@@ -8,6 +8,7 @@
 
     <!--make whole layout scrollable-->
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/brew_method_NSV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
@@ -238,7 +239,7 @@
                         android:id="@+id/brew_method_instructions_title_TV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/brew_method_instructions"
                         android:paddingStart="16dp"
                         android:textSize="24sp" />

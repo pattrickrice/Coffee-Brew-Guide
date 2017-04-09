@@ -1,9 +1,11 @@
 package com.brewguide.android.coffeebrewguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +26,7 @@ import org.joda.time.format.PeriodFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.brewguide.android.coffeebrewguide.R.drawable.aeropress;
 import static com.brewguide.android.coffeebrewguide.R.id.toolbar;
 
 
@@ -41,6 +44,7 @@ public class AeropressActivity extends AppCompatActivity {
     ArrayList<String> instructions;
     int servingNumber, servingSize, tile, graphic;
     org.joda.time.Duration brewTime;
+    NestedScrollView mScrollView;
 
 
     @Override
@@ -48,14 +52,19 @@ public class AeropressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brew_method);
 
+        Intent i = getIntent();
+        BrewMethod brewMethod = (BrewMethod) i.getParcelableExtra("brew_method");
+
+        //Scrollview variable for savedInstanceState
+        mScrollView = (NestedScrollView) findViewById(R.id.brew_method_NSV);
+
         //creates brewmethod object
-        BrewMethod aeropress = getBrewMethodData();
 
         //set recyclerview object for instructions list
         RecyclerView rvInsstructions = (RecyclerView) findViewById(R.id.rvInstructions);
 
         //create adapter for recyclerview for instructions list
-        InstructionListAdapter adapter = new InstructionListAdapter(this, aeropress.getmMethodInstructions());
+        InstructionListAdapter adapter = new InstructionListAdapter(this, brewMethod.getmMethodInstructions());
 
         //set the adapter to the view
         rvInsstructions.setAdapter(adapter);
@@ -67,21 +76,21 @@ public class AeropressActivity extends AppCompatActivity {
 
         //set top image
         ImageView topImage = (ImageView) findViewById(R.id.topImageIV);
-        topImage.setImageResource(aeropress.getmDetailActivityGraphicId());
+        topImage.setImageResource(brewMethod.getmDetailActivityGraphicId());
 
         //set serving number
-        String serving = Integer.toString(aeropress.getServingNumber()) + " " + getResources().getString(R.string.serving);
+        String serving = Integer.toString(brewMethod.getServingNumber()) + " " + getResources().getString(R.string.serving);
         TextView servingNumberTV = (TextView) findViewById(R.id.TV_servingNumber);
         servingNumberTV.setText(serving);
 
         //set serving Dose
         //TODO dynamically change units
-        String servingDose = Integer.toString(aeropress.getmMethodServingSize()) + "g";
+        String servingDose = Integer.toString(brewMethod.getmMethodServingSize()) + "g";
         TextView servingSizeTV = (TextView) findViewById(R.id.TV_servingDose);
         servingSizeTV.setText(servingDose);
 
         //set brewtime using Joda Time
-        Duration brewTimeJoda = aeropress.getmMethodBrewTime();
+        Duration brewTimeJoda = brewMethod.getmMethodBrewTime();
 
         Period period = brewTimeJoda.toPeriod();
         // format brewtime
@@ -96,20 +105,13 @@ public class AeropressActivity extends AppCompatActivity {
         brewTimeTV.setText(result);
 
         //set grind setting
-        String grindSetting = aeropress.getmMethodGrindSize();
+        String grindSetting = brewMethod.getmMethodGrindSize();
         TextView grindSettingTV = (TextView) findViewById(R.id.TV_grindSetting);
         grindSettingTV.setText(grindSetting);
 
-        // set description colors
-        TextView descriptionHeader = (TextView) findViewById(R.id.description_header_TV);
-        TextView descriptionText = (TextView) findViewById(R.id.brew_method_description_TV);
-        descriptionHeader.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        descriptionText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-
-
         // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(aeropress.getmMethodName());
+        toolbar.setTitle(brewMethod.getmMethodName());
 
         setSupportActionBar(toolbar);
 
@@ -129,34 +131,23 @@ public class AeropressActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public BrewMethod getBrewMethodData() {
-        //Assign variables on creation
-        name = getResources().getString(R.string.title_aeropress);
-        instructions = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array)));
-        servingNumber = 1;
-        servingSize = 16;
-        grindSize = getResources().getString(R.string.grind_size_medium);
 
-        // Set brewtime to 1:30 (mm:ss)
-        brewTime = org.joda.time.Duration.millis(90000);
 
-        tile = R.drawable.aeropress;
-        //TODO: update with graphic when resource is available.
-        graphic = R.drawable.aeropress;
-
-        //create BrewMethod object
-        BrewMethod brewMethod = new BrewMethod(
-                name,
-                instructions,
-                servingNumber,
-                servingSize,
-                brewTime,
-                grindSize,
-                tile,
-                graphic
-        );
-        return brewMethod;
+    //save state on scroll view
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putIntArray("ARTICLE_SCROLL_POSITION",
+                new int[]{ mScrollView.getScrollX(), mScrollView.getScrollY()});
     }
-
-
+    //go to position in scroll view
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        final int[] position = savedInstanceState.getIntArray("ARTICLE_SCROLL_POSITION");
+        if(position != null)
+            mScrollView.post(new Runnable() {
+                public void run() {
+                    mScrollView.scrollTo(position[0], position[1]);
+                }
+            });
+    }
 }
