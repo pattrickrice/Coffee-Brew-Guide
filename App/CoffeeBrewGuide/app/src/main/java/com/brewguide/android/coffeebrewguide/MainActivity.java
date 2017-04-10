@@ -1,7 +1,6 @@
 package com.brewguide.android.coffeebrewguide;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,11 +17,9 @@ import static com.brewguide.android.coffeebrewguide.R.drawable.aeropress;
 
 public class MainActivity extends AppCompatActivity {
 
-    String name, grindSize;
-    ArrayList<String> instructions;
-    int servingNumber, servingSize, tile, graphic;
-    org.joda.time.Duration brewTime;
-    NestedScrollView mScrollView;
+    BrewMethod brewMethod;
+    ArrayList<BrewMethod> brewMethodList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,58 +28,54 @@ public class MainActivity extends AppCompatActivity {
 
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
+
+        brewMethodList = getBrewMethodList();
+        gridview.setAdapter(new ImageAdapter(this, brewMethodList));
 
         gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 
-                //TODO attach ids to grid tiles and associate their activities with them
-                //TODO pass that information to launch activity below
-                //Class targetActivity = getTargetActivityForPosition(position);
 
-
-                BrewMethod brewMethod = getBrewMethodData();
+                // Target specific brewmethod and launch an activity
+                brewMethod = brewMethodList.get(position);
                 // launch new activity when Item is clicked
-                Intent intent = new Intent(getBaseContext(), AeropressActivity.class);
-                //MainActivity.this.startActivity(new Intent(MainActivity.this, AeropressActivity.class));
+                Intent intent = new Intent(getBaseContext(), BrewMethodActivity.class);
+                //MainActivity.this.startActivity(new Intent(MainActivity.this, BrewMethodActivity.class));
                 intent.putExtra("brew_method", brewMethod);
                 startActivity(intent);
                 //used to indicate position of tile and verify item click functionality is working
-                Toast.makeText(MainActivity.this, "" + position,
+                Toast.makeText(MainActivity.this, "" + brewMethod.getmMethodName(),
                         Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
-    public BrewMethod getBrewMethodData() {
-        //Assign variables on creation
-        name = getResources().getString(R.string.title_aeropress);
-        instructions = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array)));
-        servingNumber = 1;
-        servingSize = 16;
-        grindSize = getResources().getString(R.string.grind_size_medium);
 
-        // Set brewtime to 1:30 (mm:ss)
-        brewTime = org.joda.time.Duration.millis(90000);
+    /**
+    * Create Arraylist with containing all of the brew methods
+    * */
+    public ArrayList<BrewMethod> getBrewMethodList(){
 
-        tile = aeropress;
-        //TODO: update with graphic when resource is available.
-        graphic = aeropress;
 
-        //create BrewMethod object
-        BrewMethod brewMethod = new BrewMethod(
-                name,
-                instructions,
-                servingNumber,
-                servingSize,
-                brewTime,
-                grindSize,
-                tile,
-                graphic
+        BrewMethod aeropress = new BrewMethod(
+                getResources().getString(R.string.title_aeropress),
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
+                1,
+                16,
+                org.joda.time.Duration.millis(90000),
+                getResources().getString(R.string.grind_size_medium),
+                R.drawable.aeropress,
+                R.drawable.aeropress
         );
-        return brewMethod;
-    }
+
+
+        brewMethodList = new ArrayList<BrewMethod>();
+        brewMethodList.add(aeropress);
+        return brewMethodList;
+    };
+
+
 
 }

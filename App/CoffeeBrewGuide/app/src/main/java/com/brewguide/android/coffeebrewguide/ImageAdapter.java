@@ -7,20 +7,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 /**
  * Adapter that takes the brew method tile images and implements them in a GridView shown in Main Activity
  */
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
+    private ArrayList<BrewMethod> brewMethodList;
 
-    public ImageAdapter(Context c) {
+    public ImageAdapter(Context c, ArrayList<BrewMethod> brewMethods) {
         mContext = c;
+        brewMethodList = brewMethods;
     }
 
     // returns the count of the number of images
     public int getCount() {
-        return mThumbIds.length;
+        return brewMethodList.size();
     }
 
     public Object getItem(int position) {
@@ -50,7 +54,7 @@ public class ImageAdapter extends BaseAdapter {
                     .findViewById(R.id.grid_tile_image);
 
 
-            imageView.setImageResource(mThumbIds[position]);
+            imageView.setImageResource(brewMethodList.get(position).getmHomeScreenTileId());
 
 
         } else {

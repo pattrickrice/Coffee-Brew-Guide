@@ -34,16 +34,10 @@ import static com.brewguide.android.coffeebrewguide.R.id.toolbar;
  * Activity that handels information for the Aeropress Activity. Intent is passed from the main
  * Activity.
  */
-public class AeropressActivity extends AppCompatActivity {
+public class BrewMethodActivity extends AppCompatActivity {
 
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
-
-
-    String name, grindSize;
-    ArrayList<String> instructions;
-    int servingNumber, servingSize, tile, graphic;
-    org.joda.time.Duration brewTime;
     NestedScrollView mScrollView;
 
 
@@ -52,13 +46,14 @@ public class AeropressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brew_method);
 
+        //retrieves intent
         Intent i = getIntent();
+        //creates brewmethod object
         BrewMethod brewMethod = (BrewMethod) i.getParcelableExtra("brew_method");
 
         //Scrollview variable for savedInstanceState
         mScrollView = (NestedScrollView) findViewById(R.id.brew_method_NSV);
 
-        //creates brewmethod object
 
         //set recyclerview object for instructions list
         RecyclerView rvInsstructions = (RecyclerView) findViewById(R.id.rvInstructions);
