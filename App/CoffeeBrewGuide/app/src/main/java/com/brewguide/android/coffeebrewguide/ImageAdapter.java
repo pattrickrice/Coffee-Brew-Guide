@@ -64,10 +64,4 @@ public class ImageAdapter extends BaseAdapter {
         return gridView;
 
     }
-
-    // references to the images shown in the Gridview
-    private Integer[] mThumbIds = {
-            //TODO replace with object values
-            R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress,R.drawable.aeropress
-};
 }

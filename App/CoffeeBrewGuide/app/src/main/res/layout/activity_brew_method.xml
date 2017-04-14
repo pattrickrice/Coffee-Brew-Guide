@@ -249,7 +249,9 @@
                         android:id="@+id/rvInstructions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="0dp">
+                        android:minHeight="0dp"
+                        android:nestedScrollingEnabled="false"
+                        >
 
                     </android.support.v7.widget.RecyclerView>
                 </LinearLayout>

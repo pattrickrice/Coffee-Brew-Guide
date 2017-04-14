@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     /**
@@ -70,6 +69,38 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.aeropress
         );
 
+//        BrewMethod frenchPress = new BrewMethod(
+//                getResources().getString(R.string.title_activity_french_press),
+//                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
+//                1,
+//                16,
+//                org.joda.time.Duration.millis(90000),
+//                getResources().getString(R.string.grind_size_medium),
+//                R.drawable.aeropress,
+//                R.drawable.aeropress
+//        );
+//
+//        BrewMethod chemex = new BrewMethod(
+//                getResources().getString(R.string.title_aeropress),
+//                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
+//                1,
+//                16,
+//                org.joda.time.Duration.millis(90000),
+//                getResources().getString(R.string.grind_size_medium),
+//                R.drawable.aeropress,
+//                R.drawable.aeropress
+//        );
+//
+//        BrewMethod icedCoffee = new BrewMethod(
+//                getResources().getString(R.string.title_aeropress),
+//                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
+//                1,
+//                16,
+//                org.joda.time.Duration.millis(90000),
+//                getResources().getString(R.string.grind_size_medium),
+//                R.drawable.aeropress,
+//                R.drawable.aeropress
+//        );
 
         brewMethodList = new ArrayList<BrewMethod>();
         brewMethodList.add(aeropress);

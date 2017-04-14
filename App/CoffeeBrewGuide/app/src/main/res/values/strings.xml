@@ -60,11 +60,37 @@
         <item name="instruction_step8_aeropress">Stir coffee in carafe and serve.</item>
     </array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
     <!--Resources for frenchpress-->
+    <string name="title_frenchpress">Frenchpress</string>]
+
+    <string name="bio_frenchpress">
+        The french press is perhaps the easiest brew-method to achieve a good tasting cup of coffee. The method a full-emersion technique and filters through a metal screen. The method has the biggest body/mouth feel due to the high amount of sediment that passes through the screen; this also results in muted acidity and nuanced flavors.
+
+    </string>
+
+    <array name="instructions_frenchpress_array">
+        <item name="instruction_step1_frenchpress">Pour a small amount of hot water into the vessel to  preheat.
+        </item>
+
+        <item name="instruction_step2_frenchpress">Grind the coffee on a course/french press setting.
+        </item>
+        <item name="instruction_step3_frenchpress">Pour out pre-heat water and dump in grounds.
+        </item>
+        <item name="instruction_step4_frenchpress">Start timer and pour in INT grams of water.
+        </item>
+        <item name="instruction_step5_frenchpress">With a spoon, stir wet grounds to fully expose to water.
+        </item>
+        <item name="instruction_step6_frenchpress">Let sit for 30 seconds.
+        </item>
+        <item name="instruction_step7_frenchpress">Last pour to finish at INT UNITS.
+        </item>
+        <item name="instruction_step8_frenchpress">At 4:00 minutes, gently press plunger to completion.</item>
+        <item name="instruction_step9_frenchpress">Pour out all of coffee into cup or carraff to serve, leaving none left in the french press. Coffee left in the french press will continue to brew and could over extract.
+        </item>
+    </array>
+
+
     <!--Resources for hario V-60-->
     <!--Resources for chemex-->
     <!--Resources for Iced Coffee-->

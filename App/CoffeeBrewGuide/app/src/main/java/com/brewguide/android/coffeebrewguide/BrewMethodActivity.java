@@ -54,7 +54,6 @@ public class BrewMethodActivity extends AppCompatActivity {
         //Scrollview variable for savedInstanceState
         mScrollView = (NestedScrollView) findViewById(R.id.brew_method_NSV);
 
-
         //set recyclerview object for instructions list
         RecyclerView rvInsstructions = (RecyclerView) findViewById(R.id.rvInstructions);
 
@@ -86,7 +85,6 @@ public class BrewMethodActivity extends AppCompatActivity {
 
         //set brewtime using Joda Time
         Duration brewTimeJoda = brewMethod.getmMethodBrewTime();
-
         Period period = brewTimeJoda.toPeriod();
         // format brewtime
         PeriodFormatter minutesAndSeconds = new PeriodFormatterBuilder()
@@ -107,10 +105,9 @@ public class BrewMethodActivity extends AppCompatActivity {
         // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(brewMethod.getmMethodName());
-
         setSupportActionBar(toolbar);
 
-
+        //set floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_alarm_white_48dp));
 
