@@ -9,12 +9,14 @@ import java.util.ArrayList;
 
 import javax.xml.datatype.Duration;
 
+import static android.R.attr.description;
+
 /**
  * Class holds all information about the brew methods
  */
 
 public class BrewMethod implements Parcelable{
-    public String mMethodName, mMethodGrindSize;
+    public String mMethodName, mMethodGrindSize, mDescription;
     ArrayList<String> mMethodInstructions;
     int mMethodServingNumber, mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
     org.joda.time.Duration mMethodBrewTime;
@@ -27,7 +29,9 @@ public class BrewMethod implements Parcelable{
                       org.joda.time.Duration brewTime,
                       String grindSize,
                       int tile,
-                      int graphic){
+                      int graphic,
+                      String description
+    ){
         mMethodName = name;
         mMethodGrindSize = grindSize;
         mMethodInstructions = instructions;
@@ -36,6 +40,7 @@ public class BrewMethod implements Parcelable{
         mMethodBrewTime = brewTime;
         mHomeScreenTileId = tile;
         mDetailActivityGraphicId = graphic;
+        mDescription = description;
     }
 
     /**
@@ -72,6 +77,8 @@ public class BrewMethod implements Parcelable{
         return mDetailActivityGraphicId;
     }
 
+    public String getmDescription() {return mDescription;}
+
     /**
      * implement Parcelable class
      *
@@ -90,6 +97,7 @@ public class BrewMethod implements Parcelable{
         out.writeString(mMethodGrindSize);
         out.writeInt(mHomeScreenTileId);
         out.writeInt(mDetailActivityGraphicId);
+        out.writeString(mDescription);
     }
 
     public static final Parcelable.Creator<BrewMethod> CREATOR
@@ -112,5 +120,6 @@ public class BrewMethod implements Parcelable{
         this.mMethodGrindSize = in.readString();
         this.mHomeScreenTileId = in.readInt();
         this.mDetailActivityGraphicId = in.readInt();
+        this.mDescription = in.readString();
     }
 }

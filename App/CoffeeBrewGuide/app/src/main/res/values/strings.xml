@@ -6,38 +6,29 @@
     <string name="title_activity_hario_v60">HarioV60Activity</string>
     <string name="title_activity_french_press">FrenchPressActivity</string>
     <string name="title_activity_iced_coffee">IcedCoffeeActivity</string>
-
     <!--hint resources-->
     <string name="hint_instructions_step_number">Step. 1</string>
     <string name="hint_instruction_step1_aeropress">Load filter over cover and screw onto bottom-half of brewer, set on top of a cup or carafe.</string>
-
     <!--Brew Methods Requirements-->
     <string name="serving">serving</string>
     <string name="brew_time">Brew Time</string>
     <string name="grind_setting">Grind Setting</string>
-
     <string name="brew_method_description">Description</string>
     <string name="brew_method_instructions">Instructions</string>
-
-
     <!--Grind sizes-->
     <string name="grind_size_fine">Fine</string>
     <string name="grind_size_medium">Medium</string>
     <string name="grind_size_coarse">Coarse</string>
 
-
     <!--Resources for aeropress-->
     <string name="title_aeropress">Aeropress</string>]
-
     <string name="bio_aeropress">
         The aero-press, designed by the inventor of the Aerobie Ring (a flying ring), is a great light-weight travel companion loved by many in the coffee world. It can be used with a paper or metal filter and combines emersion and pressure brewing resulting in a full-bodied and fragrent cup.
     </string>
-
     <array name="instructions_aeropress_array">
         <item name="instruction_step1_aeropress">Load filter over cover and screw onto bottom-half
             of brewer, set on top of a cup or carafe.
         </item>
-
         <item name="instruction_step2_aeropress">Wet filter and warm brewer by pouring hot water
             into lower half.
         </item>
@@ -60,38 +51,126 @@
         <item name="instruction_step8_aeropress">Stir coffee in carafe and serve.</item>
     </array>
 
-
     <!--Resources for frenchpress-->
     <string name="title_frenchpress">Frenchpress</string>]
-
     <string name="bio_frenchpress">
         The french press is perhaps the easiest brew-method to achieve a good tasting cup of coffee. The method a full-emersion technique and filters through a metal screen. The method has the biggest body/mouth feel due to the high amount of sediment that passes through the screen; this also results in muted acidity and nuanced flavors.
-
     </string>
-
     <array name="instructions_frenchpress_array">
-        <item name="instruction_step1_frenchpress">Pour a small amount of hot water into the vessel to  preheat.
+        <item name="instruction_step1_frenchpress">Pour a small amount of hot water into the vessel
+            to preheat.
         </item>
-
-        <item name="instruction_step2_frenchpress">Grind the coffee on a course/french press setting.
+        <item name="instruction_step2_frenchpress">Grind the coffee on a course/french press
+            setting.
         </item>
         <item name="instruction_step3_frenchpress">Pour out pre-heat water and dump in grounds.
         </item>
         <item name="instruction_step4_frenchpress">Start timer and pour in INT grams of water.
         </item>
-        <item name="instruction_step5_frenchpress">With a spoon, stir wet grounds to fully expose to water.
+        <item name="instruction_step5_frenchpress">With a spoon, stir wet grounds to fully expose to
+            water.
         </item>
         <item name="instruction_step6_frenchpress">Let sit for 30 seconds.
         </item>
         <item name="instruction_step7_frenchpress">Last pour to finish at INT UNITS.
         </item>
-        <item name="instruction_step8_frenchpress">At 4:00 minutes, gently press plunger to completion.</item>
-        <item name="instruction_step9_frenchpress">Pour out all of coffee into cup or carraff to serve, leaving none left in the french press. Coffee left in the french press will continue to brew and could over extract.
+        <item name="instruction_step8_frenchpress">At 4:00 minutes, gently press plunger to
+            completion.
+        </item>
+        <item name="instruction_step9_frenchpress">Pour out all of coffee into cup or carraff to
+            serve, leaving none left in the french press. Coffee left in the french press will
+            continue to brew and could over extract.
         </item>
     </array>
 
 
     <!--Resources for hario V-60-->
+    <string name="title_harioV60">Hario V-60</string>]
+    <string name="bio_harioV60">
+        The hario V-60 is capable of so much, but it is easy to mess up. When done right, the body is smooth and those bright acidic notes really shine through the cup. The V-60 is a pour-over drip with ridges on the walls of the vessel which allow for greater flow. Detail to your method of pouring is required and a gooseneck kettle is reccomended.
+    </string>
+    <array name="instructions_harioV60_array">
+        <item name="instruction_step1_harioV60">Place vessel either on top of coffee cup or on stand
+            with cup/carafe below.
+        </item>
+        <item name="instruction_step2_harioV60">Crease the paper filter along the ridged edge, place
+            the filter in the brewer and completely wet with hot water.
+        </item>
+        <item name="instruction_step3_harioV60">Grind the coffee on a V-60/paper filter setting,
+            dump grounds in brewer, dump out hot water from cup/carafe.
+        </item>
+        <item name="instruction_step4_harioV60">Start timer and make initial pour of INT UNITS, take
+            a spoon and stir the grounds to ensure that all grinds are wet. Let bloom.
+        </item>
+        <item name="instruction_step5_harioV60">At 45 seconds, slowly pour bringing the total amount
+            of water to INT UNITS. When pouring, make small concentric circles in the center,
+            ensuring to not touch the sides of the brewer. Pour should be 15 seconds finishing at
+            1:00.
+        </item>
+        <item name="instruction_step6_harioV60">At 1:30 begin third pour, bringing the total amount
+            of water to INT UNITS, finishing at 1:45.
+        </item>
+        <item name="instruction_step7_harioV60">At 2:00 begin the last pour, bringing the toal
+            amount of water to INT UNITS, finishing at 2:15.
+        </item>
+        <item name="instruction_step8_harioV60">Coffee should finish dripping around 2:30-3:15,
+            remove brewer and stir contents of cup to fully integrate the coffee.
+        </item>
+    </array>
+
     <!--Resources for chemex-->
+    <string name="title_chemex">Chemex</string>]
+
+    <string name="bio_chemex">Chemex is a design icon of the coffee world originally invented in 1941. The proprietary thick filter removes more oil and sediments from the coffee than any other brew method, leaving a smooth and acidic cup. Recommend using a gooseneck kettle for pouring water.</string>
+    <array name="instructions_chemex_array">
+        <item name="instruction_step1_harioV60">Place vessel either on top of coffee cup or on stand
+            with cup/carafe below.
+        </item>
+
+        <item name="instruction_step2_chemex">Crease the paper filter along the ridged edge, place
+            the filter in the brewer and completely wet with hot water.
+        </item>
+        <item name="instruction_step3_chemex">Grind the coffee on a V-60/paper filter setting, dump
+            grounds in brewer, dump out hot water from cup/carafe.
+        </item>
+        <item name="instruction_step4_chemex">Start timer and make initial pour of INT UNITS, take a
+            spoon and stir the grounds to ensure that all grinds are wet. Let bloom.
+        </item>
+        <item name="instruction_step5_chemex">At 45 seconds, slowly pour bringing the total amount
+            of water to INT UNITS. When pouring, make small concentric circles in the center,
+            ensuring to not touch the sides of the brewer. Pour should be 15 seconds finishing at
+            1:00.
+        </item>
+        <item name="instruction_step6_chemex">At 1:30 begin third pour, bringing the total amount of
+            water to INT UNITS, finishing at 1:45.
+
+        </item>
+        <item name="instruction_step7_chemex">At 2:00 begin the last pour, bringing the toal amount
+            of water to INT UNITS, finishing at 2:15.
+        </item>
+        <item name="instruction_step8_chemex">Coffee should finish dripping around 2:30-3:15, remove
+            brewer and stir contents of cup to fully integrate the coffee.
+        </item>
+
+    </array>
     <!--Resources for Iced Coffee-->
+    <string name="title_cold_brew">Cold Brew</string>]
+
+    <string name="bio_cold_brew">Cold brew coffee makes for a strong, full-bodied, iced coffee beverage. There are many different vessles to make cold brew in, this method can be used interchangably on any of them.
+</string>
+    <array name="instructions_cold_brew_array">
+        <item name="instruction_step1_cold_brew">Grind coffee on french press setting.
+        </item>
+        <item name="instruction_step2_cold_brew">Dump grounds into brewer.
+        </item>
+        <item name="instruction_step3_cold_brew">Add INT UNITS cold tap water.
+        </item>
+        <item name="instruction_step4_cold_brew">Stir ensuring to get all grounds wet.
+        </item>
+        <item name="instruction_step5_cold_brew">At 16-18 hours, stir grounds one more time and filter out coffee into a large carafe.
+        </item>
+        <item name="instruction_step6_cold_brew">Diltute with water. Recipe is generally 1:1 coffee:water, but it is recommended to add the water to best taste.
+            Store in refrigerater. Good for 7-10 Days. Serve with Ice.
+        </item>
+    </array>
 </resources>

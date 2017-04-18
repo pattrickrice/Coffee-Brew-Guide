@@ -102,6 +102,11 @@ public class BrewMethodActivity extends AppCompatActivity {
         TextView grindSettingTV = (TextView) findViewById(R.id.TV_grindSetting);
         grindSettingTV.setText(grindSetting);
 
+        //set description
+        String description = brewMethod.getmDescription();
+        TextView descriptionTV = (TextView) findViewById(R.id.brew_method_description_TV);
+        descriptionTV.setText(description);
+
         // Auto generated
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(brewMethod.getmMethodName());

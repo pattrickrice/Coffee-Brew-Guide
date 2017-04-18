@@ -66,44 +66,64 @@ public class MainActivity extends AppCompatActivity {
                 org.joda.time.Duration.millis(90000),
                 getResources().getString(R.string.grind_size_medium),
                 R.drawable.aeropress,
-                R.drawable.aeropress
+                R.drawable.aeropress,
+                getResources().getString(R.string.bio_aeropress)
         );
 
-//        BrewMethod frenchPress = new BrewMethod(
-//                getResources().getString(R.string.title_activity_french_press),
-//                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
-//                1,
-//                16,
-//                org.joda.time.Duration.millis(90000),
-//                getResources().getString(R.string.grind_size_medium),
-//                R.drawable.aeropress,
-//                R.drawable.aeropress
-//        );
-//
-//        BrewMethod chemex = new BrewMethod(
-//                getResources().getString(R.string.title_aeropress),
-//                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
-//                1,
-//                16,
-//                org.joda.time.Duration.millis(90000),
-//                getResources().getString(R.string.grind_size_medium),
-//                R.drawable.aeropress,
-//                R.drawable.aeropress
-//        );
-//
-//        BrewMethod icedCoffee = new BrewMethod(
-//                getResources().getString(R.string.title_aeropress),
-//                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
-//                1,
-//                16,
-//                org.joda.time.Duration.millis(90000),
-//                getResources().getString(R.string.grind_size_medium),
-//                R.drawable.aeropress,
-//                R.drawable.aeropress
-//        );
+        BrewMethod frenchPress = new BrewMethod(
+                getResources().getString(R.string.title_activity_french_press),
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_frenchpress_array))),
+                1,
+                25,
+                org.joda.time.Duration.millis(240000),
+                getResources().getString(R.string.grind_size_coarse),
+                R.drawable.french_press,
+                R.drawable.french_press,
+                getResources().getString(R.string.bio_frenchpress)
+        );
 
-        brewMethodList = new ArrayList<BrewMethod>();
+        BrewMethod chemex = new BrewMethod(
+                getResources().getString(R.string.title_activity_chemex),
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_chemex_array))),
+                1,
+                25,
+                org.joda.time.Duration.millis(240000),
+                getResources().getString(R.string.grind_size_coarse),
+                R.drawable.chemex,
+                R.drawable.chemex,
+                getResources().getString(R.string.bio_chemex)
+        );
+        BrewMethod harioV60 = new BrewMethod(
+                getResources().getString(R.string.title_activity_hario_v60),
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_harioV60_array))),
+                1,
+                50,
+                org.joda.time.Duration.millis(14400000),
+                getResources().getString(R.string.grind_size_medium),
+                R.drawable.hariov60,
+                R.drawable.hariov60,
+                getResources().getString(R.string.bio_harioV60)
+        );
+
+        BrewMethod icedCoffee = new BrewMethod(
+                getResources().getString(R.string.title_activity_iced_coffee),
+                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_cold_brew_array))),
+                1,
+                50,
+                org.joda.time.Duration.millis(14400000),
+                getResources().getString(R.string.grind_size_coarse),
+                R.drawable.iced_coffee,
+                R.drawable.iced_coffee,
+                getResources().getString(R.string.bio_cold_brew)
+        );
+
+        brewMethodList = new ArrayList<>();
         brewMethodList.add(aeropress);
+        brewMethodList.add(frenchPress);
+        brewMethodList.add(chemex);
+        brewMethodList.add(harioV60);
+        brewMethodList.add(icedCoffee);
+
         return brewMethodList;
     };
 

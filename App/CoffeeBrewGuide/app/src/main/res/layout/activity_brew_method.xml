@@ -213,7 +213,7 @@
                         android:id="@+id/brew_method_description_TV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/bio_aeropress"
+                        android:hint="@string/bio_aeropress"
                         android:paddingBottom="8dp"
                         android:paddingRight="16dp"
                         android:paddingStart="16dp"
@@ -281,7 +281,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimaryDark"
         app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
 
