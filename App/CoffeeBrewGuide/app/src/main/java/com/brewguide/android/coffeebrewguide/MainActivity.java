@@ -1,9 +1,9 @@
 package com.brewguide.android.coffeebrewguide;
 
 import android.content.Intent;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -12,13 +12,15 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static com.brewguide.android.coffeebrewguide.R.drawable.aeropress;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    String newDirection;
+    List<String> instructions;
     BrewMethod brewMethod;
     ArrayList<BrewMethod> brewMethodList;
+    final String LOGTAG = this.getClass().getSimpleName();
 
 
     @Override
@@ -56,11 +58,24 @@ public class MainActivity extends AppCompatActivity {
     * Create Arraylist with containing all of the brew methods
     * */
     public ArrayList<BrewMethod> getBrewMethodList(){
+        brewMethodList = new ArrayList<>();
+        brewMethodList.add(getAeropress());
+        brewMethodList.add(getFrenchPress());
+        brewMethodList.add(getChemex());
+        brewMethodList.add(getHarioV60());
+        brewMethodList.add(getIcedCoffee());
+        return brewMethodList;
+    };
 
+    public BrewMethod getAeropress(){
+
+        //replace units in directions
+        instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array));
+        instructions = replaceUnits(instructions);
 
         BrewMethod aeropress = new BrewMethod(
                 getResources().getString(R.string.title_aeropress),
-                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array))),
+                new ArrayList<>(instructions),
                 1,
                 16,
                 org.joda.time.Duration.millis(90000),
@@ -69,10 +84,17 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.aeropress,
                 getResources().getString(R.string.bio_aeropress)
         );
+        return aeropress;
+    }
+    public BrewMethod getFrenchPress(){
+
+        //replace units in directions
+        instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_frenchpress_array));
+        instructions = replaceUnits(instructions);
 
         BrewMethod frenchPress = new BrewMethod(
                 getResources().getString(R.string.title_activity_french_press),
-                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_frenchpress_array))),
+                new ArrayList<>(instructions),
                 1,
                 25,
                 org.joda.time.Duration.millis(240000),
@@ -82,9 +104,17 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getString(R.string.bio_frenchpress)
         );
 
+        return frenchPress;
+    }
+    public BrewMethod getChemex() {
+
+        //replace units in directions
+        instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_chemex_array));
+        instructions = replaceUnits(instructions);
+
         BrewMethod chemex = new BrewMethod(
                 getResources().getString(R.string.title_activity_chemex),
-                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_chemex_array))),
+                new ArrayList<>(instructions),
                 1,
                 25,
                 org.joda.time.Duration.millis(240000),
@@ -93,9 +123,19 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.chemex,
                 getResources().getString(R.string.bio_chemex)
         );
+
+        return chemex;
+    }
+
+    public BrewMethod getHarioV60() {
+        
+        //replace units in directions
+        instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_harioV60_array));
+        instructions = replaceUnits(instructions);
+
         BrewMethod harioV60 = new BrewMethod(
                 getResources().getString(R.string.title_activity_hario_v60),
-                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_harioV60_array))),
+                new ArrayList<>(instructions),
                 1,
                 50,
                 org.joda.time.Duration.millis(14400000),
@@ -104,10 +144,17 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.hariov60,
                 getResources().getString(R.string.bio_harioV60)
         );
+        return harioV60;
+    }
+    public BrewMethod getIcedCoffee() {
+
+        //replace units in directions
+        instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_cold_brew_array));
+        instructions = replaceUnits(instructions);
 
         BrewMethod icedCoffee = new BrewMethod(
                 getResources().getString(R.string.title_activity_iced_coffee),
-                new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.instructions_cold_brew_array))),
+                new ArrayList<>(instructions),
                 1,
                 50,
                 org.joda.time.Duration.millis(14400000),
@@ -116,17 +163,19 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.iced_coffee,
                 getResources().getString(R.string.bio_cold_brew)
         );
+        return icedCoffee;
+    }
 
-        brewMethodList = new ArrayList<>();
-        brewMethodList.add(aeropress);
-        brewMethodList.add(frenchPress);
-        brewMethodList.add(chemex);
-        brewMethodList.add(harioV60);
-        brewMethodList.add(icedCoffee);
-
-        return brewMethodList;
-    };
-
-
+    /**
+     * Takes directions as input and replaces UNITS with units.
+     * TODO: choose units from preferences
+     * */
+    public List<String> replaceUnits(List<String> instructions){
+        for (int i = 0; i < instructions.size(); i++) {
+            newDirection = instructions.get(i).replaceAll("UNITS", "grams");
+            instructions.set(i, newDirection);
+        }
+        return instructions;
+    }
 
 }
