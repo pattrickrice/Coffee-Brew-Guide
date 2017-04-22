@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     String newDirection;
     List<String> instructions;
+    List<Integer> brewPours;
     BrewMethod brewMethod;
     ArrayList<BrewMethod> brewMethodList;
     final String LOGTAG = this.getClass().getSimpleName();
@@ -55,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-    * Create Arraylist with containing all of the brew methods
-    * */
-    public ArrayList<BrewMethod> getBrewMethodList(){
+     * Create Arraylist with containing all of the brew methods
+     */
+    public ArrayList<BrewMethod> getBrewMethodList() {
         brewMethodList = new ArrayList<>();
         brewMethodList.add(getAeropress());
         brewMethodList.add(getFrenchPress());
@@ -65,13 +66,19 @@ public class MainActivity extends AppCompatActivity {
         brewMethodList.add(getHarioV60());
         brewMethodList.add(getIcedCoffee());
         return brewMethodList;
-    };
+    }
 
-    public BrewMethod getAeropress(){
+    ;
+
+    public BrewMethod getAeropress() {
 
         //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array));
         instructions = replaceUnits(instructions);
+        brewPours = new ArrayList<>();
+        brewPours.add(getResources().getInteger(R.integer.aeropress_pour_1));
+        instructions = replacePours(brewPours, instructions);
+
 
         BrewMethod aeropress = new BrewMethod(
                 getResources().getString(R.string.title_aeropress),
@@ -86,11 +93,17 @@ public class MainActivity extends AppCompatActivity {
         );
         return aeropress;
     }
-    public BrewMethod getFrenchPress(){
+
+    public BrewMethod getFrenchPress() {
 
         //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_frenchpress_array));
         instructions = replaceUnits(instructions);
+        brewPours = new ArrayList<>();
+        brewPours.add(getResources().getInteger(R.integer.french_press_pour_1));
+        brewPours.add(getResources().getInteger(R.integer.french_press_pour_2));
+
+        instructions = replacePours(brewPours, instructions);
 
         BrewMethod frenchPress = new BrewMethod(
                 getResources().getString(R.string.title_activity_french_press),
@@ -106,11 +119,18 @@ public class MainActivity extends AppCompatActivity {
 
         return frenchPress;
     }
+
     public BrewMethod getChemex() {
 
         //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_chemex_array));
         instructions = replaceUnits(instructions);
+        brewPours = new ArrayList<>();
+        brewPours.add(getResources().getInteger(R.integer.chemex_pour_1));
+        brewPours.add(getResources().getInteger(R.integer.chemex_pour_2));
+        brewPours.add(getResources().getInteger(R.integer.chemex_pour_3));
+        brewPours.add(getResources().getInteger(R.integer.chemex_pour_4));
+        instructions = replacePours(brewPours, instructions);
 
         BrewMethod chemex = new BrewMethod(
                 getResources().getString(R.string.title_activity_chemex),
@@ -128,11 +148,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public BrewMethod getHarioV60() {
-        
+
         //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_harioV60_array));
         instructions = replaceUnits(instructions);
-
+        brewPours = new ArrayList<>();
+        brewPours.add(getResources().getInteger(R.integer.hario_v60_pour1));
+        brewPours.add(getResources().getInteger(R.integer.hario_v60_pour2));
+        brewPours.add(getResources().getInteger(R.integer.hario_v60_pour3));
+        brewPours.add(getResources().getInteger(R.integer.hario_v60_pour4));
+        instructions = replacePours(brewPours, instructions);
         BrewMethod harioV60 = new BrewMethod(
                 getResources().getString(R.string.title_activity_hario_v60),
                 new ArrayList<>(instructions),
@@ -146,17 +171,21 @@ public class MainActivity extends AppCompatActivity {
         );
         return harioV60;
     }
+
     public BrewMethod getIcedCoffee() {
 
         //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_cold_brew_array));
         instructions = replaceUnits(instructions);
+        brewPours = new ArrayList<>();
+        brewPours.add(getResources().getInteger(R.integer.cold_brew_pour_1));
+        instructions = replacePours(brewPours, instructions);
 
         BrewMethod icedCoffee = new BrewMethod(
                 getResources().getString(R.string.title_activity_iced_coffee),
                 new ArrayList<>(instructions),
                 1,
-                50,
+                115,
                 org.joda.time.Duration.millis(14400000),
                 getResources().getString(R.string.grind_size_coarse),
                 R.drawable.iced_coffee,
@@ -169,8 +198,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Takes directions as input and replaces UNITS with units.
      * TODO: choose units from preferences
-     * */
-    public List<String> replaceUnits(List<String> instructions){
+     */
+    public List<String> replaceUnits(List<String> instructions) {
         for (int i = 0; i < instructions.size(); i++) {
             newDirection = instructions.get(i).replaceAll("UNITS", "grams");
             instructions.set(i, newDirection);
@@ -178,4 +207,21 @@ public class MainActivity extends AppCompatActivity {
         return instructions;
     }
 
+    public List<String> replacePours(List<Integer> waterPours, List<String> instructions) {
+
+        int i = 0;
+        for (int j = 0; j < instructions.size(); j++) {
+            if (instructions.get(j).contains("INT") && i< waterPours.size()) {
+                Log.v(LOGTAG, "contains int");
+                newDirection = instructions.get(j).replaceAll("INT", Integer.toString(waterPours.get(i)));
+                instructions.set(j, newDirection);
+                Log.v(LOGTAG, instructions.get(j));
+                i++;
+                Log.v(LOGTAG, "instructions: " + j + " waterpours: "+ i);
+            }
+
+        }
+
+        return instructions;
+    }
 }

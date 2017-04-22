@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="aeropress_pour_1">225</integer>
+
+    <integer name="french_press_pour_1">60</integer>
+    <integer name="french_press_pour_2">380</integer>
+
+    <integer name="chemex_pour_1">60</integer>
+    <integer name="chemex_pour_2">200</integer>
+    <integer name="chemex_pour_3">300</integer>
+    <integer name="chemex_pour_4">380</integer>
+
+    <integer name="hario_v60_pour1">60</integer>
+    <integer name="hario_v60_pour2">200</integer>
+    <integer name="hario_v60_pour3">300</integer>
+    <integer name="hario_v60_pour4">380</integer>
+
+
+    <integer name="cold_brew_pour_1">1000</integer>
+
+</resources>
