@@ -1,5 +1,7 @@
 package com.brewguide.android.coffeebrewguide;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -7,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -24,17 +28,20 @@ import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+import static com.brewguide.android.coffeebrewguide.R.string.serving;
 
 
 /**
  * Activity that handels information for the Aeropress Activity. Intent is passed from the main
  * Activity.
  */
-public class BrewMethodActivity extends AppCompatActivity {
+public class BrewMethodActivity extends AppCompatActivity implements View.OnClickListener{
 
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
     NestedScrollView mScrollView;
+    Context context = this;
 
 
     @Override
@@ -65,13 +72,16 @@ public class BrewMethodActivity extends AppCompatActivity {
         rvInsstructions.setLayoutManager(layoutManager);
 
         //set top image
-
-
         ImageView topImage = (ImageView) findViewById(R.id.topImageIV);
         topImage.setImageResource(brewMethod.getmDetailActivityGraphicId());
 
+        //get serving layout and set click listener
+        LinearLayout servingLayout = (LinearLayout) findViewById(R.id.serving_layout);
+        servingLayout.setOnClickListener(servingSizeListener);
+
         //set serving number
-        String serving = Integer.toString(brewMethod.getServingNumber()) + " " + getResources().getString(R.string.serving);
+        String servingString = getResources().getString(serving);
+        String serving = Integer.toString(brewMethod.getServingNumber()) + " " + servingString;
         TextView servingNumberTV = (TextView) findViewById(R.id.TV_servingNumber);
         servingNumberTV.setText(serving);
 
@@ -118,18 +128,50 @@ public class BrewMethodActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_alarm_white_48dp));
 
+        // get clock view
+        final TextView clockView = (TextView) findViewById(R.id.clock_tv);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //TODO replace with action of starting a timer
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(clockView.getVisibility() == View.VISIBLE){
+                    clockView.setVisibility(View.GONE);
+                }else {
+                    clockView.setVisibility(View.VISIBLE);
+                }
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    public View.OnClickListener servingSizeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            new AlertDialog.Builder(context)
+                    .setTitle("Set serving size")
+                    .setMessage("How many cups of coffee are you making?")
+
+                    /*
+                    * TODO insert a Number Picker in the dialogue
+                    * */
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .setIcon(R.drawable.ic_weight)
+                    .show();
+        }
+    };
+    @Override
+    public void onClick(View view) {}
 
     //save state on scroll view
     protected void onSaveInstanceState(Bundle outState) {
