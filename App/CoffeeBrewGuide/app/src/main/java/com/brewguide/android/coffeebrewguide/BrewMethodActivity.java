@@ -2,6 +2,7 @@ package com.brewguide.android.coffeebrewguide;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -11,23 +12,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+
 import org.joda.time.Duration;
 import org.joda.time.Period;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static com.brewguide.android.coffeebrewguide.R.drawable.aeropress;
-import static com.brewguide.android.coffeebrewguide.R.id.toolbar;
 
 
 /**
@@ -69,6 +65,8 @@ public class BrewMethodActivity extends AppCompatActivity {
         rvInsstructions.setLayoutManager(layoutManager);
 
         //set top image
+
+
         ImageView topImage = (ImageView) findViewById(R.id.topImageIV);
         topImage.setImageResource(brewMethod.getmDetailActivityGraphicId());
 
@@ -108,9 +106,13 @@ public class BrewMethodActivity extends AppCompatActivity {
         descriptionTV.setText(description);
 
         // Auto generated
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(brewMethod.getmMethodName());
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(brewMethod.getmMethodName());
 
         //set floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -127,7 +129,6 @@ public class BrewMethodActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 
 
     //save state on scroll view

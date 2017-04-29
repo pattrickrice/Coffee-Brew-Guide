@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Coffee Brew Guide</string>
     <string name="title_activity_brew_method">BrewMethodActivity</string>
-    <string name="title_activity_chemex">ChemexActivity</string>
-    <string name="title_activity_aeropress">AeropressActivity</string>
-    <string name="title_activity_hario_v60">HarioV60Activity</string>
-    <string name="title_activity_french_press">FrenchPressActivity</string>
-    <string name="title_activity_iced_coffee">IcedCoffeeActivity</string>
+    <string name="title_activity_chemex">Chemex</string>
+    <string name="title_activity_aeropress">Aeropress</string>
+    <string name="title_activity_hario_v60">Hario V-60</string>
+    <string name="title_activity_french_press">French Press</string>
+    <string name="title_activity_iced_coffee">Iced Coffee</string>
     <!--hint resources-->
     <string name="hint_instructions_step_number">Step. 1</string>
     <string name="hint_instruction_step1_aeropress">Load filter over cover and screw onto bottom-half of brewer, set on top of a cup or carafe.</string>
