@@ -3,7 +3,9 @@ package com.brewguide.android.coffeebrewguide;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,11 +17,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 import org.joda.time.Duration;
@@ -36,12 +41,14 @@ import static com.brewguide.android.coffeebrewguide.R.string.serving;
  * Activity that handels information for the Aeropress Activity. Intent is passed from the main
  * Activity.
  */
-public class BrewMethodActivity extends AppCompatActivity implements View.OnClickListener{
+public class BrewMethodActivity extends AppCompatActivity implements View.OnClickListener {
 
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
     NestedScrollView mScrollView;
     Context context = this;
+
+    SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(context);
 
 
     @Override
@@ -136,9 +143,9 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View view) {
 
                 //TODO replace with action of starting a timer
-                if(clockView.getVisibility() == View.VISIBLE){
+                if (clockView.getVisibility() == View.VISIBLE) {
                     clockView.setVisibility(View.GONE);
-                }else {
+                } else {
                     clockView.setVisibility(View.VISIBLE);
                 }
             }
@@ -149,41 +156,62 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
     public View.OnClickListener servingSizeListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            new AlertDialog.Builder(context)
+            AlertDialog.Builder builder = new AlertDialog.Builder(context)
                     .setTitle("Set serving size")
                     .setMessage("How many cups of coffee are you making?")
+                    .setIcon(R.drawable.ic_weight);
 
-                    /*
-                    * TODO insert a Number Picker in the dialogue
-                    * */
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // do nothing
-                        }
-                    })
-                    .setIcon(R.drawable.ic_weight)
-                    .show();
+            // create number picker in the dialog
+            final NumberPicker picker = new NumberPicker(context);
+            picker.setMinValue(1);
+            picker.setMaxValue(2);
+
+            // create layout for picker to reside in
+            final FrameLayout parent = new FrameLayout(context);
+            parent.addView(picker, new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    Gravity.CENTER));
+            builder.setView(parent);
+
+            // if okay button is pressed
+            builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // get value from picker
+                    int value = picker.getValue();
+
+
+                    Toast.makeText(getApplicationContext(), "The value is " + value,
+                            Toast.LENGTH_LONG).show();
+                }
+            })
+
+            // if cancel button is pressed
+            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // do nothing
+                }
+            });
+            builder.show();
         }
     };
+
     @Override
-    public void onClick(View view) {}
+    public void onClick(View view) {
+    }
 
     //save state on scroll view
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putIntArray("ARTICLE_SCROLL_POSITION",
-                new int[]{ mScrollView.getScrollX(), mScrollView.getScrollY()});
+                new int[]{mScrollView.getScrollX(), mScrollView.getScrollY()});
     }
+
     //go to position in scroll view
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         final int[] position = savedInstanceState.getIntArray("ARTICLE_SCROLL_POSITION");
-        if(position != null)
+        if (position != null)
             mScrollView.post(new Runnable() {
                 public void run() {
                     mScrollView.scrollTo(position[0], position[1]);

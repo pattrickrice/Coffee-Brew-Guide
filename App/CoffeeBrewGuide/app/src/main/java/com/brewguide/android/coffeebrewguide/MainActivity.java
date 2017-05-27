@@ -1,6 +1,9 @@
 package com.brewguide.android.coffeebrewguide;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
     BrewMethod brewMethod;
     ArrayList<BrewMethod> brewMethodList;
     final String LOGTAG = this.getClass().getSimpleName();
+
+    Context context = this;
+    SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(context);
+
 
 
     @Override

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <Preference
+        android:defaultValue="@integer/default_serving_size"
+        android:key="pref_key_serving_size"
+        android:title="Serving Size"
+        >
+
+    </Preference>
+
+</PreferenceScreen>

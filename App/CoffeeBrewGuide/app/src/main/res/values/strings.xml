@@ -19,6 +19,7 @@
     <string name="grind_size_fine">Fine</string>
     <string name="grind_size_medium">Medium</string>
     <string name="grind_size_coarse">Coarse</string>
+    <integer name="default_serving_size">1</integer>
 
     <!--Resources for aeropress-->
     <string name="title_aeropress">Aeropress</string>]
