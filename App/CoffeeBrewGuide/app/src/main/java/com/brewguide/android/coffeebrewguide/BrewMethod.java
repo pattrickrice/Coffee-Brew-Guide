@@ -17,23 +17,27 @@ import static android.R.attr.description;
 
 public class BrewMethod implements Parcelable{
     public String mMethodName, mMethodGrindSize, mDescription;
+    ArrayList<Integer> mMethodBrewPours;
     ArrayList<String> mMethodInstructions;
     int mMethodServingNumber, mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
     org.joda.time.Duration mMethodBrewTime;
 
 
+
+
     public BrewMethod(String name,
                       ArrayList<String> instructions,
+                      ArrayList<Integer> brewPours,
                       int servingNumber,
                       int servingSize,
                       org.joda.time.Duration brewTime,
                       String grindSize,
                       int tile,
                       int graphic,
-                      String description
-    ){
+                      String description){
         mMethodName = name;
         mMethodGrindSize = grindSize;
+        mMethodBrewPours = brewPours;
         mMethodInstructions = instructions;
         mMethodServingNumber = servingNumber;
         mMethodServingSize = servingSize;
@@ -54,6 +58,10 @@ public class BrewMethod implements Parcelable{
     public ArrayList<String> getmMethodInstructions() {
         return mMethodInstructions;
     }
+    public ArrayList<Integer> getmMethodBrewPours() {
+        return mMethodBrewPours;
+    }
+
     public int getServingNumber() {
         return mMethodServingNumber;
     }
@@ -91,6 +99,7 @@ public class BrewMethod implements Parcelable{
     public void writeToParcel(Parcel out, int flags) {
         out.writeString(mMethodName);
         out.writeSerializable(mMethodInstructions);
+        out.writeSerializable(mMethodBrewPours);
         out.writeInt(mMethodServingNumber);
         out.writeInt(mMethodServingSize);
         out.writeSerializable(mMethodBrewTime);
@@ -114,6 +123,7 @@ public class BrewMethod implements Parcelable{
     private BrewMethod(Parcel in) {
         this.mMethodName = in.readString();
         this.mMethodInstructions = (ArrayList<String>) in.readSerializable();
+        this.mMethodBrewPours = (ArrayList<Integer>) in.readSerializable();
         this.mMethodServingNumber = in.readInt();
         this.mMethodServingSize = in.readInt();
         this.mMethodBrewTime = (org.joda.time.Duration) in.readSerializable();

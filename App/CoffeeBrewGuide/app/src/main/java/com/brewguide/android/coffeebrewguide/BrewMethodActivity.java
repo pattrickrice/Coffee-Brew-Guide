@@ -5,10 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -33,7 +32,8 @@ import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+import java.util.List;
+
 import static com.brewguide.android.coffeebrewguide.R.string.serving;
 
 
@@ -43,13 +43,16 @@ import static com.brewguide.android.coffeebrewguide.R.string.serving;
  */
 public class BrewMethodActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // name of activity
+    List<String> instructions;
+    List<Integer> brewPours;
+    InstructionListAdapter adapter;
     final String LOGTAG = this.getClass().getSimpleName();
+    String newDirection;
+    int newPour;
     NestedScrollView mScrollView;
     Context context = this;
-
-    SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(context);
-
+    public RecyclerView rvInstructions;
+    public BrewMethod brewMethod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,24 +62,23 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         //retrieves intent
         Intent i = getIntent();
         //creates brewmethod object
-        BrewMethod brewMethod = (BrewMethod) i.getParcelableExtra("brew_method");
+        brewMethod = i.getParcelableExtra("brew_method");
 
         //Scrollview variable for savedInstanceState
         mScrollView = (NestedScrollView) findViewById(R.id.brew_method_NSV);
 
-        //set recyclerview object for instructions list
-        RecyclerView rvInsstructions = (RecyclerView) findViewById(R.id.rvInstructions);
-
         //create adapter for recyclerview for instructions list
-        InstructionListAdapter adapter = new InstructionListAdapter(this, brewMethod.getmMethodInstructions());
+        instructions = insertPourValues(brewMethod.getmMethodBrewPours(), brewMethod.getmMethodInstructions());
+        adapter = new InstructionListAdapter(this, instructions);
 
         //set the adapter to the view
-        rvInsstructions.setAdapter(adapter);
+        rvInstructions = (RecyclerView) findViewById(R.id.rvInstructions);
+        rvInstructions.setAdapter(adapter);
 
         //create layout manager and set
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        rvInsstructions.setLayoutManager(layoutManager);
+        rvInstructions.setLayoutManager(layoutManager);
 
         //set top image
         ImageView topImage = (ImageView) findViewById(R.id.topImageIV);
@@ -153,6 +155,11 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Listens for click on the serving sizes
+     * Opens a preference dialogue with a numer picker
+     * Changes preference for the user
+     * */
     public View.OnClickListener servingSizeListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -180,9 +187,21 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     // get value from picker
                     int value = picker.getValue();
 
+                    SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
 
-                    Toast.makeText(getApplicationContext(), "The value is " + value,
-                            Toast.LENGTH_LONG).show();
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.putInt("pref_key_serving_size", value);
+
+                    editor.apply();
+                    
+//                    TODO: Change the values in the adapter
+//                    //replace the values for the pours in the adapter
+//                    brewPours = replacePours(brewMethod.getmMethodBrewPours(), value);
+//                    instructions = insertPourValues(brewPours, brewMethod.getmMethodInstructions());
+//                    adapter = new InstructionListAdapter(getBaseContext(), instructions);
+//                    adapter.notifyDataSetChanged();
+//                    rvInstructions.swapAdapter(adapter, false);
                 }
             })
 
@@ -218,4 +237,38 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                 }
             });
     }
+
+    public List<Integer> replacePours(List<Integer> waterPours, int newServingSize) {
+        Toast.makeText(getApplicationContext(), "replace pours called",
+                Toast.LENGTH_LONG).show();
+        if (newServingSize == 1) {
+            for (int i = 0; i < waterPours.size(); i++) {
+                newPour = waterPours.get(i) / 2;
+                waterPours.set(i, newPour);
+            }
+        } else {
+            for (int i = 0; i < waterPours.size(); i++) {
+                newPour = waterPours.get(i) * 2;
+                waterPours.set(i, newPour);
+            }
+        }
+        for (int i = 0; i < waterPours.size(); i++) {
+            Log.v("new pour # " + i + ": ", waterPours.get(i).toString());
+        }
+        return waterPours;
+    }
+
+    public List<String> insertPourValues(List<Integer> waterPours, List<String> instructions) {
+
+        int i = 0;
+        for (int j = 0; j < instructions.size(); j++) {
+            if (instructions.get(j).contains("INT") && i< waterPours.size()) {
+                newDirection = instructions.get(j).replaceAll("INT", Integer.toString(waterPours.get(i)));
+                instructions.set(j, newDirection);
+                i++;
+            }
+        }
+        return instructions;
+    }
+
 }

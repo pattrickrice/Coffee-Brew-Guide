@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.R.attr.value;
+
 public class MainActivity extends AppCompatActivity {
 
     String newDirection;
@@ -26,16 +28,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<BrewMethod> brewMethodList;
     final String LOGTAG = this.getClass().getSimpleName();
 
-    Context context = this;
-    SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(context);
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
 
@@ -45,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
-
                 // Target specific brewmethod and launch an activity
                 brewMethod = brewMethodList.get(position);
                 // launch new activity when Item is clicked
@@ -59,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     /**
@@ -75,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
         return brewMethodList;
     }
 
-    ;
-
     public BrewMethod getAeropress() {
 
         //replace units in directions
@@ -84,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
         instructions = replaceUnits(instructions);
         brewPours = new ArrayList<>();
         brewPours.add(getResources().getInteger(R.integer.aeropress_pour_1));
-        instructions = replacePours(brewPours, instructions);
 
 
         BrewMethod aeropress = new BrewMethod(
                 getResources().getString(R.string.title_aeropress),
                 new ArrayList<>(instructions),
-                1,
+                new ArrayList<>(brewPours),
+                getServingSize(),
                 16,
                 org.joda.time.Duration.millis(90000),
                 getResources().getString(R.string.grind_size_medium),
@@ -103,19 +95,17 @@ public class MainActivity extends AppCompatActivity {
 
     public BrewMethod getFrenchPress() {
 
-        //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_frenchpress_array));
         instructions = replaceUnits(instructions);
         brewPours = new ArrayList<>();
         brewPours.add(getResources().getInteger(R.integer.french_press_pour_1));
         brewPours.add(getResources().getInteger(R.integer.french_press_pour_2));
 
-        instructions = replacePours(brewPours, instructions);
-
         BrewMethod frenchPress = new BrewMethod(
                 getResources().getString(R.string.title_activity_french_press),
                 new ArrayList<>(instructions),
-                1,
+                new ArrayList<>(brewPours),
+                getServingSize(),
                 25,
                 org.joda.time.Duration.millis(240000),
                 getResources().getString(R.string.grind_size_coarse),
@@ -129,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
     public BrewMethod getChemex() {
 
-        //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_chemex_array));
         instructions = replaceUnits(instructions);
         brewPours = new ArrayList<>();
@@ -137,12 +126,12 @@ public class MainActivity extends AppCompatActivity {
         brewPours.add(getResources().getInteger(R.integer.chemex_pour_2));
         brewPours.add(getResources().getInteger(R.integer.chemex_pour_3));
         brewPours.add(getResources().getInteger(R.integer.chemex_pour_4));
-        instructions = replacePours(brewPours, instructions);
 
         BrewMethod chemex = new BrewMethod(
                 getResources().getString(R.string.title_activity_chemex),
                 new ArrayList<>(instructions),
-                1,
+                new ArrayList<>(brewPours),
+                getServingSize(),
                 25,
                 org.joda.time.Duration.millis(240000),
                 getResources().getString(R.string.grind_size_coarse),
@@ -156,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
 
     public BrewMethod getHarioV60() {
 
-        //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_harioV60_array));
         instructions = replaceUnits(instructions);
         brewPours = new ArrayList<>();
@@ -164,11 +152,12 @@ public class MainActivity extends AppCompatActivity {
         brewPours.add(getResources().getInteger(R.integer.hario_v60_pour2));
         brewPours.add(getResources().getInteger(R.integer.hario_v60_pour3));
         brewPours.add(getResources().getInteger(R.integer.hario_v60_pour4));
-        instructions = replacePours(brewPours, instructions);
+
         BrewMethod harioV60 = new BrewMethod(
                 getResources().getString(R.string.title_activity_hario_v60),
                 new ArrayList<>(instructions),
-                1,
+                new ArrayList<>(brewPours),
+                getServingSize(),
                 50,
                 org.joda.time.Duration.millis(14400000),
                 getResources().getString(R.string.grind_size_medium),
@@ -176,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.hariov60,
                 getResources().getString(R.string.bio_harioV60)
         );
+
         return harioV60;
     }
 
@@ -186,12 +176,12 @@ public class MainActivity extends AppCompatActivity {
         instructions = replaceUnits(instructions);
         brewPours = new ArrayList<>();
         brewPours.add(getResources().getInteger(R.integer.cold_brew_pour_1));
-        instructions = replacePours(brewPours, instructions);
 
         BrewMethod icedCoffee = new BrewMethod(
                 getResources().getString(R.string.title_activity_iced_coffee),
                 new ArrayList<>(instructions),
-                1,
+                new ArrayList<>(brewPours),
+                getServingSize(),
                 115,
                 org.joda.time.Duration.millis(14400000),
                 getResources().getString(R.string.grind_size_coarse),
@@ -200,6 +190,15 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getString(R.string.bio_cold_brew)
         );
         return icedCoffee;
+    }
+
+    public int getServingSize(){
+        // first param is name of file, second is the context
+        // mode private means only this application can access this file
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
+
+        //first paramn is key, second will be default value if none is found.
+        return pref.getInt("pref_key_serving_size", 1);
     }
 
     /**
@@ -214,21 +213,4 @@ public class MainActivity extends AppCompatActivity {
         return instructions;
     }
 
-    public List<String> replacePours(List<Integer> waterPours, List<String> instructions) {
-
-        int i = 0;
-        for (int j = 0; j < instructions.size(); j++) {
-            if (instructions.get(j).contains("INT") && i< waterPours.size()) {
-                Log.v(LOGTAG, "contains int");
-                newDirection = instructions.get(j).replaceAll("INT", Integer.toString(waterPours.get(i)));
-                instructions.set(j, newDirection);
-                Log.v(LOGTAG, instructions.get(j));
-                i++;
-                Log.v(LOGTAG, "instructions: " + j + " waterpours: "+ i);
-            }
-
-        }
-
-        return instructions;
-    }
 }
