@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.data;
 import static android.support.v7.widget.AppCompatDrawableManager.get;
 
 
@@ -20,7 +22,6 @@ import static android.support.v7.widget.AppCompatDrawableManager.get;
 public class InstructionListAdapter extends RecyclerView.Adapter<InstructionListAdapter.ViewHolder> {
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
-
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -37,8 +38,10 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
             mContentTV = (TextView) itemView.findViewById(R.id.content);
         }
     }
+
     // Store a member variable for the contacts
     private List<String> mInstructions;
+
     // Store the context for easy access
     private Context mContext;
 
@@ -84,5 +87,14 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
     @Override
     public int getItemCount() {
         return mInstructions.size();
+    }
+
+    public void swap(ArrayList<String> newInstructions){
+        for(int j = 0; j < newInstructions.size(); j++){
+            Log.v("NewInstructions #" + j, "is: " + newInstructions.get(j));
+        }
+        mInstructions.clear();
+        mInstructions.addAll(newInstructions);
+        notifyDataSetChanged();
     }
 }

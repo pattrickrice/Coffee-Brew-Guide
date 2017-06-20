@@ -1,23 +1,17 @@
 package com.brewguide.android.coffeebrewguide;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static android.R.attr.value;
 
 public class MainActivity extends AppCompatActivity {
 

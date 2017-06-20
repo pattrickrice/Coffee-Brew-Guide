@@ -32,6 +32,7 @@ import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.brewguide.android.coffeebrewguide.R.string.serving;
@@ -43,19 +44,23 @@ import static com.brewguide.android.coffeebrewguide.R.string.serving;
  */
 public class BrewMethodActivity extends AppCompatActivity implements View.OnClickListener {
 
-    List<String> instructions;
+    ArrayList<String> instructions;
     List<Integer> brewPours;
-    InstructionListAdapter adapter;
+    InstructionListAdapter adapter, newAdapter;
     final String LOGTAG = this.getClass().getSimpleName();
     String newDirection;
-    int newPour;
     NestedScrollView mScrollView;
     Context context = this;
     public RecyclerView rvInstructions;
     public BrewMethod brewMethod;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v(LOGTAG, "brewmethod called");
+        SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
+        Integer newServingSize = pref.getInt("pref_key_serving_size", 1);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brew_method);
 
@@ -68,7 +73,23 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         mScrollView = (NestedScrollView) findViewById(R.id.brew_method_NSV);
 
         //create adapter for recyclerview for instructions list
-        instructions = insertPourValues(brewMethod.getmMethodBrewPours(), brewMethod.getmMethodInstructions());
+        // TODO the replace pours method is changing the variable for getmMethodBrewPours
+
+        // Custom class storing sets of data
+        brewMethod = i.getParcelableExtra("brew_method");
+
+        //changes values based on users preference
+        brewPours = replacePours(brewMethod.getmMethodBrewPours());
+
+        //places numerical values into strings
+        instructions = (ArrayList<String>) insertPourValues(brewPours, brewMethod.getmMethodInstructions());
+
+        //log the new strings
+        for(int j = 0; j < instructions.size(); j++){
+            Log.v("Value for instruction #" + j, "is: " + instructions.get(j));
+        }
+
+        //adapter displays each string as a view
         adapter = new InstructionListAdapter(this, instructions);
 
         //set the adapter to the view
@@ -90,7 +111,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         //set serving number
         String servingString = getResources().getString(serving);
-        String serving = Integer.toString(brewMethod.getServingNumber()) + " " + servingString;
+        String serving = Integer.toString(newServingSize) + " " + servingString;
         TextView servingNumberTV = (TextView) findViewById(R.id.TV_servingNumber);
         servingNumberTV.setText(serving);
 
@@ -194,14 +215,36 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     editor.putInt("pref_key_serving_size", value);
 
                     editor.apply();
-                    
-//                    TODO: Change the values in the adapter
-//                    //replace the values for the pours in the adapter
-//                    brewPours = replacePours(brewMethod.getmMethodBrewPours(), value);
-//                    instructions = insertPourValues(brewPours, brewMethod.getmMethodInstructions());
-//                    adapter = new InstructionListAdapter(getBaseContext(), instructions);
-//                    adapter.notifyDataSetChanged();
-//                    rvInstructions.swapAdapter(adapter, false);
+
+//                    Log.v("Preference was changed,"," activity is restarted. New values should be placed into adapter ");
+//                    finish();
+//                    startActivity(getIntent());
+
+
+                    //changes values based on users preference
+                    brewPours = replacePours(brewMethod.getmMethodBrewPours());
+
+                    //places numerical values into strings
+                    instructions = (ArrayList<String>) insertPourValues(brewPours, brewMethod.getmMethodInstructions());
+
+                    //log the new strings
+//                    for(int j = 0; j < instructions.size(); j++){
+//                        Log.v("Value for instruction #" + j, "is: " + instructions.get(j));
+//                    }
+
+                    //adapter displays each string as a view
+                    //newAdapter = new InstructionListAdapter(getBaseContext(), instructions);
+                    adapter.swap(instructions);
+
+                    //set the adapter to the view
+                    //rvInstructions.swapAdapter(newAdapter, false);
+
+                    //set serving number
+                    String servingString = getResources().getString(serving);
+                    String serving = Integer.toString(value) + " " + servingString;
+                    TextView servingNumberTV = (TextView) findViewById(R.id.TV_servingNumber);
+                    servingNumberTV.setText(serving);
+
                 }
             })
 
@@ -238,24 +281,22 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             });
     }
 
-    public List<Integer> replacePours(List<Integer> waterPours, int newServingSize) {
-        Toast.makeText(getApplicationContext(), "replace pours called",
-                Toast.LENGTH_LONG).show();
-        if (newServingSize == 1) {
+    public List<Integer> replacePours(List<Integer> waterPours) {
+
+        List<Integer> returnedPours = new ArrayList<>();
+        SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
+
+        Integer newServingSize = pref.getInt("pref_key_serving_size", 1);
+
+        if (newServingSize == 2) {
             for (int i = 0; i < waterPours.size(); i++) {
-                newPour = waterPours.get(i) / 2;
-                waterPours.set(i, newPour);
+                int newPour = waterPours.get(i) * 2;
+                returnedPours.add(newPour);
             }
-        } else {
-            for (int i = 0; i < waterPours.size(); i++) {
-                newPour = waterPours.get(i) * 2;
-                waterPours.set(i, newPour);
-            }
+        }else {
+            returnedPours = waterPours;
         }
-        for (int i = 0; i < waterPours.size(); i++) {
-            Log.v("new pour # " + i + ": ", waterPours.get(i).toString());
-        }
-        return waterPours;
+        return returnedPours;
     }
 
     public List<String> insertPourValues(List<Integer> waterPours, List<String> instructions) {

@@ -16,8 +16,8 @@ import static android.R.attr.description;
  */
 
 public class BrewMethod implements Parcelable{
-    public String mMethodName, mMethodGrindSize, mDescription;
-    ArrayList<Integer> mMethodBrewPours;
+    private String mMethodName, mMethodGrindSize, mDescription;
+    protected ArrayList<Integer> mMethodBrewPours;
     ArrayList<String> mMethodInstructions;
     int mMethodServingNumber, mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
     org.joda.time.Duration mMethodBrewTime;
