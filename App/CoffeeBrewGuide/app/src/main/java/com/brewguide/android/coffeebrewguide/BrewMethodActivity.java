@@ -14,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -23,18 +22,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import org.joda.time.Duration;
 import org.joda.time.Period;
-
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import static com.brewguide.android.coffeebrewguide.R.string.brew_method_instructions;
 import static com.brewguide.android.coffeebrewguide.R.string.serving;
 
 
@@ -44,9 +38,8 @@ import static com.brewguide.android.coffeebrewguide.R.string.serving;
  */
 public class BrewMethodActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArrayList<String> instructions;
     List<Integer> brewPours;
-    InstructionListAdapter adapter, newAdapter;
+    InstructionListAdapter adapter;
     final String LOGTAG = this.getClass().getSimpleName();
     String newDirection;
     NestedScrollView mScrollView;
@@ -66,14 +59,12 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         //retrieves intent
         Intent i = getIntent();
+
         //creates brewmethod object
         brewMethod = i.getParcelableExtra("brew_method");
 
         //Scrollview variable for savedInstanceState
         mScrollView = (NestedScrollView) findViewById(R.id.brew_method_NSV);
-
-        //create adapter for recyclerview for instructions list
-        // TODO the replace pours method is changing the variable for getmMethodBrewPours
 
         // Custom class storing sets of data
         brewMethod = i.getParcelableExtra("brew_method");
@@ -81,8 +72,9 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         //changes values based on users preference
         brewPours = replacePours(brewMethod.getmMethodBrewPours());
 
+        ArrayList<String> templateInstructions = new ArrayList<>(brewMethod.getmMethodInstructions());
         //places numerical values into strings
-        instructions = (ArrayList<String>) insertPourValues(brewPours, brewMethod.getmMethodInstructions());
+        ArrayList<String> instructions = (ArrayList<String>) insertPourValues(brewPours, templateInstructions);
 
         //log the new strings
         for(int j = 0; j < instructions.size(); j++){
@@ -148,7 +140,11 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         // Auto generated
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }catch (NullPointerException e){
+            Log.e(LOGTAG, "NullPointerException! Trying to setDisplayHomeAsUpEnabled!");
+        }
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -222,10 +218,12 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
 
                     //changes values based on users preference
+                    ArrayList<String>  instructionsToReplace, replacedInstructions;
                     brewPours = replacePours(brewMethod.getmMethodBrewPours());
+                    instructionsToReplace = new ArrayList<>(brewMethod.getmMethodInstructions());
 
                     //places numerical values into strings
-                    instructions = (ArrayList<String>) insertPourValues(brewPours, brewMethod.getmMethodInstructions());
+                    replacedInstructions =  (ArrayList<String>) insertPourValues(brewPours, instructionsToReplace);
 
                     //log the new strings
 //                    for(int j = 0; j < instructions.size(); j++){
@@ -234,7 +232,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
                     //adapter displays each string as a view
                     //newAdapter = new InstructionListAdapter(getBaseContext(), instructions);
-                    adapter.swap(instructions);
+                    adapter.swap(replacedInstructions);
 
                     //set the adapter to the view
                     //rvInstructions.swapAdapter(newAdapter, false);

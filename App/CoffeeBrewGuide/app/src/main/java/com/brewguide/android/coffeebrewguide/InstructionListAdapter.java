@@ -7,16 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.attr.data;
-import static android.support.v7.widget.AppCompatDrawableManager.get;
-
-
 /**
- * Created by Patrick on 3/25/2017.
+ * Adapter to handle the instructions of how to use the brewmethod.
+ * The adapter populates a RecyclerView with each step as a view
  */
 
 public class InstructionListAdapter extends RecyclerView.Adapter<InstructionListAdapter.ViewHolder> {
@@ -26,12 +22,12 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
 
-        public TextView mIDTV;
-        public TextView mContentTV;
-        public ViewHolder(View v) {
+        TextView mIDTV;
+        TextView mContentTV;
+        ViewHolder(View v) {
             super(v);
 
             mIDTV = (TextView) itemView.findViewById(R.id.id);
@@ -67,8 +63,7 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
         View instructionView = inflater.inflate(R.layout.instruction_step, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder =  new ViewHolder(instructionView);
-        return viewHolder;
+        return new ViewHolder(instructionView);
     }
 
     // Involves populating data into the item through holder
@@ -83,18 +78,24 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
         TextView content = holder.mContentTV;
         content.setText(instruction);
     }
+
     // Returns the total count of items in the list
     @Override
     public int getItemCount() {
         return mInstructions.size();
     }
 
-    public void swap(ArrayList<String> newInstructions){
-        for(int j = 0; j < newInstructions.size(); j++){
-            Log.v("NewInstructions #" + j, "is: " + newInstructions.get(j));
-        }
+    // changes the dataset in the adapter
+    void swap(ArrayList<String> newInstructions){
+        Log.v("called","this function");
+
         mInstructions.clear();
         mInstructions.addAll(newInstructions);
+
+        for (int j = 0; j < newInstructions.size(); j++) {
+            mInstructions.add(newInstructions.get(j));
+            Log.v("mInstructions #" + j, "is: " + mInstructions.get(j));
+        }
         notifyDataSetChanged();
     }
 }
