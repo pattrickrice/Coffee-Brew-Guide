@@ -17,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -179,9 +181,13 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
                 //TODO replace with action of starting a timer
                 if (clockView.getVisibility() == View.VISIBLE) {
+                    Animation anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_up);
+                    clockView.startAnimation(anim);
                     clockView.setVisibility(View.GONE);
                 } else {
                     clockView.setVisibility(View.VISIBLE);
+                    Animation anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_down);
+                    clockView.startAnimation(anim);
                 }
             }
         });

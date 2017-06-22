@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:repeatCount="0"
+    android:fillEnabled="true"
+    android:fillBefore="false"
+    >
+
+    <!--represents motion-->
+    <translate
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromYDelta="0%"
+        android:toYDelta="-100%" />
+
+    <!--represents duration-->
+    <alpha
+        android:duration="@android:integer/config_shortAnimTime"
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+</set>
