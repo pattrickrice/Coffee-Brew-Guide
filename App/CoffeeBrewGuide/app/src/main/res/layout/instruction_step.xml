@@ -2,25 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/text_margin"
+    android:layout_marginBottom="@dimen/text_margin"
+    >
 
+    <!-- Text View for instruction list-->
     <TextView
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginRight="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem"
         android:hint="@string/hint_instructions_step_number"
         android:textSize="16sp"
         android:textColor="@color/colorPrimaryDark"
-
         />
 
+    <!-- Text View for instruction step #-->
     <TextView
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
         android:textSize="14sp"
         android:textAppearance="?attr/textAppearanceListItem"
         android:hint="@string/hint_instruction_step1_aeropress"

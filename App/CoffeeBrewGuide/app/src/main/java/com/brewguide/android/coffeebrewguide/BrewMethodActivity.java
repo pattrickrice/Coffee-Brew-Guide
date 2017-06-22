@@ -71,7 +71,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         brewMethod = i.getParcelableExtra("brew_method");
 
         //changes values based on users preference
-        brewPours = replacePours(brewMethod.getmMethodBrewPours());
+        brewPours = replacePours(brewMethodTitle, brewMethod.getmMethodBrewPours());
 
         ArrayList<String> templateInstructions = new ArrayList<>(brewMethod.getmMethodInstructions());
         //places numerical values into strings
@@ -164,7 +164,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(brewMethod.getmMethodName());
+        collapsingToolbar.setTitle(brewMethodTitle);
 
         //set floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -231,7 +231,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
                     //changes values based on users preference
                     ArrayList<String>  instructionsToReplace, replacedInstructions;
-                    brewPours = replacePours(brewMethod.getmMethodBrewPours());
+                    brewPours = replacePours(brewMethod.getmMethodName(), brewMethod.getmMethodBrewPours());
                     instructionsToReplace = new ArrayList<>(brewMethod.getmMethodInstructions());
 
                     //places numerical values into strings
@@ -291,20 +291,37 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             });
     }
 
-    public List<Integer> replacePours(List<Integer> waterPours) {
+    public List<Integer> replacePours(String brewMethodTitle, List<Integer> waterPours) {
 
         List<Integer> returnedPours = new ArrayList<>();
-        SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        Integer newServingSize = pref.getInt("pref_key_serving_size", 1);
 
-        if (newServingSize == 2) {
-            for (int i = 0; i < waterPours.size(); i++) {
-                int newPour = waterPours.get(i) * 2;
-                returnedPours.add(newPour);
-            }
-        }else {
-            returnedPours = waterPours;
+        switch (brewMethodTitle){
+            case ("Iced Coffee"):
+            case ("Aeropress"):
+            case ("Hario V-60"):
+                //return unmodified numbers
+                returnedPours = waterPours;
+
+                //display notice of ignoring serving size preference
+                LinearLayout smallDeviceTV = (LinearLayout) findViewById(R.id.small_device_notice);
+                smallDeviceTV.setVisibility(View.VISIBLE);
+                break;
+
+            // if device can make more than one cup
+            default:
+                SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
+                Integer newServingSize = pref.getInt("pref_key_serving_size", 1);
+
+                if (newServingSize == 2) {
+                    for (int i = 0; i < waterPours.size(); i++) {
+                        int newPour = waterPours.get(i) * 2;
+                        returnedPours.add(newPour);
+                    }
+                }else {
+                    returnedPours = waterPours;
+                }
+                break;
         }
         return returnedPours;
     }

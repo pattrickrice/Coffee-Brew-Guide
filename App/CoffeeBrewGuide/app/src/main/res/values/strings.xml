@@ -20,6 +20,7 @@
     <string name="grind_size_medium">Medium</string>
     <string name="grind_size_coarse">Coarse</string>
     <integer name="default_serving_size">1</integer>
+    <string name="small_device">Serving size has been changed to 1 on this brew method due to the nature of the method</string>
 
     <!--Resources for aeropress-->
     <string name="title_aeropress">Aeropress</string>]

@@ -96,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/brew_method_parameters"
                     android:orientation="horizontal"
+                    android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:weightSum="3">
 
@@ -190,6 +191,7 @@
                             android:textColor="@color/colorPrimaryDark" />
 
                     </LinearLayout>
+
                     <!--layout for grind size-->
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -238,6 +240,29 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+            <!--1 serving size notice-->
+            <LinearLayout
+                android:id="@+id/small_device_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:visibility="gone"
+                >
+
+                <!-- 1 serving size text view-->
+                <TextView
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="@string/small_device"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+
             <!--description of brewmethod layout-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -252,7 +277,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/mainBackground"
                     android:orientation="vertical"
-
+                    android:layout_gravity="center_vertical"
                     >
 
                     <!--description label-->
@@ -263,7 +288,10 @@
                         android:text="@string/brew_method_description"
                         android:paddingStart="16dp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        android:gravity="center_vertical"
+
+                        />
 
                     <!--description text-->
                     <TextView
@@ -274,7 +302,10 @@
                         android:paddingBottom="8dp"
                         android:paddingRight="16dp"
                         android:paddingStart="16dp"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:textColor="@color/colorPrimaryDark"
+                        android:gravity="center_vertical"
+
+                        />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
