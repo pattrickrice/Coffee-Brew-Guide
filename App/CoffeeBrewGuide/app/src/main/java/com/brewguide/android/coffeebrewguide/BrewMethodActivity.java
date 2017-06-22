@@ -62,6 +62,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         //creates brewmethod object
         brewMethod = i.getParcelableExtra("brew_method");
+        String brewMethodTitle = brewMethod.getmMethodName();
 
         //Scrollview variable for savedInstanceState
         mScrollView = (NestedScrollView) findViewById(R.id.brew_method_NSV);
@@ -116,13 +117,28 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         //set brewtime using Joda Time
         Duration brewTimeJoda = brewMethod.getmMethodBrewTime();
         Period period = brewTimeJoda.toPeriod();
+
         // format brewtime
-        PeriodFormatter minutesAndSeconds = new PeriodFormatterBuilder()
-                .printZeroAlways()
-                .appendMinutes()
-                .appendSeparator(":")
-                .appendSeconds()
-                .toFormatter();
+        PeriodFormatter minutesAndSeconds;
+        if(brewMethodTitle.equals("Iced Coffee")) {
+            minutesAndSeconds = new PeriodFormatterBuilder()
+                    .printZeroAlways()
+                    .minimumPrintedDigits(2)
+                    .appendHours()
+                    .appendLiteral(":")
+                    .appendMinutes()
+                    .appendLiteral(":")
+                    .appendSeconds()
+                    .toFormatter();
+        }else{
+            minutesAndSeconds = new PeriodFormatterBuilder()
+                    .printZeroAlways()
+                    .minimumPrintedDigits(2)
+                    .appendMinutes()
+                    .appendLiteral(":")
+                    .appendSeconds()
+                    .toFormatter();
+        }
         String result = minutesAndSeconds.print(period);
         TextView brewTimeTV = (TextView) findViewById(R.id.TV_timer);
         brewTimeTV.setText(result);
@@ -185,10 +201,15 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     .setMessage("How many cups of coffee are you making?")
                     .setIcon(R.drawable.ic_weight);
 
+            //Access preferences
+            final SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
+            int userServingSizePreference = pref.getInt("pref_key_serving_size", 1);
+
             // create number picker in the dialog
             final NumberPicker picker = new NumberPicker(context);
             picker.setMinValue(1);
             picker.setMaxValue(2);
+            picker.setValue(userServingSizePreference);
 
             // create layout for picker to reside in
             final FrameLayout parent = new FrameLayout(context);
@@ -201,21 +222,12 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             // if okay button is pressed
             builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    // get value from picker
+
+                    // get value from picker and set as new preference
                     int value = picker.getValue();
-
-                    SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
-
                     SharedPreferences.Editor editor = pref.edit();
-
                     editor.putInt("pref_key_serving_size", value);
-
                     editor.apply();
-
-//                    Log.v("Preference was changed,"," activity is restarted. New values should be placed into adapter ");
-//                    finish();
-//                    startActivity(getIntent());
-
 
                     //changes values based on users preference
                     ArrayList<String>  instructionsToReplace, replacedInstructions;
