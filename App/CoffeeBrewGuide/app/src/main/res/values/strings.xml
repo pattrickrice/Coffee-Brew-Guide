@@ -6,15 +6,18 @@
     <string name="title_activity_hario_v60">Hario V-60</string>
     <string name="title_activity_french_press">French Press</string>
     <string name="title_activity_iced_coffee">Iced Coffee</string>
+
     <!--hint resources-->
     <string name="hint_instructions_step_number">Step. 1</string>
     <string name="hint_instruction_step1_aeropress">Load filter over cover and screw onto bottom-half of brewer, set on top of a cup or carafe.</string>
+
     <!--Brew Methods Requirements-->
     <string name="serving">serving</string>
     <string name="brew_time">Brew Time</string>
     <string name="grind_setting">Grind Setting</string>
     <string name="brew_method_description">Description</string>
     <string name="brew_method_instructions">Instructions</string>
+
     <!--Grind sizes-->
     <string name="grind_size_fine">Fine</string>
     <string name="grind_size_medium">Medium</string>
@@ -85,7 +88,6 @@
         </item>
     </array>
 
-
     <!--Resources for hario V-60-->
     <string name="title_harioV60">Hario V-60</string>]
     <string name="bio_harioV60">
@@ -122,7 +124,6 @@
 
     <!--Resources for chemex-->
     <string name="title_chemex">Chemex</string>]
-
     <string name="bio_chemex">Chemex is a design icon of the coffee world originally invented in 1941. The proprietary thick filter removes more oil and sediments from the coffee than any other brew method, leaving a smooth and acidic cup. Recommend using a gooseneck kettle for pouring water.</string>
     <array name="instructions_chemex_array">
         <item name="instruction_step1_harioV60">Place vessel either on top of coffee cup or on stand
@@ -155,9 +156,9 @@
         </item>
 
     </array>
+
     <!--Resources for Iced Coffee-->
     <string name="title_cold_brew">Cold Brew</string>]
-
     <string name="bio_cold_brew">Cold brew coffee makes for a strong, full-bodied, iced coffee beverage. There are many different vessles to make cold brew in, this method can be used interchangably on any of them.
 </string>
     <array name="instructions_cold_brew_array">
@@ -175,4 +176,9 @@
             Store in refrigerater. Good for 7-10 Days. Serve with Ice.
         </item>
     </array>
+
+    <!--Resources for clock-->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
 </resources>

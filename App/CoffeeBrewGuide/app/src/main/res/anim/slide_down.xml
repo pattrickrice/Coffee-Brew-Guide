@@ -7,7 +7,7 @@
 
     <!--represents motion-->
     <translate
-        android:duration="@android:integer/config_shortAnimTime"
+        android:duration="@android:integer/config_mediumAnimTime"
         android:fromYDelta="-100%"
         android:toYDelta="0%" />
 

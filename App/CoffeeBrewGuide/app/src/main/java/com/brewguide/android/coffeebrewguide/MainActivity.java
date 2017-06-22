@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("brew_method", brewMethod);
                 startActivity(intent);
                 //used to indicate position of tile and verify item click functionality is working
-                Toast.makeText(MainActivity.this, "" + brewMethod.getmMethodName(),
-                        Toast.LENGTH_SHORT).show();
             }
         });
     }

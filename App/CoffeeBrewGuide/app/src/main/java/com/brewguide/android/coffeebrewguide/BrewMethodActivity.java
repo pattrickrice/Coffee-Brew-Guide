@@ -14,11 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +32,6 @@ import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import static com.brewguide.android.coffeebrewguide.R.string.brew_method_instructions;
 import static com.brewguide.android.coffeebrewguide.R.string.serving;
 
 
@@ -78,11 +79,6 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         ArrayList<String> templateInstructions = new ArrayList<>(brewMethod.getmMethodInstructions());
         //places numerical values into strings
         ArrayList<String> instructions = (ArrayList<String>) insertPourValues(brewPours, templateInstructions);
-
-        //log the new strings
-        for(int j = 0; j < instructions.size(); j++){
-            Log.v("Value for instruction #" + j, "is: " + instructions.get(j));
-        }
 
         //adapter displays each string as a view
         adapter = new InstructionListAdapter(this, instructions);
@@ -174,20 +170,52 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         // get clock view
         final TextView clockView = (TextView) findViewById(R.id.clock_tv);
+        final View startButton, stopButton, resetbutton;
+        startButton = findViewById(R.id.startButtonB);
+        stopButton = findViewById(R.id.stopButtonB);
+        resetbutton = findViewById(R.id.resetButtonB);
+
+        final ArrayList<View> clockViewList = new ArrayList<>();
+        clockViewList.add(clockView);
+        clockViewList.add(startButton);
+        clockViewList.add(stopButton);
+        clockViewList.add(resetbutton);
+
+        final LinearLayout clockLayout = (LinearLayout) findViewById(R.id.clock_button_layout);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //TODO replace with action of starting a timer
                 if (clockView.getVisibility() == View.VISIBLE) {
+
                     Animation anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_up);
-                    clockView.startAnimation(anim);
-                    clockView.setVisibility(View.GONE);
+
+                    clockLayout.setAnimation(anim);
+                    clockLayout.setVisibility(View.GONE);
+
+                    for(int i = 0; i < clockViewList.size(); i++) {
+                        View v = clockViewList.get(i);
+                        v.startAnimation(anim);
+                        v.setVisibility(View.GONE);
+                    }
                 } else {
-                    clockView.setVisibility(View.VISIBLE);
+
+                    for(int i = 0; i < clockViewList.size(); i++) {
+                        View v = clockViewList.get(i);
+                        v.setVisibility(View.VISIBLE);
+                    }
+
+                    clockLayout.setVisibility(View.VISIBLE);
+
                     Animation anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_down);
-                    clockView.startAnimation(anim);
+
+                    for(int i = 0; i < clockViewList.size(); i++) {
+                        View v = clockViewList.get(i);
+                        v.startAnimation(anim);
+
+                    }
+                    clockLayout.setAnimation(anim);
                 }
             }
         });
@@ -199,6 +227,8 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
      * Opens a preference dialogue with a numer picker
      * Changes preference for the user
      * */
+    //TODO Create OnclickListener for buttons and create timer thread
+
     public View.OnClickListener servingSizeListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
