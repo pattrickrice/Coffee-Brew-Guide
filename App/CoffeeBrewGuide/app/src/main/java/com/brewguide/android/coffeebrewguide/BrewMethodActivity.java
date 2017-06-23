@@ -14,13 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +30,7 @@ import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import android.os.Handler;
 import static com.brewguide.android.coffeebrewguide.R.string.serving;
 
 
@@ -50,6 +49,10 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
     public RecyclerView rvInstructions;
     public BrewMethod brewMethod;
 
+    // required for timer
+    public TextView clockView;
+    long startTime = 0;
+    final Handler timerHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,31 +172,33 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_alarm_white_48dp));
 
         // get clock view
-        final TextView clockView = (TextView) findViewById(R.id.clock_tv);
+        clockView = (TextView) findViewById(R.id.clock_tv);
         final View startButton, stopButton, resetbutton;
         startButton = findViewById(R.id.startButtonB);
         stopButton = findViewById(R.id.stopButtonB);
         resetbutton = findViewById(R.id.resetButtonB);
 
+        //arraylist of all clock views
         final ArrayList<View> clockViewList = new ArrayList<>();
         clockViewList.add(clockView);
         clockViewList.add(startButton);
         clockViewList.add(stopButton);
         clockViewList.add(resetbutton);
 
+        //clock layout view
         final LinearLayout clockLayout = (LinearLayout) findViewById(R.id.clock_button_layout);
 
+        //open clockview
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (clockView.getVisibility() == View.VISIBLE) {
 
+                    //loads and plays the custom animation
                     Animation anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_up);
-
                     clockLayout.setAnimation(anim);
                     clockLayout.setVisibility(View.GONE);
-
                     for(int i = 0; i < clockViewList.size(); i++) {
                         View v = clockViewList.get(i);
                         v.startAnimation(anim);
@@ -215,6 +220,11 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                         v.startAnimation(anim);
 
                     }
+
+                    //assign onClick handlers
+                    startButton.setOnClickListener(startButtonListener);
+                    stopButton.setOnClickListener(stopButtonListener);
+                    resetbutton.setOnClickListener(resetButtonListener);
                     clockLayout.setAnimation(anim);
                 }
             }
@@ -227,8 +237,6 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
      * Opens a preference dialogue with a numer picker
      * Changes preference for the user
      * */
-    //TODO Create OnclickListener for buttons and create timer thread
-
     public View.OnClickListener servingSizeListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -301,6 +309,65 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                 }
             });
             builder.show();
+        }
+    };
+
+    /**
+     * Runnable that is used for the timer when the user hits start on the clock.
+     * */
+    Runnable timerRunnable = new Runnable() {
+
+        /**
+        * Required for the runnable object. Starts counting up from the Unix time that the runnable
+         * was created
+        * */
+        @Override
+        public void run() {
+                long millis = System.currentTimeMillis() - startTime;
+                int seconds = (int) (millis / 1000);
+                int minutes = seconds / 60;
+                seconds = seconds % 60;
+
+                //Why didn't I use the formatting earlier instead of Joda.Time?
+                clockView.setText(String.format("%02d:%02d", minutes, seconds));
+                timerHandler.postDelayed(this, 500);
+        }
+    };
+    /**
+    * Onclick listener for the start button on the timer. When Start button is clicked, it will
+     * start a new Handler.
+    * */
+    public View.OnClickListener startButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startTime = System.currentTimeMillis();
+            timerHandler.postDelayed(timerRunnable, 0);
+        }
+    };
+
+    /**
+     * Onclick listener for the stop button on the timer. When stop button is clicked, it will
+     * end the timer process.
+     * */
+    public View.OnClickListener stopButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            timerHandler.removeCallbacks(timerRunnable);
+        }
+    };
+
+    /**
+     * Onclick listener for the reset button on the timer. When reset button is clicked, it will
+     * stop the Handler and reset the value of the clock.
+     * */
+    public View.OnClickListener resetButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            timerHandler.removeCallbacks(timerRunnable);
+            int seconds = 0;
+            int minutes = 0;
+            seconds = seconds % 60;
+            clockView.setText(String.format("%02d:%02d", minutes, seconds));
         }
     };
 

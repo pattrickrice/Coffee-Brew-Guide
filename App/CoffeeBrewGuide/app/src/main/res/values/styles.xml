@@ -17,6 +17,24 @@
         <item name="android:background">@color/mainBackground</item>
     </style>
 
+    <!--style for the start button in the clock view layout-->
+    <style name="AppTheme.Button.Start" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/complimentaryLeft</item>
+        <item name="android:textColor">@color/cardview_dark_background</item>
+    </style>
+
+    <!--style for the stop button in the clock view layout-->
+    <style name="AppTheme.Button.Stop" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@color/cardview_dark_background</item>
+    </style>
+
+    <!--style for the reset button in the clock view layout-->
+    <style name="AppTheme.Button.Reset" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

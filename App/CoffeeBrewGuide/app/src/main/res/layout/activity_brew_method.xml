@@ -65,7 +65,7 @@
                     android:id="@+id/clock_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0:00"
+                    android:text="@string/start_time"
                     android:textSize="40sp"
                     android:gravity="center"
                     android:textColor="#ffffff"
@@ -75,44 +75,45 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
                 android:layout_weight="3"
                 android:id="@+id/clock_button_layout"
                 >
                 <Button
+                    android:theme="@style/AppTheme.Button.Start"
                     android:id="@+id/startButtonB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/start"
-                    android:background="@color/complimentaryLeft"
                     android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:visibility="gone"
                     android:layout_marginBottom="8dp"
 
                     />
                 <Button
+
+                    android:theme="@style/AppTheme.Button.Stop"
                     android:id="@+id/stopButtonB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stop"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:visibility="gone"
 
                     />
                 <Button
+                    android:theme="@style/AppTheme.Button.Reset"
                     android:id="@+id/resetButtonB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/reset"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:visibility="gone"
