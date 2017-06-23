@@ -81,6 +81,8 @@
                 android:layout_weight="3"
                 android:id="@+id/clock_button_layout"
                 >
+
+                <!--Start Button-->
                 <Button
                     android:theme="@style/AppTheme.Button.Start"
                     android:id="@+id/startButtonB"
@@ -92,10 +94,10 @@
                     android:paddingBottom="8dp"
                     android:visibility="gone"
                     android:layout_marginBottom="8dp"
-
                     />
-                <Button
 
+                <!--Stop Button-->
+                <Button
                     android:theme="@style/AppTheme.Button.Stop"
                     android:id="@+id/stopButtonB"
                     android:layout_width="wrap_content"
@@ -105,8 +107,9 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:visibility="gone"
-
                     />
+
+                <!--Reset Button-->
                 <Button
                     android:theme="@style/AppTheme.Button.Reset"
                     android:id="@+id/resetButtonB"
