@@ -198,8 +198,12 @@ public class MainActivity extends AppCompatActivity {
      * TODO: choose units from preferences
      */
     public List<String> replaceUnits(List<String> instructions) {
+
+        SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
+        String userUnitPreference = pref.getString("pref_key_measurement_system", "grams");
+
         for (int i = 0; i < instructions.size(); i++) {
-            newDirection = instructions.get(i).replaceAll("UNITS", "grams");
+            newDirection = instructions.get(i).replaceAll("UNITS", userUnitPreference);
             instructions.set(i, newDirection);
         }
         return instructions;

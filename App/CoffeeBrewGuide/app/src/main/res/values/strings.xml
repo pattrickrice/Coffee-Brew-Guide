@@ -182,4 +182,8 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="reset">Reset</string>
+
+    <!-- Preference Resources -->
+    <string name="imperial_system">Imperial (fluid ounces [not recommended])</string>
+    <string name="metric_System">Metric (grams)</string>
 </resources>

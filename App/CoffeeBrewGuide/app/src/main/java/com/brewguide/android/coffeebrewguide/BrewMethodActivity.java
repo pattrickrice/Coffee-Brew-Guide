@@ -30,9 +30,9 @@ import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import android.os.Handler;
 import static com.brewguide.android.coffeebrewguide.R.string.serving;
-
 
 /**
  * Activity that handels information for the Aeropress Activity. Intent is passed from the main
@@ -104,6 +104,18 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         servingLayout.setOnClickListener(servingSizeListener);
 
         //set serving number
+        switch (brewMethodTitle){
+            case ("Iced Coffee"):
+            case ("Aeropress"):
+            case ("Hario V-60"):
+                //return singular serving
+                newServingSize = 1;
+                break;
+
+            // if device can make more than one cup, return users preference
+            default:
+                break;
+        }
         String servingString = getResources().getString(serving);
         String serving = Integer.toString(newServingSize) + " " + servingString;
         TextView servingNumberTV = (TextView) findViewById(R.id.TV_servingNumber);
@@ -367,10 +379,13 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             int seconds = 0;
             int minutes = 0;
             seconds = seconds % 60;
-            clockView.setText(String.format("%02d:%02d", minutes, seconds));
+            clockView.setText(String.format(Locale.US, "%02d:%02d", minutes, seconds));
         }
     };
 
+    /**
+     * Not used but required to implement onClickListener.
+     * */
     @Override
     public void onClick(View view) {
     }
@@ -398,7 +413,6 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         List<Integer> returnedPours = new ArrayList<>();
 
-
         switch (brewMethodTitle){
             case ("Iced Coffee"):
             case ("Aeropress"):
@@ -416,6 +430,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                 SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
                 Integer newServingSize = pref.getInt("pref_key_serving_size", 1);
 
+
                 if (newServingSize == 2) {
                     for (int i = 0; i < waterPours.size(); i++) {
                         int newPour = waterPours.get(i) * 2;
@@ -429,6 +444,10 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         return returnedPours;
     }
 
+    /***********************************************************************************************
+    * This function takes the instructions and inserts the pour values into the strings as well as
+     * getting the user's preferred measurement system and inserting the unit into the statement.
+    * *********************************************************************************************/
     public List<String> insertPourValues(List<Integer> waterPours, List<String> instructions) {
 
         int i = 0;
