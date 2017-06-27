@@ -5,17 +5,20 @@ import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
+
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,9 +61,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //get resources for the sliding drawer
         mNavigationDrawerTitles = getResources().getStringArray(R.array.navigation_drawer_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
@@ -73,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                R.drawable.ic_menu_black_24dp,
+                mToolbar,
                 R.string.drawer_open,
                 R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle(mTitle);
+                //getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
@@ -91,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
+
+        //enable arrow which triggers onOptionsItemSelected()
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        mDrawerToggle.syncState();
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -232,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         return icedCoffee;
     }
 
-    public int getServingSize(){
+    public int getServingSize() {
         // first param is name of file, second is the context
         // mode private means only this application can access this file
         SharedPreferences pref = getApplicationContext().getSharedPreferences("preferences", MODE_PRIVATE);
@@ -264,7 +275,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** Swaps fragments in the main content view */
+    /**
+     * Swaps fragments in the main content view
+     */
     private void selectItem(int position) {
 
         // Create a new fragment and specify the planet to show based on position
@@ -289,6 +302,26 @@ public class MainActivity extends AppCompatActivity {
     public void setTitle(CharSequence title) {
 //        mTitle = title;
 //        getActionBar().setTitle(mTitle);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle
+        // If it returns true, then it has handled
+        // the nav drawer indicator touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        // Handle your other action bar items...
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
     }
 
 }
