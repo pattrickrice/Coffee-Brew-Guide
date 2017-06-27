@@ -186,4 +186,19 @@
     <!-- Preference Resources -->
     <string name="imperial_system">Imperial (fluid ounces [not recommended])</string>
     <string name="metric_System">Metric (grams)</string>
+
+    <!-- Navigation Drawer List -->
+    <array name="navigation_drawer_array">
+        <item name="navigation_drawer_home">Home</item>
+        <item name="navigation_drawer_recipe">Recipe</item>
+        <item name="navigation_drawer_settings">Settings</item>
+        <item name="navigation_drawer_feedback">Feedback</item>
+    </array>
+
+    <string name="accessibility_drawer_open">Open navigation drawer</string>
+    <string name="accessibility_drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
+
+    <!---->
 </resources>
