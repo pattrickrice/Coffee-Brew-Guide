@@ -5,9 +5,9 @@ package com.brewguide.android.coffeebrewguide;
  * passed through a custom array adapter
  */
 
-public class NavigationDrawerItem {
-    public int icon;
-    public String name;
+class NavigationDrawerItem {
+    int icon;
+    String name;
 
     /**
      * @param icon is the icon next to the item

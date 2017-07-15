@@ -8,15 +8,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 
@@ -29,13 +26,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<BrewMethod> brewMethodList;
     final String LOGTAG = this.getClass().getSimpleName();
 
-    private String[] mNavigationDrawerTitles;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    String[] mNavigationDrawerTitles;
+    DrawerLayout mDrawerLayout;
+    ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +56,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //get resources for the sliding drawer
-        mNavigationDrawerTitles = getResources().getStringArray(R.array.navigation_drawer_array);
+        //mNavigationDrawerTitles = getResources().getStringArray(R.array.navigation_drawer_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        NavigationDrawerItem home = new NavigationDrawerItem(R.drawable.ic_home , getString(R.string.navigation_drawer_home));
+        NavigationDrawerItem recipe = new NavigationDrawerItem(R.drawable.ic_grinder , getString(R.string.navigation_drawer_recipe));
+        NavigationDrawerItem settings = new NavigationDrawerItem(R.drawable.ic_settings , getString(R.string.navigation_drawer_settings));
+        NavigationDrawerItem feedback = new NavigationDrawerItem(R.drawable.ic_give_love , getString(R.string.navigation_drawer_feedback));
+
+        //create arraylist of menu items
+        ArrayList<NavigationDrawerItem> menu = new ArrayList<>();
+        menu.add(home);
+        menu.add(recipe);
+        menu.add(settings);
+        menu.add(feedback);
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new NavigationDrawerAdapter(
                 this,
                 R.layout.drawer_list_item,
-                //Navigation drawer Objects
-                );
+                menu
+                ));
+
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 

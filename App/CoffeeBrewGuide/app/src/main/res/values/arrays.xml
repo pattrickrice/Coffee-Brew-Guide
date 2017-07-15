@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- images for navigation drawer items-->
+    <integer-array name="navigation_drawer_imgs">
+        <!--replace the following-->
+        <item>@drawable/ic_weight</item>
+        <item>@drawable/ic_weight</item>
+        <item>@drawable/ic_weight</item>
+        <item>@drawable/ic_weight</item>
+
+    </integer-array>
+</resources>

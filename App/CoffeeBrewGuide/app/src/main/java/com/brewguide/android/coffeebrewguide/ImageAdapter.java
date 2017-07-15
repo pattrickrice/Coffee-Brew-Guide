@@ -12,7 +12,6 @@ import java.util.ArrayList;
 /**
  * Adapter that takes the brew method tile images and implements them in a GridView shown in Main Activity
  */
-
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<BrewMethod> brewMethodList;
@@ -22,7 +21,9 @@ public class ImageAdapter extends BaseAdapter {
         brewMethodList = brewMethods;
     }
 
-    // returns the count of the number of images
+    /**
+    *Returns the count of the number of images
+    * */
     public int getCount() {
         return brewMethodList.size();
     }

@@ -1,45 +1,52 @@
 package com.brewguide.android.coffeebrewguide;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-import javax.xml.datatype.Duration;
-
-import static android.R.attr.description;
-
 /**
  * Class holds all information about the brew methods
  */
-
-public class BrewMethod implements Parcelable{
+class BrewMethod implements Parcelable{
     private String mMethodName, mMethodGrindSize, mDescription;
-    protected ArrayList<Integer> mMethodBrewPours;
-    ArrayList<String> mMethodInstructions;
-    int mMethodServingNumber, mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
-    org.joda.time.Duration mMethodBrewTime;
+    private ArrayList<Integer> mMethodBrewPours;
+    private ArrayList<String> mMethodInstructions;
+    private int mMethodDose, mMethodServingSize, mHomeScreenTileId, mDetailActivityGraphicId;
+    private org.joda.time.Duration mMethodBrewTime;
 
-
-
-
-    public BrewMethod(String name,
-                      ArrayList<String> instructions,
-                      ArrayList<Integer> brewPours,
-                      int servingNumber,
-                      int servingSize,
-                      org.joda.time.Duration brewTime,
-                      String grindSize,
-                      int tile,
-                      int graphic,
-                      String description){
+    /**
+     * @param name is the name of the brew method.
+     * @param grindSize is the size the coffee needs to be ground.
+     * @param brewPours is an array filled with the pour amounts necessary. different methods will
+     *                  have different amounts.
+     * @param instructions is the set of instructions for how to use the brew method. Each
+     *                     instruction has INT and UNITS in it that are replaced depending on the
+     *                     users preference.
+     * @param dose is the amount of coffee required to brew one cup. The displayed dose amount
+     *             changes based on the users preference.
+     * @param servingSize is the users preferred number of cups to brew.
+     * @param brewTime is the total amount of time required to brew the coffee.
+     * @param tile is the graphic representation of the brew method for display in the MainActivity
+     * @param graphic is the graphic representation of the brew method for display in
+     *                BrewMthodActivity.
+     * @param description is the description of what the brew method is.
+     * */
+    BrewMethod(String name,
+                  ArrayList<String> instructions,
+                  ArrayList<Integer> brewPours,
+                  int dose,
+                  int servingSize,
+                  org.joda.time.Duration brewTime,
+                  String grindSize,
+                  int tile,
+                  int graphic,
+                  String description){
         mMethodName = name;
         mMethodGrindSize = grindSize;
         mMethodBrewPours = brewPours;
         mMethodInstructions = instructions;
-        mMethodServingNumber = servingNumber;
+        mMethodDose = dose;
         mMethodServingSize = servingSize;
         mMethodBrewTime = brewTime;
         mHomeScreenTileId = tile;
@@ -49,49 +56,47 @@ public class BrewMethod implements Parcelable{
 
     /**
      * get methods
-     *
      */
-    public String getmMethodName() {
+    String getmMethodName() {
         return mMethodName;
     }
 
-    public ArrayList<String> getmMethodInstructions() {
+    ArrayList<String> getmMethodInstructions() {
         return mMethodInstructions;
     }
-    public ArrayList<Integer> getmMethodBrewPours() {
+
+    ArrayList<Integer> getmMethodBrewPours() {
         return mMethodBrewPours;
     }
 
-    public int getServingNumber() {
-        return mMethodServingNumber;
+    public int getDose() {
+        return mMethodDose;
     }
-    public String getmMethodGrindSize() {
+    String getmMethodGrindSize() {
         return mMethodGrindSize;
     }
 
-    public int getmMethodServingSize() {
+    int getmMethodServingSize() {
         return mMethodServingSize;
     }
 
-    public org.joda.time.Duration getmMethodBrewTime() {
+    org.joda.time.Duration getmMethodBrewTime() {
         return mMethodBrewTime;
     }
 
-    public int getmHomeScreenTileId() {
+    int getmHomeScreenTileId() {
         return mHomeScreenTileId;
     }
 
-    public int getmDetailActivityGraphicId() {
+    int getmDetailActivityGraphicId() {
         return mDetailActivityGraphicId;
     }
 
-    public String getmDescription() {return mDescription;}
+    String getmDescription() {return mDescription;}
 
     /**
      * implement Parcelable class
-     *
      */
-
     public int describeContents() {
         return this.hashCode();
     }
@@ -100,7 +105,7 @@ public class BrewMethod implements Parcelable{
         out.writeString(mMethodName);
         out.writeSerializable(mMethodInstructions);
         out.writeSerializable(mMethodBrewPours);
-        out.writeInt(mMethodServingNumber);
+        out.writeInt(mMethodDose);
         out.writeInt(mMethodServingSize);
         out.writeSerializable(mMethodBrewTime);
         out.writeString(mMethodGrindSize);
@@ -124,7 +129,7 @@ public class BrewMethod implements Parcelable{
         this.mMethodName = in.readString();
         this.mMethodInstructions = (ArrayList<String>) in.readSerializable();
         this.mMethodBrewPours = (ArrayList<Integer>) in.readSerializable();
-        this.mMethodServingNumber = in.readInt();
+        this.mMethodDose = in.readInt();
         this.mMethodServingSize = in.readInt();
         this.mMethodBrewTime = (org.joda.time.Duration) in.readSerializable();
         this.mMethodGrindSize = in.readString();

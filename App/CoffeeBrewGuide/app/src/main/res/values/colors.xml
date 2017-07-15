@@ -5,4 +5,5 @@
     <color name="colorAccent">#677EFF</color>
     <color name="mainBackground">#F6F5F5</color>
     <color name="complimentaryLeft">#A6FECB</color>
+    <color name="menuDrawerGrey">#383838</color>
 </resources>

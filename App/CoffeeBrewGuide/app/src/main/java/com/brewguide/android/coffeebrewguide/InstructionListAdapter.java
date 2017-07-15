@@ -2,7 +2,6 @@ package com.brewguide.android.coffeebrewguide;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import java.util.List;
  * Adapter to handle the instructions of how to use the brewmethod.
  * The adapter populates a RecyclerView with each step as a view
  */
-
 public class InstructionListAdapter extends RecyclerView.Adapter<InstructionListAdapter.ViewHolder> {
     // name of activity
     final String LOGTAG = this.getClass().getSimpleName();
@@ -87,14 +85,12 @@ public class InstructionListAdapter extends RecyclerView.Adapter<InstructionList
 
     // changes the dataset in the adapter
     void swap(ArrayList<String> newInstructions){
-        Log.v("called","this function");
 
         mInstructions.clear();
         mInstructions.addAll(newInstructions);
 
         for (int j = 0; j < newInstructions.size(); j++) {
             mInstructions.add(newInstructions.get(j));
-            Log.v("mInstructions #" + j, "is: " + mInstructions.get(j));
         }
         notifyDataSetChanged();
     }
