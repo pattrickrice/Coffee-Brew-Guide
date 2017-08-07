@@ -1,5 +1,6 @@
 package com.brewguide.android.coffeebrewguide;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     BrewMethod brewMethod;
     ArrayList<BrewMethod> brewMethodList;
     final String LOGTAG = this.getClass().getSimpleName();
-
-    String[] mNavigationDrawerTitles;
     DrawerLayout mDrawerLayout;
     ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -108,12 +108,14 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //enable arrow which triggers onOptionsItemSelected()
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle.syncState();
 
         // Set the drawer toggle as the DrawerListener
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     /**
@@ -131,14 +133,12 @@ public class MainActivity extends AppCompatActivity {
 
     public BrewMethod getAeropress() {
 
-        //replace units in directions
         instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_aeropress_array));
         instructions = replaceUnits(instructions);
         brewPours = new ArrayList<>();
         brewPours.add(getResources().getInteger(R.integer.aeropress_pour_1));
 
-
-        BrewMethod aeropress = new BrewMethod(
+        return new BrewMethod(
                 getResources().getString(R.string.title_aeropress),
                 new ArrayList<>(instructions),
                 new ArrayList<>(brewPours),
@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.aeropress,
                 getResources().getString(R.string.bio_aeropress)
         );
-        return aeropress;
     }
 
     public BrewMethod getFrenchPress() {
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         brewPours.add(getResources().getInteger(R.integer.french_press_pour_1));
         brewPours.add(getResources().getInteger(R.integer.french_press_pour_2));
 
-        BrewMethod frenchPress = new BrewMethod(
+        return new BrewMethod(
                 getResources().getString(R.string.title_activity_french_press),
                 new ArrayList<>(instructions),
                 new ArrayList<>(brewPours),
@@ -173,8 +172,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.french_press,
                 getResources().getString(R.string.bio_frenchpress)
         );
-
-        return frenchPress;
     }
 
     public BrewMethod getChemex() {
@@ -187,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         brewPours.add(getResources().getInteger(R.integer.chemex_pour_3));
         brewPours.add(getResources().getInteger(R.integer.chemex_pour_4));
 
-        BrewMethod chemex = new BrewMethod(
+        return new BrewMethod(
                 getResources().getString(R.string.title_activity_chemex),
                 new ArrayList<>(instructions),
                 new ArrayList<>(brewPours),
@@ -199,8 +196,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.chemex,
                 getResources().getString(R.string.bio_chemex)
         );
-
-        return chemex;
     }
 
     public BrewMethod getHarioV60() {
@@ -213,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         brewPours.add(getResources().getInteger(R.integer.hario_v60_pour3));
         brewPours.add(getResources().getInteger(R.integer.hario_v60_pour4));
 
-        BrewMethod harioV60 = new BrewMethod(
+        return new BrewMethod(
                 getResources().getString(R.string.title_activity_hario_v60),
                 new ArrayList<>(instructions),
                 new ArrayList<>(brewPours),
@@ -225,8 +220,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.hariov60,
                 getResources().getString(R.string.bio_harioV60)
         );
-
-        return harioV60;
     }
 
     public BrewMethod getIcedCoffee() {
@@ -237,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         brewPours = new ArrayList<>();
         brewPours.add(getResources().getInteger(R.integer.cold_brew_pour_1));
 
-        BrewMethod icedCoffee = new BrewMethod(
+        return new BrewMethod(
                 getResources().getString(R.string.title_activity_iced_coffee),
                 new ArrayList<>(instructions),
                 new ArrayList<>(brewPours),
@@ -249,7 +242,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.iced_coffee,
                 getResources().getString(R.string.bio_cold_brew)
         );
-        return icedCoffee;
     }
 
     public int getServingSize() {
@@ -288,6 +280,11 @@ public class MainActivity extends AppCompatActivity {
      * Swaps fragments in the main content view
      */
     private void selectItem(int position) {
+        final Context context = getApplicationContext();
+        Intent intent = new Intent(getBaseContext(), MenuActivity.class);
+        //MainActivity.this.startActivity(new Intent(MainActivity.this, BrewMethodActivity.class));
+        intent.putExtra("position", position);
+        startActivity(intent);
 
         // Create a new fragment and specify the planet to show based on position
 //        Fragment fragment = new PlanetFragment();

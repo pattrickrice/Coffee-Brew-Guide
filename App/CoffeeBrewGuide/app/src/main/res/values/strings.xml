@@ -201,6 +201,8 @@
     <string name="accessibility_drawer_close">Close navigation drawer</string>
     <string name="drawer_open">drawer open</string>
     <string name="drawer_close">drawer close</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
     <!---->
 </resources>

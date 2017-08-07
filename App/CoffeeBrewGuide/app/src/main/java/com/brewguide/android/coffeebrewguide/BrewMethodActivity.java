@@ -56,7 +56,6 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v(LOGTAG, "brewmethod called");
         SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
         Integer newServingSize = pref.getInt("pref_key_serving_size", 1);
 
