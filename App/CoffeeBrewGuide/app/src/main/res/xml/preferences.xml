@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+>
 
     <!-- The number of people who will be served-->
     <Preference
         android:defaultValue="@integer/default_serving_size"
         android:key="pref_key_serving_size"
-        android:title="Serving Size"
-        />
+        android:title="Serving Size" />
 
     <!-- Users preferred system of measurement -->
     <Preference
         android:defaultValue="@string/metric_System"
         android:key="pref_key_measurement_system"
-        android:title="Measurement system"
-        >
-    </Preference>
+        android:title="Measurement system"/>
 
 </PreferenceScreen>

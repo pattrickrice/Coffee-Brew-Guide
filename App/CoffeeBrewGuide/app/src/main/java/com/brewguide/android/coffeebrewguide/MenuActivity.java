@@ -34,6 +34,10 @@ public class MenuActivity extends AppCompatActivity {
         Log.v("menu", "position is: " + position);
         switch (position){
             case 0:
+                // launch main activity when Item is clicked
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                //MainActivity.this.startActivity(new Intent(MainActivity.this, BrewMethodActivity.class));
+                startActivity(intent);
                 break;
             case 1:
                 RecipeFragment recipeFragment = new RecipeFragment();
@@ -45,6 +49,9 @@ public class MenuActivity extends AppCompatActivity {
                         .commit();
                 break;
             case 3:
+                FeedbackFragment feedbackFragment = new FeedbackFragment();
+                fragmentTransaction.add(R.id.myfragment, feedbackFragment);
+                fragmentTransaction.commit();
                 break;
             default:
                 Toast toast = Toast.makeText(this,

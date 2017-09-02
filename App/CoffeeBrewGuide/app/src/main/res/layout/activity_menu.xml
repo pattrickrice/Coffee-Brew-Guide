@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.brewguide.android.coffeebrewguide.MenuActivity">
+    tools:context="com.brewguide.android.coffeebrewguide.MenuActivity"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,7 +25,9 @@
         android:id="@+id/myfragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="64dp"
+        >
 
     </LinearLayout>
 
