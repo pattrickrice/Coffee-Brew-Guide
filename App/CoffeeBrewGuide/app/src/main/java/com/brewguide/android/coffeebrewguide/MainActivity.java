@@ -282,26 +282,8 @@ public class MainActivity extends AppCompatActivity {
     private void selectItem(int position) {
         final Context context = getApplicationContext();
         Intent intent = new Intent(getBaseContext(), MenuActivity.class);
-        //MainActivity.this.startActivity(new Intent(MainActivity.this, BrewMethodActivity.class));
         intent.putExtra("position", position);
         startActivity(intent);
-
-        // Create a new fragment and specify the planet to show based on position
-//        Fragment fragment = new PlanetFragment();
-//        Bundle args = new Bundle();
-//        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-//        fragment.setArguments(args);
-//
-//        // Insert the fragment by replacing any existing fragment
-//        FragmentManager fragmentManager = getFragmentManager();
-//        fragmentManager.beginTransaction()
-//                .replace(R.id.content_frame, fragment)
-//                .commit();
-//
-//        // Highlight the selected item, update the title, and close the drawer
-//        mDrawerList.setItemChecked(position, true);
-//        setTitle(mPlanetTitles[position]);
-//        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override

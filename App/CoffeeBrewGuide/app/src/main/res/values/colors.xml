@@ -2,6 +2,8 @@
 <resources>
     <color name="colorPrimary">#FDCDB2</color>
     <color name="colorPrimaryDark">#E2896B</color>
+    <color name="Primary">#E2896B</color>
+
     <color name="colorAccent">#677EFF</color>
     <color name="mainBackground">#F6F5F5</color>
     <color name="complimentaryLeft">#A6FECB</color>

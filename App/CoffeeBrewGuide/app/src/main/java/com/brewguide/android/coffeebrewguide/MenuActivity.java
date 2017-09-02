@@ -31,19 +31,18 @@ public class MenuActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        //add a fragment
-        RecipeFragment myFragment = new RecipeFragment();
-        fragmentTransaction.add(R.id.myfragment, myFragment);
-        fragmentTransaction.commit();
-
         Log.v("menu", "position is: " + position);
         switch (position){
             case 0:
                 break;
             case 1:
-                Log.v("menu", "position is: " + position);
+                RecipeFragment recipeFragment = new RecipeFragment();
+                fragmentTransaction.add(R.id.myfragment, recipeFragment);
+                fragmentTransaction.commit();
                 break;
             case 2:
+                fragmentTransaction.replace(R.id.myfragment, new SettingsFragment())
+                        .commit();
                 break;
             case 3:
                 break;
@@ -57,6 +56,7 @@ public class MenuActivity extends AppCompatActivity {
         if(getSupportActionBar()!= null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
     }
 
 }
