@@ -15,15 +15,49 @@
         android:textSize="24sp"
         android:text="@string/title_feedback"/>
 
+    <!--feedback fields-->
     <TextView
         android:id="@+id/feedback_description_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/description_feedback"/>
+
+    <EditText
+        android:id="@+id/input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"/>
+
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        />
+
+    <EditText
+        android:id="@+id/input_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your message here!"/>
+
+    <!--Send feedback button-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/link_feedback"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description_donate"/>
+    <!--PayPal Link-->
+    <Button
+        android:id="@+id/link_paypal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/link_paypal"
         />
 
 </LinearLayout>
