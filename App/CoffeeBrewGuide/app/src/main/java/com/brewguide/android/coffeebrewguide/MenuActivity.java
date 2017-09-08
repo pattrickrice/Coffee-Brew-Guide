@@ -2,7 +2,6 @@ package com.brewguide.android.coffeebrewguide;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,18 +26,12 @@ public class MenuActivity extends AppCompatActivity {
         // 0  is the default
         position = i.getIntExtra("position", 0);
 
-        // get an instance of FragmentTransaction from your Activity
+        // get an instance of FragmentTransaction from the Activity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Log.v("menu", "position is: " + position);
         switch (position){
-            case 0:
-                // launch main activity when Item is clicked
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                //MainActivity.this.startActivity(new Intent(MainActivity.this, BrewMethodActivity.class));
-                startActivity(intent);
-                break;
             case 1:
                 RecipeFragment recipeFragment = new RecipeFragment();
                 fragmentTransaction.add(R.id.myfragment, recipeFragment);

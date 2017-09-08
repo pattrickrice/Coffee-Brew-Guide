@@ -24,20 +24,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
 import org.joda.time.Duration;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
 import android.os.Handler;
+
 import static com.brewguide.android.coffeebrewguide.R.string.serving;
 
-/**
- * Activity that handels information for the Aeropress Activity. Intent is passed from the main
+/***************************************************************************************************
+ * Activity that handles information for the brew methods' Activity. Intent is passed from the main
  * Activity.
- */
+ **************************************************************************************************/
 public class BrewMethodActivity extends AppCompatActivity implements View.OnClickListener {
 
     List<Integer> brewPours;
@@ -78,9 +82,11 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         //changes values based on users preference
         brewPours = replacePours(brewMethodTitle, brewMethod.getmMethodBrewPours());
 
-        ArrayList<String> templateInstructions = new ArrayList<>(brewMethod.getmMethodInstructions());
+        ArrayList<String> templateInstructions = new ArrayList<>(brewMethod
+                .getmMethodInstructions());
         //places numerical values into strings
-        ArrayList<String> instructions = (ArrayList<String>) insertPourValues(brewPours, templateInstructions);
+        ArrayList<String> instructions = (ArrayList<String>) insertPourValues(brewPours,
+                templateInstructions);
 
         //adapter displays each string as a view
         adapter = new InstructionListAdapter(this, instructions);
@@ -103,17 +109,8 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         servingLayout.setOnClickListener(servingSizeListener);
 
         //set serving number
-        switch (brewMethodTitle){
-            case ("Iced Coffee"):
-            case ("Aeropress"):
-            case ("Hario V-60"):
-                //return singular serving
-                newServingSize = 1;
-                break;
-
-            // if device can make more than one cup, return users preference
-            default:
-                break;
+        if (!canMakeMoreThanOnePour(brewMethodTitle)) {
+            newServingSize = 1;
         }
         String servingString = getResources().getString(serving);
         String serving = Integer.toString(newServingSize) + " " + servingString;
@@ -132,7 +129,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         // format brewtime
         PeriodFormatter minutesAndSeconds;
-        if(brewMethodTitle.equals("Iced Coffee")) {
+        if (brewMethodTitle.equals("Iced Coffee")) {
             minutesAndSeconds = new PeriodFormatterBuilder()
                     .printZeroAlways()
                     .minimumPrintedDigits(2)
@@ -142,7 +139,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     .appendLiteral(":")
                     .appendSeconds()
                     .toFormatter();
-        }else{
+        } else {
             minutesAndSeconds = new PeriodFormatterBuilder()
                     .printZeroAlways()
                     .minimumPrintedDigits(2)
@@ -168,9 +165,9 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         // Auto generated
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        try{
+        try {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e(LOGTAG, "NullPointerException! Trying to setDisplayHomeAsUpEnabled!");
         }
 
@@ -180,7 +177,8 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
         //set floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_alarm_white_48dp));
+        fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),
+                R.drawable.ic_alarm_white_48dp));
 
         // get clock view
         clockView = (TextView) findViewById(R.id.clock_tv);
@@ -207,26 +205,28 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                 if (clockView.getVisibility() == View.VISIBLE) {
 
                     //loads and plays the custom animation
-                    Animation anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_up);
+                    Animation anim = AnimationUtils.loadAnimation(getBaseContext(),
+                            R.anim.slide_up);
                     clockLayout.setAnimation(anim);
                     clockLayout.setVisibility(View.GONE);
-                    for(int i = 0; i < clockViewList.size(); i++) {
+                    for (int i = 0; i < clockViewList.size(); i++) {
                         View v = clockViewList.get(i);
                         v.startAnimation(anim);
                         v.setVisibility(View.GONE);
                     }
                 } else {
 
-                    for(int i = 0; i < clockViewList.size(); i++) {
+                    for (int i = 0; i < clockViewList.size(); i++) {
                         View v = clockViewList.get(i);
                         v.setVisibility(View.VISIBLE);
                     }
 
                     clockLayout.setVisibility(View.VISIBLE);
 
-                    Animation anim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_down);
+                    Animation anim = AnimationUtils.loadAnimation(getBaseContext(),
+                            R.anim.slide_down);
 
-                    for(int i = 0; i < clockViewList.size(); i++) {
+                    for (int i = 0; i < clockViewList.size(); i++) {
                         View v = clockViewList.get(i);
                         v.startAnimation(anim);
 
@@ -247,7 +247,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
      * Listens for click on the serving sizes
      * Opens a preference dialogue with a numer picker
      * Changes preference for the user
-     * */
+     */
     public View.OnClickListener servingSizeListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -283,26 +283,23 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putInt("pref_key_serving_size", value);
                     editor.apply();
+                    if(!canMakeMoreThanOnePour(brewMethod.getmMethodName())){
+                        value = 1;
+                    }
 
                     //changes values based on users preference
-                    ArrayList<String>  instructionsToReplace, replacedInstructions;
-                    brewPours = replacePours(brewMethod.getmMethodName(), brewMethod.getmMethodBrewPours());
+                    ArrayList<String> instructionsToReplace, replacedInstructions;
+                    brewPours = replacePours(brewMethod.getmMethodName(),
+                            brewMethod.getmMethodBrewPours());
                     instructionsToReplace = new ArrayList<>(brewMethod.getmMethodInstructions());
 
                     //places numerical values into strings
-                    replacedInstructions =  (ArrayList<String>) insertPourValues(brewPours, instructionsToReplace);
-
-                    //log the new strings
-//                    for(int j = 0; j < instructions.size(); j++){
-//                        Log.v("Value for instruction #" + j, "is: " + instructions.get(j));
-//                    }
+                    replacedInstructions = (ArrayList<String>) insertPourValues(brewPours,
+                            instructionsToReplace);
 
                     //adapter displays each string as a view
                     //newAdapter = new InstructionListAdapter(getBaseContext(), instructions);
                     adapter.swap(replacedInstructions);
-
-                    //set the adapter to the view
-                    //rvInstructions.swapAdapter(newAdapter, false);
 
                     //set serving number
                     String servingString = getResources().getString(serving);
@@ -312,42 +309,41 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
 
                 }
             })
-
-            // if cancel button is pressed
-            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    // do nothing
-                }
-            });
+                    // if cancel button is pressed
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    });
             builder.show();
         }
     };
 
-    /**
+    /***********************************************************************************************
      * Runnable that is used for the timer when the user hits start on the clock.
-     * */
+     **********************************************************************************************/
     Runnable timerRunnable = new Runnable() {
 
         /**
-        * Required for the runnable object. Starts counting up from the Unix time that the runnable
+         * Required for the runnable object. Starts counting up from the Unix time that the runnable
          * was created
-        * */
+         * */
         @Override
         public void run() {
-                long millis = System.currentTimeMillis() - startTime;
-                int seconds = (int) (millis / 1000);
-                int minutes = seconds / 60;
-                seconds = seconds % 60;
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
 
-                //Why didn't I use the formatting earlier instead of Joda.Time?
-                clockView.setText(String.format("%02d:%02d", minutes, seconds));
-                timerHandler.postDelayed(this, 500);
+            //Why didn't I use the formatting earlier instead of Joda.Time?
+            clockView.setText(String.format("%02d:%02d", minutes, seconds));
+            timerHandler.postDelayed(this, 500);
         }
     };
-    /**
-    * Onclick listener for the start button on the timer. When Start button is clicked, it will
+    /***********************************************************************************************
+     * Onclick listener for the start button on the timer. When Start button is clicked, it will
      * start a new Handler.
-    * */
+     **********************************************************************************************/
     public View.OnClickListener startButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -356,10 +352,10 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         }
     };
 
-    /**
+    /***********************************************************************************************
      * Onclick listener for the stop button on the timer. When stop button is clicked, it will
      * end the timer process.
-     * */
+     **********************************************************************************************/
     public View.OnClickListener stopButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -367,10 +363,10 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         }
     };
 
-    /**
+    /***********************************************************************************************
      * Onclick listener for the reset button on the timer. When reset button is clicked, it will
      * stop the Handler and reset the value of the clock.
-     * */
+     **********************************************************************************************/
     public View.OnClickListener resetButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -382,9 +378,9 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         }
     };
 
-    /**
+    /***********************************************************************************************
      * Not used but required to implement onClickListener.
-     * */
+     **********************************************************************************************/
     @Override
     public void onClick(View view) {
     }
@@ -409,55 +405,66 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
     }
 
     public List<Integer> replacePours(String brewMethodTitle, List<Integer> waterPours) {
-
+        SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
+        Integer userServingSize = pref.getInt("pref_key_serving_size", 1);
         List<Integer> returnedPours = new ArrayList<>();
 
-        switch (brewMethodTitle){
-            case ("Iced Coffee"):
-            case ("Aeropress"):
-            case ("Hario V-60"):
-                //return unmodified numbers
-                returnedPours = waterPours;
 
-                //display notice of ignoring serving size preference
-                LinearLayout smallDeviceTV = (LinearLayout) findViewById(R.id.small_device_notice);
-                smallDeviceTV.setVisibility(View.VISIBLE);
-                break;
-
-            // if device can make more than one cup
-            default:
-                SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
-                Integer newServingSize = pref.getInt("pref_key_serving_size", 1);
-
-
-                if (newServingSize == 2) {
-                    for (int i = 0; i < waterPours.size(); i++) {
-                        int newPour = waterPours.get(i) * 2;
-                        returnedPours.add(newPour);
-                    }
-                }else {
-                    returnedPours = waterPours;
+        if (canMakeMoreThanOnePour(brewMethodTitle)) {
+            if (userServingSize == 2) {
+                for (int i = 0; i < waterPours.size(); i++) {
+                    int newPour = waterPours.get(i) * 2;
+                    returnedPours.add(newPour);
                 }
-                break;
+            } else {
+                returnedPours = waterPours;
+            }
+        } else {
+            //create notice if device cannot brew more than one cup
+            LinearLayout smallDeviceTV = (LinearLayout) findViewById(R.id.small_device_notice);
+            if (userServingSize == 2) {
+                returnedPours = waterPours;
+                //display notice of ignoring serving size preference
+                smallDeviceTV.setVisibility(View.VISIBLE);
+            } else {
+                //if already visible make invisible
+                smallDeviceTV.setVisibility(View.GONE);
+            }
         }
         return returnedPours;
     }
 
     /***********************************************************************************************
-    * This function takes the instructions and inserts the pour values into the strings as well as
+     * This function takes the instructions and inserts the pour values into the strings as well as
      * getting the user's preferred measurement system and inserting the unit into the statement.
-    * *********************************************************************************************/
+     * ********************************************************************************************/
     public List<String> insertPourValues(List<Integer> waterPours, List<String> instructions) {
 
         int i = 0;
         for (int j = 0; j < instructions.size(); j++) {
-            if (instructions.get(j).contains("INT") && i< waterPours.size()) {
-                newDirection = instructions.get(j).replaceAll("INT", Integer.toString(waterPours.get(i)));
+            if (instructions.get(j).contains("INT") && i < waterPours.size()) {
+                newDirection = instructions.get(j).replaceAll("INT",
+                        Integer.toString(waterPours.get(i)));
                 instructions.set(j, newDirection);
                 i++;
             }
         }
         return instructions;
+    }
+
+    /***********************************************************************************************
+     * Checks whether the brew method is on the list for being able to make more than one cup.
+     **********************************************************************************************/
+    public Boolean canMakeMoreThanOnePour(String brewMethodTitle) {
+        switch (brewMethodTitle) {
+            case ("Iced Coffee"):
+            case ("Aeropress"):
+            case ("Hario V-60"):
+                return false;
+            // if device can make more than one cup
+            default:
+                return true;
+        }
     }
 
 }

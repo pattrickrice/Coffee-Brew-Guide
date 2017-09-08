@@ -1,6 +1,5 @@
 package com.brewguide.android.coffeebrewguide;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
@@ -12,9 +11,11 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
@@ -61,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        NavigationDrawerItem home = new NavigationDrawerItem(R.drawable.ic_home , getString(R.string.navigation_drawer_home));
-        NavigationDrawerItem recipe = new NavigationDrawerItem(R.drawable.ic_grinder , getString(R.string.navigation_drawer_recipe));
-        NavigationDrawerItem settings = new NavigationDrawerItem(R.drawable.ic_settings , getString(R.string.navigation_drawer_settings));
-        NavigationDrawerItem feedback = new NavigationDrawerItem(R.drawable.ic_give_love , getString(R.string.navigation_drawer_feedback));
+        NavigationDrawerItem home = new NavigationDrawerItem(R.drawable.ic_home, getString(R.string.navigation_drawer_home));
+        NavigationDrawerItem recipe = new NavigationDrawerItem(R.drawable.ic_grinder, getString(R.string.navigation_drawer_recipe));
+        NavigationDrawerItem settings = new NavigationDrawerItem(R.drawable.ic_settings, getString(R.string.navigation_drawer_settings));
+        NavigationDrawerItem feedback = new NavigationDrawerItem(R.drawable.ic_give_love, getString(R.string.navigation_drawer_feedback));
 
         //create arraylist of menu items
         ArrayList<NavigationDrawerItem> menu = new ArrayList<>();
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 this,
                 R.layout.drawer_list_item,
                 menu
-                ));
+        ));
 
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //enable arrow which triggers onOptionsItemSelected()
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -280,10 +281,13 @@ public class MainActivity extends AppCompatActivity {
      * Swaps fragments in the main content view
      */
     private void selectItem(int position) {
-        final Context context = getApplicationContext();
-        Intent intent = new Intent(getBaseContext(), MenuActivity.class);
-        intent.putExtra("position", position);
-        startActivity(intent);
+        if (position != 0) {
+            Intent intent = new Intent(getBaseContext(), MenuActivity.class);
+            intent.putExtra("position", position);
+            startActivity(intent);
+        }else {
+            mDrawerLayout.closeDrawers();
+        }
     }
 
     @Override
