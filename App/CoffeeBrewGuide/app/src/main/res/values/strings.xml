@@ -206,9 +206,13 @@
     <string name="description_recipe">The recipes for all of these brew methods is based on a recipes that aim for a total dissolved solid (TDS) ratio of 1.38-1.45. These recipes are great for a starting place but due to the variety in coffees and roasts, adjustments may be necessary.</string>
 
     <!--feedback fragment-->
+    <string name="accessability_image_description_feedback">Feedback illustration</string>
     <string name="title_feedback">Feedback &amp; Donations</string>
     <string name="description_feedback">Got an idea to improve this app? Come across a bug I didn\'t find? Want to just talk about coffee or programming? Feel free to drop a line!</string>
     <string name="link_feedback">Send</string>
     <string name="description_donate">This app was written in my free time between being a student and working. There\'s no plan for a \"premium\" version of the app, but if you want, you can buy me coffee through the PayPal link below.</string>
     <string name="link_paypal">Donate with PayPal</string>
+    <string name="edit_text_hint_name">Name</string>
+    <string name="edit_text_hint_subject">Subject (Optional)</string>
+    <string name="edit_text_hint_body">Body</string>
 </resources>

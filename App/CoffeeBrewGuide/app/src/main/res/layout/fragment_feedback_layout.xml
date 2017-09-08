@@ -6,12 +6,15 @@
     >
 
     <ImageView
+        android:contentDescription="@string/accessability_image_description_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/feedback_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:textSize="24sp"
         android:text="@string/title_feedback"/>
 
@@ -20,19 +23,29 @@
         android:id="@+id/feedback_description_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="@string/description_feedback"/>
 
     <EditText
         android:id="@+id/input_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:hint="@string/edit_text_hint_name"/>
 
     <EditText
-        android:id="@+id/input_email"
+        android:id="@+id/input_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email address"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:hint="@string/edit_text_hint_subject"
         android:inputType="textEmailAddress"
         />
 
@@ -40,24 +53,46 @@
         android:id="@+id/input_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your message here!"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:hint="@string/edit_text_hint_body"/>
 
     <!--Send feedback button-->
     <Button
+        android:id="@+id/button_send_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_gravity="center"
         android:text="@string/link_feedback"
+        android:theme="@style/AppTheme.Button.Feedback"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="@string/description_donate"/>
+
     <!--PayPal Link-->
     <Button
         android:id="@+id/link_paypal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_gravity="center"
+
         android:text="@string/link_paypal"
+        android:theme="@style/AppTheme.Button.Feedback"
         />
 
 </LinearLayout>

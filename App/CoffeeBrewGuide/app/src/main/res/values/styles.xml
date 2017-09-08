@@ -58,4 +58,9 @@
         <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
     </style>
 
+    <style name="AppTheme.Button.Feedback" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+    </style>
+
 </resources>

@@ -287,12 +287,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void setTitle(CharSequence title) {
-//        mTitle = title;
-//        getActionBar().setTitle(mTitle);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Pass the event to ActionBarDrawerToggle
         // If it returns true, then it has handled
