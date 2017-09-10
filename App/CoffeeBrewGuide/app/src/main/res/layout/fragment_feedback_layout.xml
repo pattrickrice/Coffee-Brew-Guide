@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/accessability_image_description_feedback"
+            android:contentDescription="@string/accessability_image_description_recipe"
             android:maxHeight="20dp"
             android:src="@drawable/feedback" />
 
@@ -108,11 +108,11 @@
             android:id="@+id/link_paypal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:layout_gravity="center"
             android:text="@string/link_paypal"
             android:theme="@style/AppTheme.Button.Feedback" />
     </LinearLayout>

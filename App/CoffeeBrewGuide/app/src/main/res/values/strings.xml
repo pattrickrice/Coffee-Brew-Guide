@@ -91,7 +91,7 @@
     <!--Resources for hario V-60-->
     <string name="title_harioV60">Hario V-60</string>]
     <string name="bio_harioV60">
-        The hario V-60 is capable of so much, but it is easy to mess up. When done right, the body is smooth and those bright acidic notes really shine through the cup. The V-60 is a pour-over drip with ridges on the walls of the vessel which allow for greater flow. Detail to your method of pouring is required and a gooseneck kettle is reccomended.
+        The hario V-60 is capable of so much, but it is easy to mess up. When done right, the body is smooth and those bright acidic notes really shine through the cup. The V-60 is a pour-over drip with ridges on the walls of the vessel which allow for greater flow. Detail to your method of pouring is required and a gooseneck kettle is recommended.
     </string>
     <array name="instructions_harioV60_array">
         <item name="instruction_step1_harioV60">Place vessel either on top of coffee cup or on stand
@@ -159,7 +159,7 @@
 
     <!--Resources for Iced Coffee-->
     <string name="title_cold_brew">Cold Brew</string>]
-    <string name="bio_cold_brew">Cold brew coffee makes for a strong, full-bodied, iced coffee beverage. There are many different vessles to make cold brew in, this method can be used interchangably on any of them.
+    <string name="bio_cold_brew">Cold brew coffee makes for a strong, full-bodied, iced coffee beverage. There are many different vessles to make cold brew in, this method can be used interchangeably on any of them.
 </string>
     <array name="instructions_cold_brew_array">
         <item name="instruction_step1_cold_brew">Grind coffee on french press setting.
@@ -204,13 +204,13 @@
 
     <!--recipe fragment-->
     <string name="title_recipe">About the recipe</string>
-    <string name="description_recipe">The recipes for all of these brew methods is based on a recipes that aim for a total dissolved solid (TDS) ratio of 1.38-1.45. These recipes are great for a starting place but due to the variety in coffees and roasts, adjustments may be necessary.</string>
+    <string name="description_recipe">The recipes for all of these brew methods is based on a recipes that aim for a total dissolved solid (TDS) ratio of 1.38\-1.45. These recipes are great for a starting place but due to the variety in coffees and roasts, adjustments may be necessary.</string>
+    <string name="accessability_image_description_recipe">Recipe chart showing extraction profile</string>
 
     <!--feedback fragment-->
     <string name="accessability_image_description_feedback">Feedback illustration</string>
     <string name="title_feedback">Feedback</string>
     <string name="title_donations">Donations</string>
-
     <string name="description_feedback">Got an idea to improve this app? Come across a bug I didn\'t find? Want to just talk about coffee or programming? Feel free to drop a line!</string>
     <string name="link_feedback">Send</string>
     <string name="description_donate">This app was written in my free time between being a student and working. There\'s no plan for a \"premium\" version of the app, but if you want, you can buy me coffee through the PayPal link below.</string>
