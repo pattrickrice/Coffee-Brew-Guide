@@ -8,6 +8,9 @@
         <item>@drawable/ic_weight</item>
         <item>@drawable/ic_weight</item>
         <item>@drawable/ic_weight</item>
-
     </integer-array>
+    <string-array name="serving_size_options">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

@@ -188,6 +188,7 @@
     <!-- Preference Resources -->
     <string name="imperial_system">Imperial (fluid ounces [not recommended])</string>
     <string name="metric_System">Metric (grams)</string>
+    <string name="pref_serving_size_sum">The number of cups of coffee you\'d like to make: %s</string>
 
     <!-- Navigation Drawer List -->
     <string name="navigation_drawer_home">Home</string>
@@ -207,7 +208,9 @@
 
     <!--feedback fragment-->
     <string name="accessability_image_description_feedback">Feedback illustration</string>
-    <string name="title_feedback">Feedback &amp; Donations</string>
+    <string name="title_feedback">Feedback</string>
+    <string name="title_donations">Donations</string>
+
     <string name="description_feedback">Got an idea to improve this app? Come across a bug I didn\'t find? Want to just talk about coffee or programming? Feel free to drop a line!</string>
     <string name="link_feedback">Send</string>
     <string name="description_donate">This app was written in my free time between being a student and working. There\'s no plan for a \"premium\" version of the app, but if you want, you can buy me coffee through the PayPal link below.</string>

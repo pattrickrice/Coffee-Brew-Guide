@@ -408,8 +408,6 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
         Integer userServingSize = pref.getInt("pref_key_serving_size", 1);
         List<Integer> returnedPours = new ArrayList<>();
-
-
         if (canMakeMoreThanOnePour(brewMethodTitle)) {
             if (userServingSize == 2) {
                 for (int i = 0; i < waterPours.size(); i++) {

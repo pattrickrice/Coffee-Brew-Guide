@@ -1,98 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:layout_height="wrap_content"
+    android:layout_marginTop="-32dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ImageView
-        android:contentDescription="@string/accessability_image_description_feedback"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/feedback_title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="24sp"
-        android:text="@string/title_feedback"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!--feedback fields-->
-    <TextView
-        android:id="@+id/feedback_description_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="@string/description_feedback"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/accessability_image_description_feedback"
+            android:maxHeight="20dp"
+            android:src="@drawable/feedback" />
 
-    <EditText
-        android:id="@+id/input_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:hint="@string/edit_text_hint_name"/>
+        <TextView
+            android:id="@+id/feedback_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/title_feedback"
+            android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/input_subject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:hint="@string/edit_text_hint_subject"
-        android:inputType="textEmailAddress"
-        />
+        <!--feedback fields-->
+        <TextView
+            android:id="@+id/feedback_description_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/description_feedback" />
 
-    <EditText
-        android:id="@+id/input_body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:hint="@string/edit_text_hint_body"/>
+        <!--Name for reference-->
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:hint="@string/edit_text_hint_name"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp" />
 
-    <!--Send feedback button-->
-    <Button
-        android:id="@+id/button_send_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_gravity="center"
-        android:text="@string/link_feedback"
-        android:theme="@style/AppTheme.Button.Feedback"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="@string/description_donate"/>
+        <!--Subject for feedback-->
+        <EditText
+            android:id="@+id/input_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:hint="@string/edit_text_hint_subject"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp" />
 
-    <!--PayPal Link-->
-    <Button
-        android:id="@+id/link_paypal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_gravity="center"
+        <!--Body of feedback-->
+        <EditText
+            android:id="@+id/input_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:hint="@string/edit_text_hint_body"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp" />
 
-        android:text="@string/link_paypal"
-        android:theme="@style/AppTheme.Button.Feedback"
-        />
+        <!--Send feedback button-->
+        <Button
+            android:id="@+id/button_send_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/link_feedback"
+            android:theme="@style/AppTheme.Button.Feedback" />
 
-</LinearLayout>
+        <!--Donations Title-->
+        <TextView
+            android:id="@+id/donation_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/title_donations"
+            android:textSize="24sp" />
+
+        <!--Donations Description-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/description_donate" />
+
+        <!--PayPal Link-->
+        <Button
+            android:id="@+id/link_paypal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_gravity="center"
+            android:text="@string/link_paypal"
+            android:theme="@style/AppTheme.Button.Feedback" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

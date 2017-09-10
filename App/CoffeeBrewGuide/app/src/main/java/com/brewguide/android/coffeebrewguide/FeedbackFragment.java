@@ -44,6 +44,7 @@ public class FeedbackFragment extends Fragment {
                     finalSubject = subject;
                 }
                 if (!Objects.equals(name, "")) {
+                    finalSubject = finalSubject + " from " + name;
                     if (body.length() > 15) {
                         //let's do this
                         Intent i = new Intent(Intent.ACTION_SEND);
