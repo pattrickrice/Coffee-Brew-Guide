@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         brewMethodList.add(getChemex());
         brewMethodList.add(getHarioV60());
         brewMethodList.add(getIcedCoffee());
+        brewMethodList.add(getKalitaWave());
         return brewMethodList;
     }
 
@@ -242,6 +243,32 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.iced_coffee,
                 R.drawable.iced_coffee,
                 getResources().getString(R.string.bio_cold_brew)
+        );
+    }
+
+    public BrewMethod getKalitaWave() {
+
+        //replace units in directions
+        instructions = Arrays.asList(getResources().getStringArray(R.array.instructions_kalita_wave));
+        instructions = replaceUnits(instructions);
+        brewPours = new ArrayList<>();
+        brewPours.add(getResources().getInteger(R.integer.kalita_wave_pour_1));
+        brewPours.add(getResources().getInteger(R.integer.kalita_wave_pour_2));
+        brewPours.add(getResources().getInteger(R.integer.kalita_wave_pour_3));
+        brewPours.add(getResources().getInteger(R.integer.kalita_wave_pour_4));
+
+
+        return new BrewMethod(
+                getResources().getString(R.string.title_kalita_wave),
+                new ArrayList<>(instructions),
+                new ArrayList<>(brewPours),
+                getServingSize(),
+                25,
+                org.joda.time.Duration.millis(225000),
+                getResources().getString(R.string.grind_size_coarse),
+                R.drawable.kalita_wave,
+                R.drawable.kalita_wave,
+                getResources().getString(R.string.bio_kalita_wave)
         );
     }
 

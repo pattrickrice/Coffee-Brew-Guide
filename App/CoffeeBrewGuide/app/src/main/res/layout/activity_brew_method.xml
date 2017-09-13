@@ -380,7 +380,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/mainBackground"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/text_margin"
+                    >
 
                     <TextView
                         android:id="@+id/brew_method_instructions_title_TV"

@@ -18,4 +18,11 @@
 
     <integer name="cold_brew_pour_1">1000</integer>
 
+    <integer name="kalita_wave_pour_1">60</integer>
+    <integer name="kalita_wave_pour_2">40</integer>
+    <integer name="kalita_wave_pour_3">40</integer>
+    <integer name="kalita_wave_pour_4">380</integer>
+
+
+
 </resources>

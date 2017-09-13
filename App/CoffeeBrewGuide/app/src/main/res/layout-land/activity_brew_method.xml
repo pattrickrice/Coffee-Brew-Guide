@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="bottom|center_horizontal"
+            app:expandedTitleMarginBottom="16dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <ImageView
+                android:id="@+id/topImageIV"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="16dp"
+                android:fitsSystemWindows="true"
+                android:maxHeight="20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/aeropress"
+                app:layout_collapseMode="parallax" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:animateLayoutChanges="true"
+            android:background="@color/cardview_dark_background"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/clock_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:text="@string/start_time"
+                    android:textColor="#ffffff"
+                    android:textSize="40sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/clock_button_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <!--Start Button-->
+                <Button
+                    android:id="@+id/startButtonB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/start"
+                    android:theme="@style/AppTheme.Button.Start"
+                    android:visibility="gone" />
+
+                <!--Stop Button-->
+                <Button
+                    android:id="@+id/stopButtonB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/stop"
+                    android:theme="@style/AppTheme.Button.Stop"
+                    android:visibility="gone" />
+
+                <!--Reset Button-->
+                <Button
+                    android:id="@+id/resetButtonB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/reset"
+                    android:theme="@style/AppTheme.Button.Reset"
+                    android:visibility="gone"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <!--make whole layout scrollable
+    app_bar scrolling necessary for collapsing tool bar
+    -->
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/brew_method_NSV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+        <!--nested view can only have one child-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <!--brew parameters-->
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <!--layout for the brew parameteres-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/brew_method_parameters"
+                    android:gravity="center"
+                    android:minWidth="400dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:weightSum="3">
+
+                    <!--layout for the weight-->
+                    <LinearLayout
+                        android:id="@+id/serving_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!--top row of the weight includes image-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!--weight image icon-->
+                            <ImageView
+                                android:id="@+id/weight_icon_IV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:focusableInTouchMode="true"
+                                android:src="@drawable/ic_weight" />
+
+                            <!--weight parameter set dynamically-->
+                            <TextView
+                                android:id="@+id/TV_servingDose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:hint="16 g"
+                                android:textColor="@color/colorPrimaryDark" />
+                        </LinearLayout>
+
+                        <!--serving size set dynamically-->
+                        <TextView
+                            android:id="@+id/TV_servingNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="1 Serving"
+                            android:paddingLeft="12dp"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+                    <!--layout for time requirement-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!--top row of time requirement-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!--time icon-->
+                            <ImageView
+                                android:id="@+id/timer_icon_IV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:focusableInTouchMode="true"
+                                android:src="@drawable/ic_clock" />
+
+                            <!--brew time set dynamically-->
+                            <TextView
+                                android:id="@+id/TV_timer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="4:00"
+                                android:textColor="@color/colorPrimaryDark" />
+                        </LinearLayout>
+
+                        <!--brew time label-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:text="Brew Time"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                    </LinearLayout>
+
+                    <!--layout for grind size-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!--top row of grind size includes image-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <!--icon for grind-->
+                            <ImageView
+                                android:id="@+id/grind_icon_IV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:focusableInTouchMode="true"
+                                android:src="@drawable/ic_grinder" />
+
+                            <!--grind description set dynamically-->
+                            <TextView
+                                android:id="@+id/TV_grindSetting"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="@string/grind_size_coarse"
+                                android:textColor="@color/colorPrimaryDark" />
+
+
+                        </LinearLayout>
+                        <!--grind setting description-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="12dp"
+                            android:text="@string/grind_setting"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!--1 serving size notice-->
+            <LinearLayout
+                android:id="@+id/small_device_notice"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:visibility="gone">
+
+                <!-- 1 serving size text view-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/small_device"
+                    android:textColor="@color/colorPrimaryDark" />
+            </LinearLayout>
+
+            <!--description of brewmethod layout-->
+            <android.support.v7.widget.CardView
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:cardCornerRadius="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/mainBackground"
+                    android:orientation="vertical">
+
+                    <!--description label-->
+                    <TextView
+                        android:id="@+id/description_header_TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingStart="16dp"
+                        android:text="@string/brew_method_description"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="24sp"
+
+                        />
+
+                    <!--description text-->
+                    <TextView
+                        android:id="@+id/brew_method_description_TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:hint="@string/bio_aeropress"
+                        android:paddingBottom="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingStart="16dp"
+                        android:textColor="@color/colorPrimaryDark"
+
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!--instructions label-->
+            <android.support.v7.widget.CardView
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:cardCornerRadius="2dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/mainBackground"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/text_margin">
+
+                    <TextView
+                        android:id="@+id/brew_method_instructions_title_TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="16dp"
+                        android:text="@string/brew_method_instructions"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="24sp" />
+
+                    <!--instuctions recyclerview. set using InstructionListAdapter-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvInstructions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="0dp"
+                        android:nestedScrollingEnabled="false">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+
+</android.support.design.widget.CoordinatorLayout>

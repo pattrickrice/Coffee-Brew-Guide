@@ -179,6 +179,24 @@
         </item>
     </array>
 
+    <!--Resources for Kalita Wave-->
+    <string name="title_kalita_wave">Kalita Wave</string>]
+    <string name="bio_kalita_wave">The Kalita Wave is can produce an awesome balanced and sweet cup of coffee. Its flat bottom causes an even extraction pulls out sweetness and body in the cup. This guide reccomends a coarse grind, and uses agitation to slow the brew time down.</string>
+    <array name="instructions_kalita_wave">
+        <item name="instruction_step1_kalita_wave">Bring water to a boil.</item>
+        <item name="instruction_step2_kalita_wave">Rinse paper filter, retaining natural filter shape.
+        </item>
+        <item name="instruction_step3_kalita_wave">Grind the coffee on coarse setting, dump grounds in brewer, dump out hot water from cup/carafe.
+        </item>
+        <item name="instruction_step4_kalita_wave">Start timer and make initial pour of INT UNITS, take a spoon and stir the grounds to ensure that all grinds are wet. Let bloom.
+        </item>
+        <item name="instruction_step5_kalita_wave">At 45 seconds, quickly pour in a circular pattern bringing the total amount of water to INT UNITS.
+        </item>
+        <item name="instruction_step6_kalita_wave">Continue adding pulses of INT UNITS of water at a time, making sure to keep water bed elevated.
+        </item>
+        <item name="instruction_step7_kalita_wave">Coffee should finish dripping around 3:45 with INT UNITS as its final weight. remove brewer and stir contents of cup to fully integrate the coffee.</item>
+    </array>
+
     <!--Resources for clock-->
     <string name="start_time">00:00</string>
     <string name="start">Start</string>
