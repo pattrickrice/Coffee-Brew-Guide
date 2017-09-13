@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Coffee Brew Guide</string>
+    <string name="app_name">Coffee Companion</string>
     <string name="title_activity_brew_method">BrewMethodActivity</string>
     <string name="title_activity_chemex">Chemex</string>
     <string name="title_activity_aeropress">Aeropress</string>
