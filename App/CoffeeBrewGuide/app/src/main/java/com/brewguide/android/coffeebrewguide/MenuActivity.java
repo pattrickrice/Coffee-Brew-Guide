@@ -35,13 +35,16 @@ public class MenuActivity extends AppCompatActivity {
             case 1:
                 RecipeFragment recipeFragment = new RecipeFragment();
                 fragmentTransaction.add(R.id.myfragment, recipeFragment);
+                getSupportActionBar().setTitle("Recipe");
                 fragmentTransaction.commit();
                 break;
             case 2:
+                getSupportActionBar().setTitle("Settings");
                 fragmentTransaction.replace(R.id.myfragment, new SettingsFragment())
                         .commit();
                 break;
             case 3:
+                getSupportActionBar().setTitle("Feedback");
                 FeedbackFragment feedbackFragment = new FeedbackFragment();
                 fragmentTransaction.add(R.id.myfragment, feedbackFragment);
                 fragmentTransaction.commit();
