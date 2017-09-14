@@ -1,7 +1,7 @@
 #Coffee Companion
 ========================
 
-<img id="screen-5" src="Design/screenshots/banner.jpg" width="220" alt="Investigate results" title="Investigate results" />
+<img id="screen-5" src="Design/screenshots/banner.jpg" width="220" />
 
 
 This application aims to be a reference for brewing coffee using various brew methods. 
