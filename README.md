@@ -1,11 +1,11 @@
 #Coffee Companion
-========================
-
-<img id="screen-5" src="Design/screenshots/banner.jpg" width="220" />
-
+=======================
+<img id="screen-5" src="Design/screenshots/banner.png" width="220" />
 
 This application aims to be a reference for brewing coffee using various brew methods. 
 The app also includes hand drawn images, and methods for feedback and support.
+
+
 
 ## Project Setup
 The project was created using Android Studio and the gradle build system.
