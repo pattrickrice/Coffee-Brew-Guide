@@ -1,4 +1,5 @@
 #Coffee Companion
+<a href="https://play.google.com/store/apps/details?id=com.brewguide.android.coffeebrewguide&hl=en"><img id="screen-5" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="150" /></a>
 =======================
 <img id="screen-5" src="Design/screenshots/banner.png" width="220" />
 
