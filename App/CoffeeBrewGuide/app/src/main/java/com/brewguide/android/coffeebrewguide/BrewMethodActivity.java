@@ -52,6 +52,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
     Context context = this;
     public RecyclerView rvInstructions;
     public BrewMethod brewMethod;
+    int dose;
 
     // required for timer
     public TextView clockView;
@@ -120,8 +121,8 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         servingNumberTV.setText(serving);
 
         //set serving Dose
-        //TODO dynamically change units
-        String servingDose = Integer.toString(brewMethod.getmMethodServingSize()) + "g";
+        dose = replaceDose(brewMethodTitle ,brewMethod.getmMethodServingSize());
+        String servingDose = Integer.toString(dose) + "g";
         TextView servingSizeTV = (TextView) findViewById(R.id.TV_servingDose);
         servingSizeTV.setText(servingDose);
 
@@ -308,6 +309,12 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     TextView servingNumberTV = (TextView) findViewById(R.id.TV_servingNumber);
                     servingNumberTV.setText(serving);
 
+                    //set serving Dose
+                    dose = replaceDose(brewMethod.getmMethodName() ,brewMethod.getmMethodServingSize());
+                    String servingDose = Integer.toString(dose) + "g";
+                    TextView servingSizeTV = (TextView) findViewById(R.id.TV_servingDose);
+                    servingSizeTV.setText(servingDose);
+
                 }
             })
                     // if cancel button is pressed
@@ -441,6 +448,29 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             Log.v(LOGTAG, returnedPours.get(j).toString());
         }
         return returnedPours;
+    }
+
+    public int replaceDose(String brewMethodTitle, int dose) {
+        SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
+        Integer userServingSize = pref.getInt("pref_key_serving_size", 1);
+        int newDose;
+        if (canMakeMoreThanOnePour(brewMethodTitle)) {
+            if (userServingSize == 2) {
+                //Serving size is 2
+                newDose = dose * 2;
+
+            } else {
+                //serving size is one
+                newDose = dose;
+            }
+
+        } else {
+
+            //device cannot support larger dose
+            newDose = dose;
+        }
+
+        return newDose;
     }
 
     /***********************************************************************************************
