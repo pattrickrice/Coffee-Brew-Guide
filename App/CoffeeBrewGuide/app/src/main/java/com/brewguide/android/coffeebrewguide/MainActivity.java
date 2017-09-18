@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
-    /**
+    /***********************************************************************************************
      * Create Arraylist with containing all of the brew methods
-     */
+     **********************************************************************************************/
     public ArrayList<BrewMethod> getBrewMethodList() {
         brewMethodList = new ArrayList<>();
         brewMethodList.add(getAeropress());
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                 new ArrayList<>(instructions),
                 new ArrayList<>(brewPours),
                 getServingSize(),
-                50,
+                25,
                 org.joda.time.Duration.millis(165000),
                 getResources().getString(R.string.grind_size_medium),
                 R.drawable.hariov60,

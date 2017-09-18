@@ -80,10 +80,12 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         brewMethod = i.getParcelableExtra("brew_method");
 
         //changes values based on users preference
+        brewPours = new ArrayList<>();
         brewPours = replacePours(brewMethodTitle, brewMethod.getmMethodBrewPours());
 
         ArrayList<String> templateInstructions = new ArrayList<>(brewMethod
                 .getmMethodInstructions());
+
         //places numerical values into strings
         ArrayList<String> instructions = (ArrayList<String>) insertPourValues(brewPours,
                 templateInstructions);
@@ -243,11 +245,10 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    /**
-     * Listens for click on the serving sizes
-     * Opens a preference dialogue with a numer picker
+    /***********************************************************************************************
+     * Listens for click on the serving sizes and opens a preference dialogue with a number picker.
      * Changes preference for the user
-     */
+     **********************************************************************************************/
     public View.OnClickListener servingSizeListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -283,7 +284,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putInt("pref_key_serving_size", value);
                     editor.apply();
-                    if(!canMakeMoreThanOnePour(brewMethod.getmMethodName())){
+                    if (!canMakeMoreThanOnePour(brewMethod.getmMethodName())) {
                         value = 1;
                     }
 
@@ -404,10 +405,10 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             });
     }
 
-    public List<Integer> replacePours(String brewMethodTitle, List<Integer> waterPours) {
+    public ArrayList<Integer> replacePours(String brewMethodTitle, List<Integer> waterPours) {
         SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
         Integer userServingSize = pref.getInt("pref_key_serving_size", 1);
-        List<Integer> returnedPours = new ArrayList<>();
+        ArrayList<Integer> returnedPours = new ArrayList<>();
         if (canMakeMoreThanOnePour(brewMethodTitle)) {
             if (userServingSize == 2) {
                 for (int i = 0; i < waterPours.size(); i++) {
@@ -415,19 +416,29 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     returnedPours.add(newPour);
                 }
             } else {
-                returnedPours = waterPours;
+                for (int i = 0; i < waterPours.size(); i++) {
+                    returnedPours.add(waterPours.get(i));
+                }
             }
         } else {
             //create notice if device cannot brew more than one cup
             LinearLayout smallDeviceTV = (LinearLayout) findViewById(R.id.small_device_notice);
             if (userServingSize == 2) {
-                returnedPours = waterPours;
+                for (int i = 0; i < waterPours.size(); i++) {
+                    returnedPours.add(waterPours.get(i));
+                }
                 //display notice of ignoring serving size preference
                 smallDeviceTV.setVisibility(View.VISIBLE);
             } else {
                 //if already visible make invisible
                 smallDeviceTV.setVisibility(View.GONE);
+                for (int i = 0; i < waterPours.size(); i++) {
+                    returnedPours.add(waterPours.get(i));
+                }
             }
+        }
+        for (int j = 0; j < returnedPours.size(); j++) {
+            Log.v(LOGTAG, returnedPours.get(j).toString());
         }
         return returnedPours;
     }
