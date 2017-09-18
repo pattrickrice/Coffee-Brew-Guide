@@ -159,7 +159,7 @@
 
     <!--Resources for Iced Coffee-->
     <string name="title_cold_brew">Cold Brew</string>]
-    <string name="bio_cold_brew">Cold brew coffee makes for a strong, full-bodied, iced coffee beverage. There are many different vessles to make cold brew in, this method can be used interchangeably on any of them.
+    <string name="bio_cold_brew">Cold brew coffee makes for a strong, full-bodied, iced coffee beverage. There are many different vessels to make cold brew in, this method can be used interchangeably on any of them.
 </string>
     <array name="instructions_cold_brew_array">
         <item name="instruction_step1_cold_brew">Grind coffee on french press setting.
@@ -181,7 +181,7 @@
 
     <!--Resources for Kalita Wave-->
     <string name="title_kalita_wave">Kalita Wave</string>]
-    <string name="bio_kalita_wave">The Kalita Wave is can produce an awesome balanced and sweet cup of coffee. Its flat bottom causes an even extraction pulls out sweetness and body in the cup. This guide reccomends a coarse grind, and uses agitation to slow the brew time down.</string>
+    <string name="bio_kalita_wave">The Kalita Wave is can produce an awesome balanced and sweet cup of coffee. Its flat bottom causes an even extraction pulls out sweetness and body in the cup. This guide recommends a coarse grind, and uses agitation to slow the brew time down.</string>
     <array name="instructions_kalita_wave">
         <item name="instruction_step1_kalita_wave">Bring water to a boil.</item>
         <item name="instruction_step2_kalita_wave">Rinse paper filter, retaining natural filter shape.

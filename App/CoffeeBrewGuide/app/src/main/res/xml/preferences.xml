@@ -12,10 +12,4 @@
         android:summary="@string/pref_serving_size_sum"
         />
 
-    <!-- Users preferred system of measurement -->
-    <!--<Preference-->
-        <!--android:defaultValue="@string/metric_System"-->
-        <!--android:key="pref_key_measurement_system"-->
-        <!--android:title="Measurement system"/>-->
-
 </PreferenceScreen>

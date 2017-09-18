@@ -121,7 +121,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         servingNumberTV.setText(serving);
 
         //set serving Dose
-        dose = replaceDose(brewMethodTitle ,brewMethod.getmMethodServingSize());
+        dose = replaceDose(brewMethodTitle, brewMethod.getmMethodServingSize());
         String servingDose = Integer.toString(dose) + "g";
         TextView servingSizeTV = (TextView) findViewById(R.id.TV_servingDose);
         servingSizeTV.setText(servingDose);
@@ -179,7 +179,7 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         collapsingToolbar.setTitle(brewMethodTitle);
 
         //set floating action button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),
                 R.drawable.ic_alarm_white_48dp));
 
@@ -244,6 +244,27 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Make FAB disappear when scrolling down
+        mScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v,
+                                       int scrollX,
+                                       int scrollY,
+                                       int oldScrollX,
+                                       int oldScrollY) {
+
+                if (scrollY > oldScrollY) {
+                    //Scrolling down
+                    fab.hide();
+                }
+                if (scrollY < oldScrollY) {
+                    //Scrolling up
+                    fab.show();
+
+                }
+            }
+        });
     }
 
     /***********************************************************************************************
@@ -310,7 +331,8 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                     servingNumberTV.setText(serving);
 
                     //set serving Dose
-                    dose = replaceDose(brewMethod.getmMethodName() ,brewMethod.getmMethodServingSize());
+                    dose = replaceDose(brewMethod.getmMethodName(),
+                            brewMethod.getmMethodServingSize());
                     String servingDose = Integer.toString(dose) + "g";
                     TextView servingSizeTV = (TextView) findViewById(R.id.TV_servingDose);
                     servingSizeTV.setText(servingDose);
@@ -412,6 +434,9 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             });
     }
 
+    /***********************************************************************************************
+     * Change the pour amounts based on the user preferences
+     **********************************************************************************************/
     public ArrayList<Integer> replacePours(String brewMethodTitle, List<Integer> waterPours) {
         SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
         Integer userServingSize = pref.getInt("pref_key_serving_size", 1);
@@ -450,6 +475,10 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
         return returnedPours;
     }
 
+
+    /***********************************************************************************************
+     * Change the dose based on user preferences
+     **********************************************************************************************/
     public int replaceDose(String brewMethodTitle, int dose) {
         SharedPreferences pref = getSharedPreferences("preferences", MODE_PRIVATE);
         Integer userServingSize = pref.getInt("pref_key_serving_size", 1);
@@ -465,7 +494,6 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
             }
 
         } else {
-
             //device cannot support larger dose
             newDose = dose;
         }
@@ -505,5 +533,6 @@ public class BrewMethodActivity extends AppCompatActivity implements View.OnClic
                 return true;
         }
     }
+
 
 }
